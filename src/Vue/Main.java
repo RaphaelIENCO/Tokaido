@@ -13,7 +13,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("plateau.fxml"));
         primaryStage.setTitle("Tokaido");
-        primaryStage.setScene(new Scene(root, 750, 250));
+        primaryStage.setScene(new Scene(root, 1500, 500));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
