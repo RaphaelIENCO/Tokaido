@@ -13,6 +13,6 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <AnchorPane prefHeight="216.0" prefWidth="347.0" stylesheets="@style.css" />
+      <AnchorPane prefHeight="250.0" prefWidth="750.0" styleClass="background" stylesheets="@style.css" />
    </children>
 </GridPane>
