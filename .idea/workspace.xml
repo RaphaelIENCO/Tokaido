@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="test">
-      <change afterPath="$PROJECT_DIR$/Test/Model/CartesTest.java" afterDir="false" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/Test/Model/RepasTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/Model/SouvenirsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Repas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Model/Souvenirs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/Modele/CartesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modele/Cartes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cartes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/Model/CartesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test/Model/CartesTest.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,7 +72,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Vue/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="291">
               <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -82,17 +84,58 @@
       <file leaf-file-name="Cartes.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Model/Cartes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="17" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="187">
+              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CartesTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Test/Model/CartesTest.java">
+      <file leaf-file-name="Repas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/Repas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            <state relative-caret-position="289">
+              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+              <folding>
+                <element signature="e#129#130#0" expanded="true" />
+                <element signature="e#151#152#0" expanded="true" />
+                <element signature="e#101#102#0" expanded="true" />
+                <element signature="e#128#129#0" expanded="true" />
+                <element signature="e#165#166#0" expanded="true" />
+                <element signature="e#197#198#0" expanded="true" />
+                <element signature="e#352#353#0" expanded="true" />
+                <element signature="e#380#381#0" expanded="true" />
+                <element signature="e#359#360#0" expanded="true" />
+                <element signature="e#392#393#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Souvenirs.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Model/Souvenirs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+              <folding>
+                <element signature="e#144#145#0" expanded="true" />
+                <element signature="e#164#165#0" expanded="true" />
+                <element signature="e#390#391#0" expanded="true" />
+                <element signature="e#427#428#0" expanded="true" />
+                <element signature="e#459#460#0" expanded="true" />
+                <element signature="e#495#496#0" expanded="true" />
+                <element signature="e#530#531#0" expanded="true" />
+                <element signature="e#583#584#0" expanded="true" />
+                <element signature="e#631#632#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SouvenirsTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Test/Model/SouvenirsTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="291">
+              <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,29 +143,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OptionController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/OptionController.java">
+      <file leaf-file-name="RepasTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/Model/RepasTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="359">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="32" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Vue/style.css">
+      <file leaf-file-name="CartesTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/Model/CartesTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="291">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -162,6 +202,11 @@
         <option value="$PROJECT_DIR$/src/Modele/Cartes.java" />
         <option value="$PROJECT_DIR$/Test/Modele/CartesTest.java" />
         <option value="$PROJECT_DIR$/Test/Model/CartesTest.java" />
+        <option value="$PROJECT_DIR$/Test/Model/RepasTest.java" />
+        <option value="$PROJECT_DIR$/src/Model/Cartes.java" />
+        <option value="$PROJECT_DIR$/src/Model/Repas.java" />
+        <option value="$PROJECT_DIR$/src/Model/Souvenirs.java" />
+        <option value="$PROJECT_DIR$/Test/Model/SouvenirsTest.java" />
       </list>
     </option>
   </component>
@@ -264,6 +309,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
+      <recent name="Model" />
       <recent name="Modele" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
@@ -286,7 +332,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CartesTest (1)">
+  <component name="RunManager" selected="JUnit.SouvenirsTest">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method>
@@ -335,7 +381,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="CartesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RepasTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tokaido" />
       <extension name="coverage">
         <pattern>
@@ -345,8 +391,8 @@
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="Modele" />
-      <option name="MAIN_CLASS_NAME" value="Modele.CartesTest" />
+      <option name="PACKAGE_NAME" value="Model" />
+      <option name="MAIN_CLASS_NAME" value="Model.RepasTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
@@ -358,7 +404,7 @@
       </option>
       <patterns />
     </configuration>
-    <configuration name="CartesTest.testNomBonSet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RepasTest.testBonPrixSet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Tokaido" />
       <extension name="coverage">
         <pattern>
@@ -368,10 +414,56 @@
       </extension>
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="Modele" />
-      <option name="MAIN_CLASS_NAME" value="Modele.CartesTest" />
-      <option name="METHOD_NAME" value="testNomBonSet" />
+      <option name="PACKAGE_NAME" value="Model" />
+      <option name="MAIN_CLASS_NAME" value="Model.RepasTest" />
+      <option name="METHOD_NAME" value="testBonPrixSet" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="RepasTest.testScoreSet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Tokaido" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="Model" />
+      <option name="MAIN_CLASS_NAME" value="Model.RepasTest" />
+      <option name="METHOD_NAME" value="testScoreSet" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="SouvenirsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Tokaido" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="Model" />
+      <option name="MAIN_CLASS_NAME" value="Model.SouvenirsTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -448,15 +540,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.CartesTest.testNomBonSet" />
-      <item itemvalue="JUnit.CartesTest" />
       <item itemvalue="JUnit.CartesTest (1)" />
+      <item itemvalue="JUnit.RepasTest.testBonPrixSet" />
+      <item itemvalue="JUnit.RepasTest.testScoreSet" />
+      <item itemvalue="JUnit.RepasTest" />
+      <item itemvalue="JUnit.SouvenirsTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SouvenirsTest" />
+        <item itemvalue="JUnit.RepasTest" />
+        <item itemvalue="JUnit.RepasTest.testBonPrixSet" />
+        <item itemvalue="JUnit.RepasTest.testScoreSet" />
         <item itemvalue="JUnit.CartesTest (1)" />
-        <item itemvalue="JUnit.CartesTest" />
-        <item itemvalue="JUnit.CartesTest.testNomBonSet" />
       </list>
     </recent_temporary>
   </component>
@@ -475,7 +571,7 @@
       <workItem from="1542136775767" duration="228000" />
       <workItem from="1542140149348" duration="2644000" />
       <workItem from="1542182542693" duration="1849000" />
-      <workItem from="1542203876392" duration="188000" />
+      <workItem from="1542203876392" duration="2728000" />
     </task>
     <task id="LOCAL-00001" summary="Creation de la bae en MVC &#10;package Model&#10;package Vue &#10;package Controller&#10;&#10;Dossier Image pour les images &#10;Feuille Css pour les style&#10;&#10;Plateau.fxml = plateau de jeu">
       <created>1542134828085</created>
@@ -526,19 +622,50 @@
       <option name="project" value="LOCAL" />
       <updated>1542183653268</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Creation de l'objet carte et du dossier de test">
+      <created>1542204200971</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1542204200971</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CartesTest_testNomBonSet - 2018.11.14 at 09h 07m 39s.xml">
-      <configuration name="CartesTest.testNomBonSet" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CartesTest - 2018.11.14 at 09h 10m 20s.xml">
       <configuration name="CartesTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CartesTest_(1) - 2018.11.14 at 15h 02m 40s.xml">
+      <configuration name="CartesTest (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RepasTest_testBonPrixSet - 2018.11.14 at 15h 13m 15s.xml">
+      <configuration name="RepasTest.testBonPrixSet" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CartesTest_(1) - 2018.11.14 at 15h 15m 02s.xml">
+      <configuration name="CartesTest (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RepasTest_testBonPrixSet - 2018.11.14 at 15h 20m 46s.xml">
+      <configuration name="RepasTest.testBonPrixSet" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RepasTest - 2018.11.14 at 15h 20m 47s.xml">
+      <configuration name="RepasTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RepasTest - 2018.11.14 at 15h 22m 18s.xml">
+      <configuration name="RepasTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RepasTest - 2018.11.14 at 15h 24m 52s.xml">
+      <configuration name="RepasTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="RepasTest - 2018.11.14 at 15h 27m 20s.xml">
+      <configuration name="RepasTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SouvenirsTest - 2018.11.14 at 15h 42m 42s.xml">
+      <configuration name="SouvenirsTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10800000" />
+    <option name="totallyTimeSpent" value="13340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -546,18 +673,19 @@
     <layout>
       <window_info anchor="right" id="Palette" order="9" />
       <window_info anchor="bottom" id="TODO" order="9" />
+      <window_info anchor="bottom" id="Messages" order="16" weight="0.32547864" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="3" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
       <window_info anchor="bottom" id="Event Log" order="15" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="4" />
-      <window_info anchor="bottom" id="Version Control" order="11" visible="true" weight="0.14432989" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.32695138" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.26509574" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.32547864" />
       <window_info anchor="bottom" id="Terminal" order="0" weight="0.32971507" />
       <window_info id="Capture Tool" order="1" />
       <window_info id="Designer" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.21006711" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.6703755" visible="true" weight="0.21006711" />
       <window_info anchor="right" id="Database" order="8" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="5" weight="0.25" />
@@ -566,7 +694,6 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39891452" />
       <window_info anchor="right" id="JetGradle" order="7" />
-      <window_info anchor="bottom" id="Messages" order="16" weight="0.3283582" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="4" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Docker" order="1" show_stripe_button="false" />
@@ -605,7 +732,8 @@
     <MESSAGE value="Ajout bouton" />
     <MESSAGE value="Affichage complet du plateau" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="Creation de l'objet carte et du dossier de test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creation de l'objet carte et du dossier de test" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -712,23 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/OptionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Vue/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Test/Modele/CartesTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -739,17 +850,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Model/Cartes.java">
+    <entry file="file://$PROJECT_DIR$/src/Vue/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="17" lean-forward="true" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        <state relative-caret-position="291">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/OptionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test/Model/CartesTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        <state relative-caret-position="291">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Cartes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Souvenirs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding>
+            <element signature="e#144#145#0" expanded="true" />
+            <element signature="e#164#165#0" expanded="true" />
+            <element signature="e#390#391#0" expanded="true" />
+            <element signature="e#427#428#0" expanded="true" />
+            <element signature="e#459#460#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+            <element signature="e#530#531#0" expanded="true" />
+            <element signature="e#583#584#0" expanded="true" />
+            <element signature="e#631#632#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Model/Repas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding>
+            <element signature="e#129#130#0" expanded="true" />
+            <element signature="e#151#152#0" expanded="true" />
+            <element signature="e#101#102#0" expanded="true" />
+            <element signature="e#128#129#0" expanded="true" />
+            <element signature="e#165#166#0" expanded="true" />
+            <element signature="e#197#198#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#380#381#0" expanded="true" />
+            <element signature="e#359#360#0" expanded="true" />
+            <element signature="e#392#393#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/Model/RepasTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="8" selection-start-column="4" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/Model/SouvenirsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="36" column="30" lean-forward="true" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

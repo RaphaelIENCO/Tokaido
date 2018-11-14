@@ -16,4 +16,6 @@ public class CartesTest {
         Cartes cartes = new Cartes("c1");
         Assert.assertEquals("c1",cartes.getNom());
     }
+
+
 }
