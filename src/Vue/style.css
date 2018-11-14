@@ -23,6 +23,10 @@
     -fx-padding: 10 20 10 20;
 
 }
+.buttonMap{
+    -fx-background-radius: 5;
+}
+
 .tabOption{
     -fx-background-color: gray;
 }
