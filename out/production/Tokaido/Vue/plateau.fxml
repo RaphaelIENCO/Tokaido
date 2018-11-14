@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OptionController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="1600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.OptionController">
   <tabs>
     <Tab text="Partie">
       <content>
@@ -14,11 +14,10 @@
     </Tab>
     <Tab onSelectionChanged="#changeTailleEcranOption" text="Options">
       <content>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1600.0" styleClass="tabOption" stylesheets="@style.css">
                <children>
-                  <Button layoutX="25.0" layoutY="14.0" mnemonicParsing="false" styleClass="buttonClassique" stylesheets="@style.css" text="Voir les régles du jeu" />
-                  <Button layoutX="26.0" layoutY="59.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" styleClass="buttonClassique" stylesheets="@style.css" text="Reccomencer" />
-                  <Button layoutX="25.0" layoutY="104.0" mnemonicParsing="false" onAction="#leaveGame" prefHeight="26.0" prefWidth="158.0" styleClass="buttonQuitter" stylesheets="@style.css" text="Quitter" />
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" styleClass="buttonClassique" stylesheets="@style.css" text="Reccomencer" />
+                  <Button layoutX="14.0" layoutY="109.0" mnemonicParsing="false" onAction="#leaveGame" prefHeight="26.0" prefWidth="158.0" styleClass="buttonQuitter" stylesheets="@style.css" text="Quitter" />
                </children></AnchorPane>
       </content>
     </Tab>
