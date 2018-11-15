@@ -1,8 +1,14 @@
 package Controller;
 
 
+import Model.BrowserControl;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class Controller {
 
@@ -21,6 +27,17 @@ public class Controller {
     public void restart(){
     }
     public void showReglement(){
+        if( Desktop.isDesktopSupported() )
+        {
+            new Thread(() -> {
+                try {
+                    Desktop.getDesktop().browse( new URI( "http://www.funforge.fr/US/files/tokaido/Tokaido_rules_FR_LD.pdf" ) );
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }).start();
+        }
+
     }
 
 
