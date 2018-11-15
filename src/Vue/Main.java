@@ -14,6 +14,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("plateau.fxml"));
         primaryStage.setTitle("Tokaido");
         primaryStage.setScene(new Scene(root, 1500, 550));
+        primaryStage.setMaximized(true);
         primaryStage.setResizable(true);
         primaryStage.show();
     }
