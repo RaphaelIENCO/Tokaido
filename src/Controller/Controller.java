@@ -1,8 +1,6 @@
 package Controller;
 
-import Vue.Main;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
+
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
@@ -21,6 +19,8 @@ public class Controller {
         System.exit(0);
     }
     public void restart(){
+    }
+    public void showReglement(){
     }
 
 

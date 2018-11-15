@@ -18,7 +18,7 @@
       <Button layoutX="997.0" layoutY="375.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <MenuButton layoutY="1.0" mnemonicParsing="false" text="Menu">
         <items>
-          <MenuItem mnemonicParsing="false" text="Consulter les régles du jeu" />
+          <MenuItem mnemonicParsing="false" text="Consulter les régles du jeu" onAction="#showReglement" />
           <MenuItem mnemonicParsing="false" text="Recommencer" onAction="#restart" />
            <MenuItem mnemonicParsing="false" text="Quitter" onAction="#leaveGame" />
         </items>
