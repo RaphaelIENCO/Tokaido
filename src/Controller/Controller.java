@@ -1,5 +1,6 @@
 package Controller;
 
+import Vue.Main;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.Button;
@@ -16,5 +17,11 @@ public class Controller {
         Button button =(Button) event.getSource();
         button.setStyle("-fx-border-style: solid;"+"-fx-border-color: black;");
     }
+    public void leaveGame(){
+        System.exit(0);
+    }
+    public void restart(){
+    }
+
 
 }
