@@ -20,6 +20,9 @@ public class LuncherController {
         Scene scene = new Scene(root);
         Stage secondaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
         secondaryStage.setScene(scene);
+        secondaryStage.setMaximized(true);
+        secondaryStage.setResizable(true);
+        secondaryStage.setTitle("Tokaido");
         secondaryStage.show();
     }
 }
