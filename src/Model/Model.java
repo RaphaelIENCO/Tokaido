@@ -9,18 +9,33 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     private ArrayList<Rencontre>listRecontre = new ArrayList<Rencontre>();
     private ArrayList<Repas>listRepas  = new ArrayList<>();
     private ArrayList<Souvenirs>listSouvenir = new ArrayList<>();
+    private ArrayList<Panoramas>listPanoramaMer = new ArrayList<>();
+    private ArrayList<Panoramas>listPanoramaMontagnes = new ArrayList<>();
+    private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
+    private ArrayList<Sources>listSource = new ArrayList<>();
 
     public Model(){
         initPartie();
     }
 
-    public void initPartie(){ //Creation de toutes les differentes cartes du jeu
+    public void initPartie(){ //Creation de toutes les differentes cartes du jeu dans differents packets
         initRencontre();
-        Collections.shuffle(listRecontre);
         initRepas();
-        Collections.shuffle(listRepas);
         initSouvenir();
+        initPanorama();
+        initSource();
+
+        shuffle();
+    }
+
+    public void shuffle(){
+        Collections.shuffle(listRecontre);
+        Collections.shuffle(listRepas);
         Collections.shuffle(listSouvenir);
+        Collections.shuffle(listPanoramaRiziere);
+        Collections.shuffle(listPanoramaMontagnes);
+        Collections.shuffle(listPanoramaMer);
+        Collections.shuffle(listSource);
     }
 
     public void initRencontre(){ //Init de toutes les rencontre
@@ -76,6 +91,28 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         listSouvenir.add(new Souvenirs("Shanisen",3,4));
         listSouvenir.add(new Souvenirs("Sumie",3,4));
         listSouvenir.add(new Souvenirs("Ukiyoe",3,4));
+    }
+
+    public void initPanorama(){ //Init des cartes Panoramas
+        for (int j=0 ; j<5 ;j++) {
+            for (int i = 0; i < 5; i++) {
+                if (j<3) {
+                    listPanoramaRiziere.add(new Panoramas("Riziere" + j, j));
+                }
+                if (j<4) {
+                    listPanoramaMontagnes.add(new Panoramas("Montagne" + j, j));
+                }
+                listPanoramaMer.add(new Panoramas("Mer" + j, j));
+            }
+        }
+    }
+
+    public void initSource(){
+        for (int j=0 ; j<2 ;j++) {
+            for (int i = 0; i < 6; i++) {
+                listSource.add(new Sources("Source" + j, j+2));
+            }
+        }
     }
 
 }
