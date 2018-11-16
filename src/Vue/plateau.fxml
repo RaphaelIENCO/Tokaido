@@ -7,15 +7,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Controller">
    <children>
-      <Button layoutX="81.0" layoutY="588.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="213.0" layoutY="507.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="321.0" layoutY="450.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="448.0" layoutY="520.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="573.0" layoutY="440.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="702.0" layoutY="423.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="844.0" layoutY="360.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="1187.0" layoutY="305.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button layoutX="997.0" layoutY="375.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="false" layoutX="81.0" layoutY="588.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="false" layoutX="213.0" layoutY="507.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="" layoutX="321.0" layoutY="450.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited"  onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="" layoutX="448.0" layoutY="520.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="" layoutX="573.0" layoutY="440.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="" layoutX="702.0" layoutY="423.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="" layoutX="844.0" layoutY="360.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="" layoutX="1187.0" layoutY="305.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="" layoutX="997.0" layoutY="375.0" mnemonicParsing="false" onMouseEntered="#survolEntered" onMouseExited="#survolExited" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <MenuButton layoutY="1.0" mnemonicParsing="false" text="Menu">
         <items>
           <MenuItem mnemonicParsing="false" text="Consulter les régles du jeu" onAction="#showReglement" />
