@@ -3,8 +3,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LuncherController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LuncherController">
    <children>
-      <Button layoutX="270.0" layoutY="288.0" mnemonicParsing="false" text="Commencer partie" wrapText="true" onAction="#startGame"/>
+      <Button layoutX="300.0" layoutY="200.0" mnemonicParsing="false" onAction="#startGame" text="Commencer partie" wrapText="true" />
    </children>
 </AnchorPane>
