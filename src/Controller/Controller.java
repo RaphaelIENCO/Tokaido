@@ -2,6 +2,7 @@ package Controller;
 
 
 import Model.BrowserControl;
+import Model.Model;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
@@ -12,6 +13,10 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class Controller {
+    private Model model;
+    public Controller(Model model){
+        this.model=model;
+    }
 
     public void survolEntered(MouseEvent event){
         Button button =(Button) event.getSource();
@@ -57,6 +62,9 @@ public class Controller {
                 }
             }).start();
         }
+
+    }
+    public void pioche(){
 
     }
 
