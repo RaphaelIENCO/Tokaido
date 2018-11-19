@@ -3,7 +3,12 @@ package Controller;
 
 import Model.*;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.awt.*;
@@ -12,6 +17,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class GameController {
     private Model model;
@@ -72,8 +78,24 @@ public class GameController {
         System.out.println(event.getSource());
         ArrayList<Repas> piocheRelais= model.getListRepas();
         int a= (int) (Math.random()*piocheRelais.size());
-        System.out.println(piocheRelais.get(a).toString());
-        model.getListRepas().remove(a);
+        Cartes repas = piocheRelais.get(a);
+        Alert show = new Alert(Alert.AlertType.CONFIRMATION);
+        ImageView imageView = new ImageView(new Image("/Vue/relais.jpg"));
+        show.setGraphic(imageView);
+        show.setTitle("Relais");
+        show.setHeaderText("Carte repas :");
+        show.setContentText(repas.toString());
+        ButtonType btnAcheter = new ButtonType("Acheter");
+        ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
+        show.getButtonTypes().setAll(btnAcheter,btnRefuser);
+        Optional<ButtonType> choice = show.showAndWait();
+        if (choice.get()==btnAcheter){
+            System.out.println();
+        } else {
+            System.out.println();
+        }
+
+        model.getListRepas().remove(repas);
 
 
     }
