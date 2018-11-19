@@ -1,8 +1,8 @@
 package Controller;
 
 
-import Model.BrowserControl;
-import Model.Model;
+import Model.*;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
@@ -11,11 +11,15 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
-public class Controller {
+public class GameController {
     private Model model;
-    public Controller(Model model){
-        this.model=model;
+//    public GameController(Model model){
+//        this.model=model;
+//    }
+    public GameController(){
+        model=new Model();
     }
 
     public void survolEntered(MouseEvent event){
@@ -64,7 +68,13 @@ public class Controller {
         }
 
     }
-    public void pioche(){
+    public void piocheRelais(ActionEvent event){
+        System.out.println(event.getSource());
+        ArrayList<Repas> piocheRelais= model.getListRepas();
+        int a= (int) (Math.random()*piocheRelais.size());
+        System.out.println(piocheRelais.get(a).toString());
+        model.getListRepas().remove(a);
+
 
     }
 

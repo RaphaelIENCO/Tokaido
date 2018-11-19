@@ -10,3 +10,6 @@
     -fx-border-width: 5px;
     -fx-border-color: black;
 }
+.relais{
+    -fx-background-image: url("relais.jpg");
+}

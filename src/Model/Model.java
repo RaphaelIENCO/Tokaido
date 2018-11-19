@@ -115,4 +115,11 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         }
     }
 
+    public ArrayList<Repas> getListRepas() {
+        return listRepas;
+    }
+
+    public void setListRepas(ArrayList<Repas> listRepas) {
+        this.listRepas = listRepas;
+    }
 }

@@ -29,4 +29,13 @@ public class Repas extends Cartes{
     public void setPoint(int point) {
         this.point = point;
     }
+
+    @Override
+    public String toString() {
+        return "Repas{" +
+                "prix=" + prix +
+                ", point=" + point +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }
