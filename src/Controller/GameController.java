@@ -92,7 +92,7 @@ public class GameController {
         ArrayList<Repas> piocheRelais = model.getListRepas();
         int a = (int) (Math.random() * piocheRelais.size());
         Repas repas = piocheRelais.get(a);
-        String nomImage = "/Vue/" + repas.getNom() + ".jpg";
+        String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
 
 
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
@@ -123,7 +123,7 @@ public class GameController {
         ArrayList<Sources> listSourceChaude = model.getListSource();
         int a = (int) (Math.random() * listSourceChaude.size());
         Sources source = listSourceChaude.get(a);
-        String nomImage = "/Vue/" + source.getNom() + ".jpg";
+        String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.INFORMATION);
         ImageView imageView = new ImageView(new Image(nomImage));
@@ -139,7 +139,7 @@ public class GameController {
         ArrayList<Souvenirs> piocheSouvenir = model.getListSouvenir();
         int a = (int) (Math.random() * piocheSouvenir.size());
         Souvenirs souvenirs = piocheSouvenir.get(a);
-        String nomImage = "/Vue/" + souvenirs.getNom() + ".jpg";
+        String nomImage = "/Vue/Images/" + souvenirs.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
         ImageView imageView = new ImageView(new Image(nomImage));
@@ -171,10 +171,10 @@ public class GameController {
         ArrayList<Rencontre> piocheRencontre = model.getListRecontre();
         int a = (int) (Math.random() * piocheRencontre.size());
          Rencontre rencontre =  piocheRencontre.get(a);
-        String nomImage = "/Vue/" + rencontre.getNom() + ".jpg";
+        String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.INFORMATION);
-        ImageView imageView = new ImageView(new Image("/Vue/Samurai.jpg"));
+        ImageView imageView = new ImageView(new Image("/Vue/Images/Samurai.jpg"));
         show.setGraphic(imageView);
         show.setTitle("Rencontre");
         show.setHeaderText("Vous avez rencontré "+rencontre.getNom());

@@ -134,7 +134,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         }
     }
 
-    public void initSource(){
+    public void initSource(){ //Init des Cartes Source chaude
         for (int j=0 ; j<2 ;j++) {
             for (int i = 0; i < 6; i++) {
                 listSource.add(new Sources("Source" + j, j+2));
