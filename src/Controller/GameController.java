@@ -90,12 +90,11 @@ public class GameController {
         show.getButtonTypes().setAll(btnAcheter,btnRefuser);
         Optional<ButtonType> choice = show.showAndWait();
         if (choice.get()==btnAcheter){
-            System.out.println();
+            model.getListRepas().remove(repas);
         } else {
-            System.out.println();
+
         }
 
-        model.getListRepas().remove(repas);
 
 
     }
