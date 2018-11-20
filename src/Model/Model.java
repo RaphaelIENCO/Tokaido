@@ -118,6 +118,30 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         }
     }
 
+    public ArrayList<Rencontre> getListRecontre() {
+        return listRecontre;
+    }
+
+    public ArrayList<Souvenirs> getListSouvenir() {
+        return listSouvenir;
+    }
+
+    public ArrayList<Panoramas> getListPanoramaMer() {
+        return listPanoramaMer;
+    }
+
+    public ArrayList<Panoramas> getListPanoramaMontagnes() {
+        return listPanoramaMontagnes;
+    }
+
+    public ArrayList<Panoramas> getListPanoramaRiziere() {
+        return listPanoramaRiziere;
+    }
+
+    public ArrayList<Sources> getListSource() {
+        return listSource;
+    }
+
     public ArrayList<Repas> getListRepas() {
         return listRepas;
     }

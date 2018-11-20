@@ -24,5 +24,6 @@
         </items>
       </MenuButton>
       <Button fx:id="relais" layoutX="1200.0" layoutY="84.0" mnemonicParsing="false" onAction="#piocheRelais" prefHeight="149.0" prefWidth="96.0" styleClass="relais" stylesheets="@style.css" />
+      <Button fx:id="sourceChaude" layoutX="1316.0" layoutY="84.0" mnemonicParsing="false" onAction="#piocheSourceChaude" prefHeight="149.0" prefWidth="96.0" styleClass="sourceChaud" stylesheets="@style.css" />
    </children>
 </AnchorPane>

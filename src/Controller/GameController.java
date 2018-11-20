@@ -87,7 +87,6 @@ public class GameController {
         int a = (int) (Math.random() * piocheRelais.size());
         Repas repas = piocheRelais.get(a);
         String nomImage = "/Vue/" + repas.getNom() + ".jpg";
-        System.out.println(nomImage);
 
 
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
@@ -113,6 +112,22 @@ public class GameController {
             dialog.showAndWait();
 
         }
+    }
+    public void piocheSourceChaude(){
+        ArrayList<Sources> listSourceChaude = model.getListSource();
+        int a = (int) (Math.random() * listSourceChaude.size());
+        Sources source = listSourceChaude.get(a);
+        String nomImage = "/Vue/" + source.getNom() + ".jpg";
+
+        Alert show = new Alert(Alert.AlertType.INFORMATION);
+        ImageView imageView = new ImageView(new Image(nomImage));
+        show.setGraphic(imageView);
+        show.setTitle("Source chaude");
+        show.setHeaderText("Vous rapporte : "+source.getPoint());
+        show.showAndWait();
+        model.getListJoueur().get(0).addCarte(source);
+        model.getListSource().remove(source);
+
     }
 
 

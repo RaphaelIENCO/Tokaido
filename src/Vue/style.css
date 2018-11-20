@@ -13,3 +13,6 @@
 .relais{
     -fx-background-image: url("relais.jpg");
 }
+.sourceChaud{
+    -fx-background-image: url("SourceChaude.jpg");
+}
