@@ -135,6 +135,39 @@ public class GameController {
         model.getListSource().remove(source);
 
     }
+    public void piocheSouvenir(){
+        ArrayList<Souvenirs> piocheSouvenir = model.getListSouvenir();
+        int a = (int) (Math.random() * piocheSouvenir.size());
+        Souvenirs souvenirs = piocheSouvenir.get(a);
+        String nomImage = "/Vue/" + souvenirs.getNom() + ".jpg";
+
+        Alert show = new Alert(Alert.AlertType.CONFIRMATION);
+        ImageView imageView = new ImageView(new Image("/Vue/Fugu.jpg"));
+        show.setGraphic(imageView);
+        show.setTitle("Souvenirs");
+        show.setHeaderText("prix : " + souvenirs.getPrix());
+        show.setContentText("Il vous reste : " + model.getListJoueur().get(0).getGold() + " or");
+
+        ButtonType btnAcheter = new ButtonType("Acheter (-" + souvenirs.getPrix() + " or)");
+        ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
+        show.getButtonTypes().setAll(btnAcheter, btnRefuser);
+        Optional<ButtonType> choice = show.showAndWait();
+        if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() >= souvenirs.getPrix()) {
+            model.getListRepas().remove(souvenirs);
+            model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - souvenirs.getPrix());
+            model.getListJoueur().get(0).addCarte(souvenirs);
+        } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < souvenirs.getPrix()) {
+            Alert dialog = new Alert(Alert.AlertType.WARNING);
+            dialog.setTitle("Achat Impossible !");
+            dialog.setContentText("Impossible d'acheter la carte!! \n" +
+                    " vous n'avez pas assez d'or !");
+            dialog.showAndWait();
+
+        }
+
+
+
+    }
 
 
     @FXML
