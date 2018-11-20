@@ -29,6 +29,12 @@ import java.util.Optional;
 public class GameController {
     private Model model;
     private Label nomJ1;
+    boolean selectJoueur = false;
+
+    @FXML
+    Label labelJ1;
+
+    @FXML Button commencerP;
 //    public GameController(Model model){
 //        this.model=model;
 //    }
@@ -118,7 +124,9 @@ public class GameController {
 
     @FXML
     public void fenetreLauncher(ActionEvent event) throws IOException {
-
+        if(selectJoueur){
+            Stage stage = (Stage) commencerP.getScene().getWindow();
+            stage.close();
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Vue/plateau.fxml")));
             Scene scene = new Scene(root);
             Stage secondaryStage = new Stage();
@@ -127,7 +135,12 @@ public class GameController {
             secondaryStage.setResizable(true);
             secondaryStage.setTitle("Tokaido");
             secondaryStage.show();
-        //result.ifPresent(letter -> System.out.println("Your choice: " + letter));
+        }else{
+            Alert dialog = new Alert(Alert.AlertType.WARNING);
+            dialog.setTitle("Impossible !");
+            dialog.setContentText("Veuillez sélectionner un joueur !");
+            dialog.showAndWait();
+        }
     }
 
     public void selectionJoueur(){
@@ -143,7 +156,8 @@ public class GameController {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            this.nomJ1.setText("Joueur selectionné");
+            labelJ1.setText("Joueur selectionné");
+            selectJoueur = true;
         }
     }
 
