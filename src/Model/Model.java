@@ -42,7 +42,18 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     }
 
     public void initRencontre(){ //Init de toutes les rencontre
+        Rencontre samurai = new Rencontre("Samurai") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                joueur.setPoints(joueur.getPoints()+3);
+            }
 
+            @Override
+            public String getDescription() {
+                return "Le samurai vous fait gagner trois points";
+            }
+        };
+        listRecontre.add(samurai);
     }
 
     public void initRepas(){ //Init de touts les repas

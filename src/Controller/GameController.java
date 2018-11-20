@@ -174,11 +174,11 @@ public class GameController {
         String nomImage = "/Vue/" + rencontre.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.INFORMATION);
-        ImageView imageView = new ImageView(new Image(nomImage));
+        ImageView imageView = new ImageView(new Image("/Vue/Samurai.jpg"));
         show.setGraphic(imageView);
         show.setTitle("Rencontre");
         show.setHeaderText("Vous avez rencontré "+rencontre.getNom());
-        show.setContentText("Effets  :"+rencontre.toString());
+        show.setContentText("Effets  :"+rencontre.getDescription());
         rencontre.rencontre(model.getListJoueur().get(0));
         model.getListRecontre().remove(rencontre);
         show.showAndWait();
