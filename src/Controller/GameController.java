@@ -142,7 +142,7 @@ public class GameController {
         String nomImage = "/Vue/" + souvenirs.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
-        ImageView imageView = new ImageView(new Image("/Vue/Fugu.jpg"));
+        ImageView imageView = new ImageView(new Image(nomImage));
         show.setGraphic(imageView);
         show.setTitle("Souvenirs");
         show.setHeaderText("prix : " + souvenirs.getPrix());

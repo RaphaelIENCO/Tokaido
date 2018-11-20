@@ -71,13 +71,13 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         listSouvenir.add(new Souvenirs("Gofu",1,1));
         listSouvenir.add(new Souvenirs("Koma",1,1));
         listSouvenir.add(new Souvenirs("Hashi",1,1));
-        listSouvenir.add(new Souvenirs("Uchina",1,1));
+        listSouvenir.add(new Souvenirs("Uchiwa",1,1));
         listSouvenir.add(new Souvenirs("Washi",1,1));
 
-        listSouvenir.add(new Souvenirs("Kompeito",1,2));
+        listSouvenir.add(new Souvenirs("Konpeito",1,2));
         listSouvenir.add(new Souvenirs("Manju",1,2));
         listSouvenir.add(new Souvenirs("Kamaboko",1,2));
-        listSouvenir.add(new Souvenirs("Daiguku",2,2));
+        listSouvenir.add(new Souvenirs("Daifuku",2,2));
         listSouvenir.add(new Souvenirs("Ucha",2,2));
         listSouvenir.add(new Souvenirs("Sake",2,2));
 

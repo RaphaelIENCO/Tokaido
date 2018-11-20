@@ -23,7 +23,8 @@
            <MenuItem mnemonicParsing="false" onAction="#leaveGame" text="Quitter" />
         </items>
       </MenuButton>
-      <Button fx:id="relais" layoutX="1200.0" layoutY="84.0" mnemonicParsing="false" onAction="#piocheRelais" prefHeight="149.0" prefWidth="96.0" styleClass="relais" stylesheets="@style.css" />
-      <Button fx:id="sourceChaude" layoutX="1316.0" layoutY="84.0" mnemonicParsing="false" onAction="#piocheSourceChaude" prefHeight="149.0" prefWidth="96.0" styleClass="sourceChaud" stylesheets="@style.css" />
+      <Button fx:id="relais" layoutX="1200.0" layoutY="95.0" mnemonicParsing="false" onAction="#piocheRelais" prefHeight="149.0" prefWidth="96.0" styleClass="relais" stylesheets="@style.css" />
+      <Button fx:id="sourceChaude" layoutX="1317.0" layoutY="95.0" mnemonicParsing="false" onAction="#piocheSourceChaude" prefHeight="149.0" prefWidth="96.0" styleClass="sourceChaud" stylesheets="@style.css" />
+      <Button fx:id="Souvenir" layoutX="962.0" layoutY="95.0" mnemonicParsing="false" onAction="#piocheSouvenir" prefHeight="149.0" prefWidth="96.0" styleClass="souvenir" stylesheets="@style.css" />
    </children>
 </AnchorPane>
