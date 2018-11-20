@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +26,7 @@ import java.util.Optional;
 
 public class GameController {
     private Model model;
+    private Label nomJ1;
 //    public GameController(Model model){
 //        this.model=model;
 //    }
@@ -108,6 +110,19 @@ public class GameController {
 
     @FXML
     public void fenetreLauncher(ActionEvent event) throws IOException {
+
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Vue/plateau.fxml")));
+            Scene scene = new Scene(root);
+            Stage secondaryStage = new Stage();
+            secondaryStage.setScene(scene);
+            secondaryStage.setMaximized(false);
+            secondaryStage.setResizable(true);
+            secondaryStage.setTitle("Tokaido");
+            secondaryStage.show();
+        //result.ifPresent(letter -> System.out.println("Your choice: " + letter));
+    }
+
+    public void selectionJoueur(){
         ArrayList<String> choix = new ArrayList<String>();
         choix.add("a");
         choix.add("b");
@@ -120,16 +135,8 @@ public class GameController {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Vue/plateau.fxml")));
-            Scene scene = new Scene(root);
-            Stage secondaryStage = new Stage();
-            secondaryStage.setScene(scene);
-            secondaryStage.setMaximized(false);
-            secondaryStage.setResizable(true);
-            secondaryStage.setTitle("Tokaido");
-            secondaryStage.show();
+            this.nomJ1.setText("Joueur selectionné");
         }
-        //result.ifPresent(letter -> System.out.println("Your choice: " + letter));
     }
 
 
