@@ -165,8 +165,10 @@ public class GameController {
 
         }
 
+    }
 
-
+    public void piocheRencontre(){
+        //
     }
 
 

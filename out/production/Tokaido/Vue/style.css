@@ -64,7 +64,9 @@
 .luncherColor{
 -fx-background-color: #AEC6E8;
 }
-
+.rencontre{
+    -fx-background-image: url("Rencontre.jpg");
+}
 .souvenir{
     -fx-background-image: url("Souvenir.jpg");
 }
