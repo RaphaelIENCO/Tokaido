@@ -13,6 +13,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     private ArrayList<Panoramas>listPanoramaMontagnes = new ArrayList<>();
     private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
     private ArrayList<Sources>listSource = new ArrayList<>();
+    private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
 
     public Model(){
         initPartie();
@@ -24,8 +25,10 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         initSouvenir();
         initPanorama();
         initSource();
-
         shuffle();
+        listJoueur = new ArrayList<Joueur>();
+        Joueur joueur= new Joueur(3,"bob");
+        listJoueur.add(joueur);
     }
 
     public void shuffle(){
@@ -56,7 +59,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
             listRepas.add(new Repas("Tempura",2,6));
         }
         listRepas.add(new Repas("Unagi",3,6));
-        listRepas.add(new Repas("Donburi",3,6));
+        listRepas.add(new Repas("Domburi",3,6));
         listRepas.add(new Repas("Udon",3,6));
         listRepas.add(new Repas("Fugu",3,6));
         listRepas.add(new Repas("TaiMeshi",3,6));
@@ -121,5 +124,9 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
 
     public void setListRepas(ArrayList<Repas> listRepas) {
         this.listRepas = listRepas;
+    }
+
+    public ArrayList<Joueur> getListJoueur() {
+        return listJoueur;
     }
 }
