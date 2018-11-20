@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("luncher.fxml"));
         primaryStage.setTitle("LauncherV1 Tokaido");
-        primaryStage.setScene(new Scene(root, 500, 550));
+        primaryStage.setScene(new Scene(root, 200, 320));
         primaryStage.setMaximized(false);
         primaryStage.setResizable(true);
         primaryStage.show();
