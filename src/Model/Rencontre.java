@@ -1,5 +1,6 @@
 package Model;
 
-public interface Rencontre {
-    public void rencontre(Joueur joueur);
+public abstract class Rencontre extends Cartes {
+    public abstract void rencontre(Joueur joueur);
+    public abstract void getDescription();
 }

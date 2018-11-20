@@ -168,7 +168,21 @@ public class GameController {
     }
 
     public void piocheRencontre(){
-        //
+        ArrayList<Rencontre> piocheRencontre = model.getListRecontre();
+        int a = (int) (Math.random() * piocheRencontre.size());
+         Rencontre rencontre =  piocheRencontre.get(a);
+        String nomImage = "/Vue/" + rencontre.getNom() + ".jpg";
+
+        Alert show = new Alert(Alert.AlertType.INFORMATION);
+        ImageView imageView = new ImageView(new Image(nomImage));
+        show.setGraphic(imageView);
+        show.setTitle("Rencontre");
+        show.setHeaderText("Vous avez rencontré "+rencontre.getNom());
+        show.setContentText("Effets  :"+rencontre.toString());
+        rencontre.rencontre(model.getListJoueur().get(0));
+        model.getListRecontre().remove(rencontre);
+        show.showAndWait();
+
     }
 
 
