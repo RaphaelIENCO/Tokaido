@@ -75,12 +75,15 @@ public class GameController {
 
     }
     public void piocheRelais(javafx.event.ActionEvent event){
-        System.out.println(event.getSource());
         ArrayList<Repas> piocheRelais= model.getListRepas();
         int a= (int) (Math.random()*piocheRelais.size());
         Cartes repas = piocheRelais.get(a);
+        String nomImage= "/Vue/"+repas.getNom()+".jpg";
+        System.out.println(nomImage);
+
+
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
-        ImageView imageView = new ImageView(new Image("/Vue/relais.jpg"));
+        ImageView imageView = new ImageView(new Image("/Vue/Nigirineshi.jpg"));
         show.setGraphic(imageView);
         show.setTitle("Relais");
         show.setHeaderText("Carte repas :");
