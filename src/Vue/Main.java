@@ -12,9 +12,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         Parent root = FXMLLoader.load(getClass().getResource("luncher.fxml"));
-        primaryStage.setTitle("LuncherV1 Tokaido");
+        primaryStage.setTitle("LauncherV1 Tokaido");
         primaryStage.setScene(new Scene(root, 500, 550));
         primaryStage.setMaximized(false);
         primaryStage.setResizable(true);

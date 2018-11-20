@@ -2,21 +2,25 @@ package Controller;
 
 
 import Model.*;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Optional;
 
 public class GameController {
@@ -97,6 +101,32 @@ public class GameController {
 
 
 
+    }
+
+    @FXML
+    public void fenetreLauncher(ActionEvent event) throws IOException {
+        ArrayList<String> choix = new ArrayList<String>();
+        choix.add("a");
+        choix.add("b");
+        choix.add("c");
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("b", choix);
+        dialog.setTitle("Choix des joueurs !");
+        dialog.setHeaderText("Start");
+        dialog.setContentText("Choisissez un joueur.");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Vue/plateau.fxml")));
+            Scene scene = new Scene(root);
+            Stage secondaryStage = new Stage();
+            secondaryStage.setScene(scene);
+            secondaryStage.setMaximized(false);
+            secondaryStage.setResizable(true);
+            secondaryStage.setTitle("Tokaido");
+            secondaryStage.show();
+        }
+        //result.ifPresent(letter -> System.out.println("Your choice: " + letter));
     }
 
 
