@@ -85,14 +85,24 @@ public class GameController {
         show.setGraphic(imageView);
         show.setTitle("Carte repas");
         show.setHeaderText("prix : "+repas.getPrix());
-        show.setContentText("Il vous reste :");
+        show.setContentText("Il vous reste : "+model.getListJoueur().get(0).getGold()+" or");
 
         ButtonType btnAcheter = new ButtonType("Acheter (-"+repas.getPrix()+" or)");
         ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
         show.getButtonTypes().setAll(btnAcheter,btnRefuser);
         Optional<ButtonType> choice = show.showAndWait();
-        if (choice.get()==btnAcheter){
+        if (choice.get()==btnAcheter && model.getListJoueur().get(0).getGold()>=repas.getPrix() ){
             model.getListRepas().remove(repas);
+            model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-repas.getPrix());
+            model.getListJoueur().get(0).addCarte(repas);
+        }
+        else if(choice.get()==btnAcheter && model.getListJoueur().get(0).getGold()<repas.getPrix()){
+            Alert dialog=new Alert(Alert.AlertType.WARNING);
+            dialog.setTitle("Achat Impossible !");
+            dialog.setContentText("Impossible d'acheter la carte!! \n" +
+                    " vous n'avez pas assez d'or !");
+            dialog.showAndWait();
+
         }
 
     }
