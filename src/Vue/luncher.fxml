@@ -7,9 +7,9 @@
 <AnchorPane prefHeight="320.0" prefWidth="200.0" styleClass="luncherColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
       <Button layoutX="37.0" layoutY="34.0" mnemonicParsing="false" onAction="#selectionJoueur" styleClass="buttonSelection" stylesheets="@style.css" text="Selection joueur" wrapText="true" />
-      <Button fx:id="commencerP" layoutX="36.0" layoutY="117.0" mnemonicParsing="false" onAction="#fenetreLauncher" styleClass="buttonVert" stylesheets="@style.css" text="Commencer partie" wrapText="true" />
+      <Button fx:id="commencerP" layoutX="30.0" layoutY="117.0" mnemonicParsing="false" onAction="#fenetreLauncher" styleClass="buttonSelection" stylesheets="@style.css" text="Commencer partie" wrapText="true" />
       <Label fx:id="labelJ1" layoutX="23.0" layoutY="83.0" text="Aucun joueur selectionné" textFill="WHITE" />
-      <Button layoutX="33.0" layoutY="172.0" mnemonicParsing="false" onAction="#showReglement" prefHeight="26.0" prefWidth="147.0" styleClass="buttonRegles" stylesheets="@style.css" text="Règles du jeu" />
-      <Button layoutX="69.0" layoutY="227.0" mnemonicParsing="false" onAction="#leaveGame" styleClass="buttonRouge" stylesheets="@style.css" text="Quitter" />
+      <Button layoutX="33.0" layoutY="172.0" mnemonicParsing="false" onAction="#showReglement" prefHeight="26.0" prefWidth="147.0" styleClass="buttonSelection" stylesheets="@style.css" text="Règles du jeu" />
+      <Button layoutX="59.0" layoutY="223.0" mnemonicParsing="false" onAction="#leaveGame" styleClass="buttonSelection" stylesheets="@style.css" text="Quitter" />
    </children>
 </AnchorPane>
