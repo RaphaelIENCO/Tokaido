@@ -54,6 +54,19 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
             }
         };
         listRecontre.add(samurai);
+        listRecontre.add(samurai);
+        Rencontre kude = new Rencontre("Kuge") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                joueur.setGold(joueur.getGold()+3);
+            }
+            @Override
+            public String getDescription() {
+                return "Vous gagnez 3 pieces d'or";
+            }
+        };
+        listRecontre.add(kude);
+        listRecontre.add(kude);
     }
 
     public void initRepas(){ //Init de touts les repas
