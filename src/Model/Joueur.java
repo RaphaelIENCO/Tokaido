@@ -45,5 +45,9 @@ public class Joueur {
         this.points = points;
     }
 
+    public void addCarte(Cartes carte){
+        cartes.add(carte);
+    }
+
 
 }
