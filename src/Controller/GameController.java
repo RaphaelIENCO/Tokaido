@@ -38,6 +38,10 @@ public class GameController {
 //    public GameController(Model model){
 //        this.model=model;
 //    }
+
+    @FXML
+    Label scoreLabel;
+
     public GameController(){
         model=new Model();
     }
@@ -226,5 +230,12 @@ public class GameController {
     }
 
 
+    public void afficheScore(javafx.event.ActionEvent event) {
+        updateScore();
+    }
+
+    public void updateScore(){
+        scoreLabel.setText(model.getScore());
+    }
 
 }

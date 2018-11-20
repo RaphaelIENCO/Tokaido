@@ -177,4 +177,14 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     public ArrayList<Joueur> getListJoueur() {
         return listJoueur;
     }
+
+    public String getScore() {
+        String str = "";
+        for (int i=0 ; i<listJoueur.size() ;i++){
+            str += listJoueur.get(i).getNom() + " a ";
+            str += listJoueur.get(i).getPoints() + " points et dispose de ";
+            str += listJoueur.get(i).getGold() + " gold. \n";
+        }
+        return str;
+    }
 }
