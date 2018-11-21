@@ -93,9 +93,7 @@ public class GameController {
 
     }
     public void piocheRelais(javafx.event.ActionEvent event) {
-        ArrayList<Repas> piocheRelais = model.getListRepas();
-        int a = (int) (Math.random() * piocheRelais.size());
-        Repas repas = piocheRelais.get(a);
+        Repas repas = model.getListRepas().get(0);
         String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
 
 
@@ -124,9 +122,7 @@ public class GameController {
         }
     }
     public void piocheSourceChaude(){
-        ArrayList<Sources> listSourceChaude = model.getListSource();
-        int a = (int) (Math.random() * listSourceChaude.size());
-        Sources source = listSourceChaude.get(a);
+        Sources source = model.getListSource().get(0);
         String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.INFORMATION);
@@ -140,9 +136,7 @@ public class GameController {
 
     }
     public void piocheSouvenir(){
-        ArrayList<Souvenirs> piocheSouvenir = model.getListSouvenir();
-        int a = (int) (Math.random() * piocheSouvenir.size());
-        Souvenirs souvenirs = piocheSouvenir.get(a);
+        Souvenirs souvenirs = model.getListSouvenir().get(0);
         String nomImage = "/Vue/Images/" + souvenirs.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
@@ -172,9 +166,7 @@ public class GameController {
     }
 
     public void piocheRencontre(){
-        ArrayList<Rencontre> piocheRencontre = model.getListRecontre();
-        int a = (int) (Math.random() * piocheRencontre.size());
-         Rencontre rencontre =  piocheRencontre.get(a);
+         Rencontre rencontre =  model.getListRecontre().get(0);
         String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
 
         Alert show = new Alert(Alert.AlertType.INFORMATION);
@@ -183,9 +175,9 @@ public class GameController {
         show.setTitle("Rencontre");
         show.setHeaderText("Vous avez rencontré "+rencontre.getNom());
         show.setContentText("Effets  :"+rencontre.getDescription());
+        show.showAndWait();
         rencontre.rencontre(model.getListJoueur().get(0));
         model.getListRecontre().remove(rencontre);
-        show.showAndWait();
 
     }
 

@@ -1,6 +1,9 @@
 package Model;
 
 import javafx.print.Collation;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,6 +70,29 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         };
         listRecontre.add(kude);
         listRecontre.add(kude);
+        Rencontre shokunin = new Rencontre("Shokunin") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                String nomImage ="/Vue/images/"+listSouvenir.get(0).getNom()+".jpg";
+                ImageView imageView = new ImageView(new Image(nomImage));
+                alert.setGraphic(imageView);
+                alert.setTitle("Souvenirs");
+                alert.setHeaderText("Félicitation le shokunin vous à fait gagner  \n "+listSouvenir.get(0).getNom());
+                joueur.cartes.add(listSouvenir.get(0));
+                listSouvenir.remove(0);
+                alert.showAndWait();
+            }
+
+            @Override
+            public String getDescription() {
+                return "Vous avez rencontré Shokunin , vous gagnez une carte souvenir";
+            }
+        };
+        listRecontre.add(shokunin);
+        listRecontre.add(shokunin);
+
     }
 
     public void initRepas(){ //Init de touts les repas
