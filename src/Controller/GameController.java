@@ -112,12 +112,8 @@ public class GameController {
             model.getListRepas().remove(repas);
             model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - repas.getPrix());
             model.getListJoueur().get(0).addCarte(repas);
-        } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < repas.getPrix()) {
-            Alert dialog = new Alert(Alert.AlertType.WARNING);
-            dialog.setTitle("Achat Impossible !");
-            dialog.setContentText("Impossible d'acheter la carte!! \n" +
-                    " vous n'avez pas assez d'or !");
-            dialog.showAndWait();
+        } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < repas.getPrix()){
+            messageErreur("Vous n'avez pas l'or nécéssaire");
         }
 
         }else {
@@ -133,63 +129,71 @@ public class GameController {
     }
 
     public void piocheSourceChaude(){
-        Sources source = model.getListSource().get(0);
-        String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
+        if (model.getListJoueur().get(0).isAllowedToPlay()) {
+            Sources source = model.getListSource().get(0);
+            String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
 
-        Alert show = new Alert(Alert.AlertType.INFORMATION);
-        ImageView imageView = new ImageView(new Image(nomImage));
-        show.setGraphic(imageView);
-        show.setTitle("Source chaude");
-        show.setHeaderText("Vous rapporte : "+source.getPoint());
-        show.showAndWait();
-        model.getListJoueur().get(0).addCarte(source);
-        model.getListSource().remove(source);
+            Alert show = new Alert(Alert.AlertType.INFORMATION);
+            ImageView imageView = new ImageView(new Image(nomImage));
+            show.setGraphic(imageView);
+            show.setTitle("Source chaude");
+            show.setHeaderText("Vous rapporte : " + source.getPoint());
+            show.showAndWait();
+            model.getListJoueur().get(0).addCarte(source);
+            model.getListSource().remove(source);
+        } else {
+            messageErreur("impossible de piocher une carte source chaude");
+        }
 
     }
     public void piocheSouvenir(){
-        Souvenirs souvenirs = model.getListSouvenir().get(0);
-        String nomImage = "/Vue/Images/" + souvenirs.getNom() + ".jpg";
+        if(model.getListJoueur().get(0).isAllowedToPlay()) {
+            Souvenirs souvenirs = model.getListSouvenir().get(0);
+            String nomImage = "/Vue/Images/" + souvenirs.getNom() + ".jpg";
 
-        Alert show = new Alert(Alert.AlertType.CONFIRMATION);
-        ImageView imageView = new ImageView(new Image(nomImage));
-        show.setGraphic(imageView);
-        show.setTitle("Souvenirs");
-        show.setHeaderText("prix : " + souvenirs.getPrix());
-        show.setContentText("Il vous reste : " + model.getListJoueur().get(0).getGold() + " or");
+            Alert show = new Alert(Alert.AlertType.CONFIRMATION);
+            ImageView imageView = new ImageView(new Image(nomImage));
+            show.setGraphic(imageView);
+            show.setTitle("Souvenirs");
+            show.setHeaderText("prix : " + souvenirs.getPrix());
+            show.setContentText("Il vous reste : " + model.getListJoueur().get(0).getGold() + " or");
 
-        ButtonType btnAcheter = new ButtonType("Acheter (-" + souvenirs.getPrix() + " or)");
-        ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
-        show.getButtonTypes().setAll(btnAcheter, btnRefuser);
-        Optional<ButtonType> choice = show.showAndWait();
-        if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() >= souvenirs.getPrix()) {
-            model.getListRepas().remove(souvenirs);
-            model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - souvenirs.getPrix());
-            model.getListJoueur().get(0).addCarte(souvenirs);
-        } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < souvenirs.getPrix()) {
-            Alert dialog = new Alert(Alert.AlertType.WARNING);
-            dialog.setTitle("Achat Impossible !");
-            dialog.setContentText("Impossible d'acheter la carte!! \n" +
-                    " vous n'avez pas assez d'or !");
-            dialog.showAndWait();
+            ButtonType btnAcheter = new ButtonType("Acheter (-" + souvenirs.getPrix() + " or)");
+            ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
+            show.getButtonTypes().setAll(btnAcheter, btnRefuser);
+            Optional<ButtonType> choice = show.showAndWait();
+            if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() >= souvenirs.getPrix()) {
+                model.getListRepas().remove(souvenirs);
+                model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - souvenirs.getPrix());
+                model.getListJoueur().get(0).addCarte(souvenirs);
+            } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < souvenirs.getPrix()) {
+                messageErreur("Vous n'avez pas l'or nécessaire");
 
+            }
+        }else {
+            messageErreur("Vous ne pouvez pas piocher de carte souvenirs!");
         }
 
     }
 
     public void piocheRencontre(){
-         Rencontre rencontre =  model.getListRecontre().get(0);
-        String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
+        if(model.getListJoueur().get(0).isAllowedToPlay()) {
 
-        Alert show = new Alert(Alert.AlertType.INFORMATION);
-        ImageView imageView = new ImageView(new Image("/Vue/Images/Samurai.jpg"));
-        show.setGraphic(imageView);
-        show.setTitle("Rencontre");
-        show.setHeaderText("Vous avez rencontré "+rencontre.getNom());
-        show.setContentText("Effets  :"+rencontre.getDescription());
-        show.showAndWait();
-        rencontre.rencontre(model.getListJoueur().get(0));
-        model.getListRecontre().remove(rencontre);
+            Rencontre rencontre = model.getListRecontre().get(0);
+            String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
 
+            Alert show = new Alert(Alert.AlertType.INFORMATION);
+            ImageView imageView = new ImageView(new Image("/Vue/Images/Samurai.jpg"));
+            show.setGraphic(imageView);
+            show.setTitle("Rencontre");
+            show.setHeaderText("Vous avez rencontré " + rencontre.getNom());
+            show.setContentText("Effets  :" + rencontre.getDescription());
+            show.showAndWait();
+            rencontre.rencontre(model.getListJoueur().get(0));
+            model.getListRecontre().remove(rencontre);
+        }else {
+            messageErreur("Vous ne pouvez pas piocher de carte Rencontre");
+        }
     }
 
 
