@@ -7,6 +7,7 @@ public class Joueur {
     ArrayList<Cartes> cartes;
     int points;
     String nom;
+    boolean allowedToPlay;
 
     //Crée un joueur différent des joueurs proposés.
     public Joueur(int g,String n){
@@ -14,11 +15,13 @@ public class Joueur {
         nom = n;
         cartes = new ArrayList<>();
         points = 0;
+        allowedToPlay=false;
    }
 
    public Joueur(){
        cartes = new ArrayList<>();
        points = 0;
+       allowedToPlay=false;
    }
 
     public String getNom() {
@@ -49,5 +52,19 @@ public class Joueur {
         cartes.add(carte);
     }
 
+    public ArrayList<Cartes> getCartes() {
+        return cartes;
+    }
 
+    public void setCartes(ArrayList<Cartes> cartes) {
+        this.cartes = cartes;
+    }
+
+    public boolean isAllowedToPlay() {
+        return allowedToPlay;
+    }
+
+    public void setAllowedToPlay(boolean allowedToPlay) {
+        this.allowedToPlay = allowedToPlay;
+    }
 }

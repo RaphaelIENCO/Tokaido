@@ -30,20 +30,21 @@ public class GameController {
     private Model model;
     private Label nomJ1;
     boolean selectJoueur = false;
+    private ArrayList<Button> boutonsPlateau;
+
+
 
     @FXML
     Label labelJ1;
 
     @FXML Button commencerP;
-//    public GameController(Model model){
-//        this.model=model;
-//    }
 
     @FXML
     Label scoreLabel;
 
     public GameController(){
         model=new Model();
+
     }
 
     public void survolEntered(MouseEvent event){
@@ -93,10 +94,9 @@ public class GameController {
 
     }
     public void piocheRelais(javafx.event.ActionEvent event) {
+        if(model.getListJoueur().get(0).isAllowedToPlay()){
         Repas repas = model.getListRepas().get(0);
         String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
-
-
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
         ImageView imageView = new ImageView(new Image(nomImage));
         show.setGraphic(imageView);
@@ -118,9 +118,20 @@ public class GameController {
             dialog.setContentText("Impossible d'acheter la carte!! \n" +
                     " vous n'avez pas assez d'or !");
             dialog.showAndWait();
+        }
+
+        }else {
+            messageErreur("Vous n'êtes pas autorisé à piocher une carte relais");
 
         }
     }
+    public void messageErreur(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("Erreur :");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     public void piocheSourceChaude(){
         Sources source = model.getListSource().get(0);
         String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
