@@ -94,7 +94,7 @@ public class GameController {
 
     }
     public void piocheRelais(javafx.event.ActionEvent event) {
-        if(model.getListJoueur().get(0).isAllowedToPlay()){
+        if(model.getListJoueur().get(0).isPiocheRelais()){
         Repas repas = model.getListRepas().get(0);
         String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
         Alert show = new Alert(Alert.AlertType.CONFIRMATION);
@@ -115,21 +115,14 @@ public class GameController {
         } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < repas.getPrix()){
             messageErreur("Vous n'avez pas l'or nécéssaire");
         }
-
+        model.getListJoueur().get(0).setPiocheRelais(false);
         }else {
             messageErreur("Vous n'êtes pas autorisé à piocher une carte relais");
-
         }
-    }
-    public void messageErreur(String message){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("Erreur :");
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     public void piocheSourceChaude(){
-        if (model.getListJoueur().get(0).isAllowedToPlay()) {
+        if (model.getListJoueur().get(0).isPiocheSource()) {
             Sources source = model.getListSource().get(0);
             String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
 
@@ -141,13 +134,14 @@ public class GameController {
             show.showAndWait();
             model.getListJoueur().get(0).addCarte(source);
             model.getListSource().remove(source);
+            model.getListJoueur().get(0).setPiocheSource(false);
         } else {
             messageErreur("impossible de piocher une carte source chaude");
         }
 
     }
     public void piocheSouvenir(){
-        if(model.getListJoueur().get(0).isAllowedToPlay()) {
+        if(model.getListJoueur().get(0).isPiocheSouvenir()) {
             Souvenirs souvenirs = model.getListSouvenir().get(0);
             String nomImage = "/Vue/Images/" + souvenirs.getNom() + ".jpg";
 
@@ -168,8 +162,8 @@ public class GameController {
                 model.getListJoueur().get(0).addCarte(souvenirs);
             } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < souvenirs.getPrix()) {
                 messageErreur("Vous n'avez pas l'or nécessaire");
-
             }
+            model.getListJoueur().get(0).setPiocheSouvenir(false);
         }else {
             messageErreur("Vous ne pouvez pas piocher de carte souvenirs!");
         }
@@ -177,7 +171,7 @@ public class GameController {
     }
 
     public void piocheRencontre(){
-        if(model.getListJoueur().get(0).isAllowedToPlay()) {
+        if(model.getListJoueur().get(0).isPiocheRencontre()) {
 
             Rencontre rencontre = model.getListRecontre().get(0);
             String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
@@ -191,6 +185,7 @@ public class GameController {
             show.showAndWait();
             rencontre.rencontre(model.getListJoueur().get(0));
             model.getListRecontre().remove(rencontre);
+            model.getListJoueur().get(0).setPiocheRencontre(false);
         }else {
             messageErreur("Vous ne pouvez pas piocher de carte Rencontre");
         }
@@ -243,6 +238,14 @@ public class GameController {
 
     public void updateScore(){
         scoreLabel.setText(model.getScore());
+    }
+
+
+    public void messageErreur(String message){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("Erreur :");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 }

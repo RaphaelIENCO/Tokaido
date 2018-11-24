@@ -80,7 +80,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
                 alert.setGraphic(imageView);
                 alert.setTitle("Souvenirs");
                 alert.setHeaderText("Félicitation le shokunin vous à fait gagner  \n "+listSouvenir.get(0).getNom());
-                joueur.cartes.add(listSouvenir.get(0));
+                joueur.getCartes().add(listSouvenir.get(0));
                 listSouvenir.remove(0);
                 alert.showAndWait();
             }

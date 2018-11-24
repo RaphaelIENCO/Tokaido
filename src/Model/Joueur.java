@@ -3,25 +3,33 @@ package Model;
 import java.util.ArrayList;
 
 public class Joueur {
-    int gold;
-    ArrayList<Cartes> cartes;
-    int points;
-    String nom;
-    boolean allowedToPlay;
-
+    protected int gold;
+    protected ArrayList<Cartes> cartes;
+    protected int points;
+    protected String nom;
+    protected boolean piocheRelais;
+    protected boolean piocheSource;
+    protected boolean piocheSouvenir;
+    protected boolean piocheRencontre;
     //Crée un joueur différent des joueurs proposés.
     public Joueur(int g,String n){
         gold = g;
         nom = n;
         cartes = new ArrayList<>();
         points = 0;
-        allowedToPlay=false;
+        piocheRelais =false;
+        piocheRencontre=false;
+        piocheSource=false;
+        piocheSouvenir=false;
    }
 
    public Joueur(){
        cartes = new ArrayList<>();
        points = 0;
-       allowedToPlay=false;
+       piocheRelais =false;
+       piocheRencontre=false;
+       piocheSource=false;
+       piocheSouvenir=false;
    }
 
     public String getNom() {
@@ -60,11 +68,35 @@ public class Joueur {
         this.cartes = cartes;
     }
 
-    public boolean isAllowedToPlay() {
-        return allowedToPlay;
+    public boolean isPiocheRelais() {
+        return piocheRelais;
     }
 
-    public void setAllowedToPlay(boolean allowedToPlay) {
-        this.allowedToPlay = allowedToPlay;
+    public void setPiocheRelais(boolean piocheRelais) {
+        this.piocheRelais = piocheRelais;
+    }
+
+    public boolean isPiocheSource() {
+        return piocheSource;
+    }
+
+    public void setPiocheSource(boolean piocheSource) {
+        this.piocheSource = piocheSource;
+    }
+
+    public boolean isPiocheSouvenir() {
+        return piocheSouvenir;
+    }
+
+    public void setPiocheSouvenir(boolean piocheSouvenir) {
+        this.piocheSouvenir = piocheSouvenir;
+    }
+
+    public boolean isPiocheRencontre() {
+        return piocheRencontre;
+    }
+
+    public void setPiocheRencontre(boolean piocheRencontre) {
+        this.piocheRencontre = piocheRencontre;
     }
 }
