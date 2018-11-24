@@ -191,6 +191,12 @@ public class GameController {
         }
     }
 
+    public void sourceChaude(ActionEvent event){
+        model.getListJoueur().get(0).setPiocheSource(true);
+        messageInformation(model.getListJoueur().get(0).getNom()+" S'arrete dans une source chaude \n il pioche donc une carte source chaude");
+        piocheSourceChaude();
+    }
+
 
     @FXML
     public void fenetreLauncher(ActionEvent event) throws IOException {
@@ -244,6 +250,12 @@ public class GameController {
     public void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText("Erreur :");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void messageInformation(String message){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
     }
