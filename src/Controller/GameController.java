@@ -218,11 +218,18 @@ public class GameController {
     @FXML
     public void fenetreLauncher(ActionEvent event) throws IOException {
         if(selectJoueur){
-            Stage stage = (Stage) commencerP.getScene().getWindow();
-            stage.close();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Vue/plateau.fxml")));
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/plateau.fxml"));
+            Parent root = loader.load();
+            System.out.println("loader créer");
+
+
+            //Stage stage = (Stage) commencerP.getScene().getWindow();
+            //stage.close();
+            //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Vue/plateau.fxml")));
             Scene scene = new Scene(root);
             Stage secondaryStage = new Stage();
+            loader.<GameController>getController().setData(model);
             secondaryStage.setScene(scene);
             secondaryStage.setMaximized(false);
             secondaryStage.setResizable(true);
@@ -249,11 +256,10 @@ public class GameController {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
             if(result.get()=="Kinko") {
-                kinkoSelect = true;
+                model.addJoueur(new Kinko());
                 labelJ1.setText("Kinko selectionné");
                 selectJoueur = true;
             }else{
-                SasaSelect = true;
                 model.addJoueur(new Sasayakko());
                 labelJ1.setText("Sasayakko selectionné");
                 selectJoueur = true;
@@ -279,4 +285,8 @@ public class GameController {
         alert.showAndWait();
     }
 
+
+    public void setData(Model m){
+        this.model =m;
+    }
 }
