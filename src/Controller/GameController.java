@@ -48,26 +48,45 @@ public class GameController {
     }
 
     public void survolEntered(MouseEvent event){
-        Button button =(Button) event.getSource();
-        if (button.getId().equals("true")){
-            button.setStyle("-fx-background-color: green;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
-        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
+//        Button button =(Button) event.getSource();
+//        if (button.getId().equals("true")){
+//            button.setStyle("-fx-background-color: green;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
+//        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
 
     }
 
     public void survolExited(MouseEvent event){
-        Button button =(Button) event.getSource();
-        if (button.getId().equals("true")){
-            button.setStyle("-fx-background-color: green;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
-        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+//        Button button =(Button) event.getSource();
+//        if (button.getId().equals("true")){
+//            button.setStyle("-fx-background-color: green;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+//        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
 
 
 
     }
     public void actionColor(javafx.event.ActionEvent event){
         Button button=(Button) event.getSource();
-        button.setId("true");
         button.setStyle("-fx-background-color: green;");
+        switch (button.getId()){
+            case "relais":
+                model.getListJoueur().get(0).setPiocheRelais(true);
+                piocheRelais();
+                return;
+            case "source":
+                model.getListJoueur().get(0).setPiocheSource(true);
+                piocheSourceChaude();
+                return;
+            case "souvenir":
+                model.getListJoueur().get(0).setPiocheSouvenir(true);
+                piocheSouvenir();
+                return;
+            case "rencontre":
+                model.getListJoueur().get(0).setPiocheRencontre(true);
+                piocheRencontre();
+                return;
+             default:
+                 System.out.println("erreur");
+        }
 
     }
 
@@ -93,7 +112,7 @@ public class GameController {
         }
 
     }
-    public void piocheRelais(javafx.event.ActionEvent event) {
+    public void piocheRelais() {
         if(model.getListJoueur().get(0).isPiocheRelais()){
         Repas repas = model.getListRepas().get(0);
         String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
@@ -175,15 +194,15 @@ public class GameController {
 
             Rencontre rencontre = model.getListRecontre().get(0);
             String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
-
             Alert show = new Alert(Alert.AlertType.INFORMATION);
-            ImageView imageView = new ImageView(new Image("/Vue/Images/Samurai.jpg"));
+            ImageView imageView = new ImageView(new Image(nomImage));
             show.setGraphic(imageView);
             show.setTitle("Rencontre");
             show.setHeaderText("Vous avez rencontré " + rencontre.getNom());
             show.setContentText("Effets  :" + rencontre.getDescription());
             show.showAndWait();
             rencontre.rencontre(model.getListJoueur().get(0));
+            model.getListJoueur().get(0).addCarte(rencontre);
             model.getListRecontre().remove(rencontre);
             model.getListJoueur().get(0).setPiocheRencontre(false);
         }else {

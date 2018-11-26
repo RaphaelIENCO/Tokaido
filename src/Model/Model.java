@@ -75,7 +75,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
             public void rencontre(Joueur joueur) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-                String nomImage ="/Vue/images/"+listSouvenir.get(0).getNom()+".jpg";
+                String nomImage ="/Vue/Images/"+listSouvenir.get(0).getNom()+".jpg";
                 ImageView imageView = new ImageView(new Image(nomImage));
                 alert.setGraphic(imageView);
                 alert.setTitle("Souvenirs");
@@ -87,7 +87,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
 
             @Override
             public String getDescription() {
-                return "Vous avez rencontré Shokunin , vous gagnez une carte souvenir";
+                return "Vous avez rencontré Shokunin \n vous gagnez une carte souvenir";
             }
         };
         listRecontre.add(shokunin);
