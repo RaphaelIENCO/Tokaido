@@ -42,54 +42,51 @@ public class GameController {
     @FXML
     Label scoreLabel;
 
+
     public GameController(){
         model=new Model();
 
     }
 
     public void survolEntered(MouseEvent event){
-//        Button button =(Button) event.getSource();
-//        if (button.getId().equals("true")){
-//            button.setStyle("-fx-background-color: green;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
-//        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
+        Button button =(Button) event.getSource();
+        if (button.getId().contains("true")){
+            button.setStyle("-fx-background-color: green;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
+        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
 
-    }
+}
 
     public void survolExited(MouseEvent event){
-//        Button button =(Button) event.getSource();
-//        if (button.getId().equals("true")){
-//            button.setStyle("-fx-background-color: green;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
-//        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+        Button button =(Button) event.getSource();
+        if (button.getId().contains("true")){
+            button.setStyle("-fx-background-color: green;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
 
 
 
     }
     public void actionColor(javafx.event.ActionEvent event){
         Button button=(Button) event.getSource();
-        button.setStyle("-fx-background-color: green;");
-        switch (button.getId()){
-            case "relais":
-                model.getListJoueur().get(0).setPiocheRelais(true);
-                piocheRelais();
-                return;
-            case "source":
-                model.getListJoueur().get(0).setPiocheSource(true);
-                piocheSourceChaude();
-                return;
-            case "souvenir":
-                model.getListJoueur().get(0).setPiocheSouvenir(true);
-                piocheSouvenir();
-                return;
-            case "rencontre":
-                model.getListJoueur().get(0).setPiocheRencontre(true);
-                piocheRencontre();
-                return;
-             default:
-                 System.out.println("erreur");
+        if (button.getId().contains("relais")){
+            model.getListJoueur().get(0).setPiocheRelais(true);
+            piocheRelais();
         }
+        else if (button.getId().contains("source")){
+            model.getListJoueur().get(0).setPiocheSource(true);
+            piocheSourceChaude();
+        }
+        else if (button.getId().contains("souvenir")){
+            model.getListJoueur().get(0).setPiocheSouvenir(true);
+            piocheSouvenir();
+        }
+        else if (button.getId().contains("rencontre")){
+            model.getListJoueur().get(0).setPiocheRencontre(true);
+            piocheRencontre();
+        }
+         button.setId(button.getId()+"true");
+        button.setStyle("-fx-background-color: green;");
 
     }
-
 
     /**
      * Partie menu

@@ -71,25 +71,4 @@
     -fx-background-image: url("Souvenir.jpg");
 }
 
-.buttonRencontre{
-    -fx-background-radius: 50%;
-    -fx-border-radius: 50% ;
-    -fx-background-image: url("BoutonRencontre.jpg");
-}
-.buttonSouvenir{
-    -fx-background-image: url("BoutonSouvenir.png");
-    -fx-background-radius: 50%;
-    -fx-border-radius: 50% ;
-
-}
-.buttonSource{
-    -fx-background-radius: 50%;
-    -fx-border-radius: 50% ;
-    -fx-background-image: url("BoutonSource.jpg");
-}
-.buttonRelais{
-    -fx-background-radius: 50%;
-    -fx-border-radius: 50% ;
-    -fx-background-image: url("BoutonRelais.jpg");
-}
 
