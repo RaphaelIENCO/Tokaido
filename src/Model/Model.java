@@ -29,9 +29,9 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         initPanorama();
         initSource();
         shuffle();
-        listJoueur = new ArrayList<Joueur>();
-        Joueur joueur= new Joueur(3,"bob");
-        listJoueur.add(joueur);
+        //listJoueur = new ArrayList<Joueur>();
+        //Joueur joueur= new Joueur(3,"bob");
+        //listJoueur.add(joueur);
     }
 
     public void shuffle(){
@@ -212,5 +212,9 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
             str += listJoueur.get(i).getGold() + " gold. \n";
         }
         return str;
+    }
+
+    public void addJoueur(Joueur j){
+        listJoueur.add(j);
     }
 }

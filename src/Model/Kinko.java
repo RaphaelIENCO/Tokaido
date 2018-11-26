@@ -14,4 +14,8 @@ public class Kinko extends Joueur {
         gold = 7;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

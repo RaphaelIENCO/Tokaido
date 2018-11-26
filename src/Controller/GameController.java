@@ -30,7 +30,8 @@ public class GameController {
     private Model model;
     private Label nomJ1;
     boolean selectJoueur = false;
-
+    boolean kinkoSelect;
+    boolean SasaSelect;
     @FXML
     Label labelJ1;
 
@@ -43,6 +44,7 @@ public class GameController {
     Label scoreLabel;
 
     public GameController(){
+        System.out.println("nouveau controller");
         model=new Model();
     }
 
@@ -93,6 +95,9 @@ public class GameController {
 
     }
     public void piocheRelais(javafx.event.ActionEvent event) {
+        System.out.println(model.getListJoueur());
+        //System.out.println(model.getListJoueur().get(0).getGold());
+
         Repas repas = model.getListRepas().get(0);
         String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
 
@@ -205,19 +210,27 @@ public class GameController {
 
     public void selectionJoueur(){
         ArrayList<String> choix = new ArrayList<String>();
-        choix.add("a");
-        choix.add("b");
-        choix.add("c");
+        choix.add("Kinko");
+        choix.add("Sasayakko");
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("b", choix);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Kinko", choix);
         dialog.setTitle("Choix des joueurs !");
         dialog.setHeaderText("Start");
         dialog.setContentText("Choisissez un joueur.");
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            labelJ1.setText("Joueur selectionné");
-            selectJoueur = true;
+            if(result.get()=="Kinko") {
+                kinkoSelect = true;
+                labelJ1.setText("Kinko selectionné");
+                selectJoueur = true;
+            }else{
+                SasaSelect = true;
+                model.addJoueur(new Sasayakko());
+                labelJ1.setText("Sasayakko selectionné");
+                selectJoueur = true;
+            }
+
         }
     }
 
