@@ -113,54 +113,57 @@ public class GameController {
 
     }
     public void piocheRelais() {
-        if(model.getListJoueur().get(0).isPiocheRelais()){
-        Repas repas = model.getListRepas().get(0);
-        String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
-        Alert show = new Alert(Alert.AlertType.CONFIRMATION);
-        ImageView imageView = new ImageView(new Image(nomImage));
-        show.setGraphic(imageView);
-        show.setTitle("Carte repas");
-        show.setHeaderText("prix : " + repas.getPrix());
-        show.setContentText("Il vous reste : " + model.getListJoueur().get(0).getGold() + " or");
+        if (!model.getListRepas().isEmpty()) {
+            if (model.getListJoueur().get(0).isPiocheRelais()) {
+                Repas repas = model.getListRepas().get(0);
+                String nomImage = "/Vue/Images/" + repas.getNom() + ".jpg";
+                Alert show = new Alert(Alert.AlertType.CONFIRMATION);
+                ImageView imageView = new ImageView(new Image(nomImage));
+                show.setGraphic(imageView);
+                show.setTitle("Carte repas");
+                show.setHeaderText("prix : " + repas.getPrix());
+                show.setContentText("Il vous reste : " + model.getListJoueur().get(0).getGold() + " or");
 
-        ButtonType btnAcheter = new ButtonType("Acheter (-" + repas.getPrix() + " or)");
-        ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
-        show.getButtonTypes().setAll(btnAcheter, btnRefuser);
-        Optional<ButtonType> choice = show.showAndWait();
-        if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() >= repas.getPrix()) {
-            model.getListRepas().remove(repas);
-            model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - repas.getPrix());
-            model.getListJoueur().get(0).addCarte(repas);
-        } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < repas.getPrix()){
-            messageErreur("Vous n'avez pas l'or nécéssaire");
-        }
-        model.getListJoueur().get(0).setPiocheRelais(false);
-        }else {
-            messageErreur("Vous n'êtes pas autorisé à piocher une carte relais");
-        }
+                ButtonType btnAcheter = new ButtonType("Acheter (-" + repas.getPrix() + " or)");
+                ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
+                show.getButtonTypes().setAll(btnAcheter, btnRefuser);
+                Optional<ButtonType> choice = show.showAndWait();
+                if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() >= repas.getPrix()) {
+                    model.getListRepas().remove(repas);
+                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - repas.getPrix());
+                    model.getListJoueur().get(0).addCarte(repas);
+                } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < repas.getPrix()) {
+                    messageErreur("Vous n'avez pas l'or nécéssaire");
+                }
+                model.getListJoueur().get(0).setPiocheRelais(false);
+            } else {
+                messageErreur("Vous n'êtes pas autorisé à piocher une carte relais");
+            }
+        }else messageErreur("Plus de cartes repas");
     }
 
     public void piocheSourceChaude(){
-        if (model.getListJoueur().get(0).isPiocheSource()) {
-            Sources source = model.getListSource().get(0);
-            String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
+        if (!model.getListSource().isEmpty()) {
+            if (model.getListJoueur().get(0).isPiocheSource()) {
+                Sources source = model.getListSource().get(0);
+                String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
 
-            Alert show = new Alert(Alert.AlertType.INFORMATION);
-            ImageView imageView = new ImageView(new Image(nomImage));
-            show.setGraphic(imageView);
-            show.setTitle("Source chaude");
-            show.setHeaderText("Vous rapporte : " + source.getPoint());
-            show.showAndWait();
-            model.getListJoueur().get(0).addCarte(source);
-            model.getListSource().remove(source);
-            model.getListJoueur().get(0).setPiocheSource(false);
-        } else {
-            messageErreur("impossible de piocher une carte source chaude");
-        }
-
+                Alert show = new Alert(Alert.AlertType.INFORMATION);
+                ImageView imageView = new ImageView(new Image(nomImage));
+                show.setGraphic(imageView);
+                show.setTitle("Source chaude");
+                show.setHeaderText("Vous rapporte : " + source.getPoint());
+                show.showAndWait();
+                model.getListJoueur().get(0).addCarte(source);
+                model.getListSource().remove(source);
+                model.getListJoueur().get(0).setPiocheSource(false);
+            } else {
+                messageErreur("impossible de piocher une carte source chaude");
+            }
+        }else messageErreur("Plus de carte source chaude");
     }
     public void piocheSouvenir(){
-        if(model.getListJoueur().get(0).isPiocheSouvenir()) {
+            if(model.getListJoueur().get(0).isPiocheSouvenir()) {
             Souvenirs souvenirs = model.getListSouvenir().get(0);
             String nomImage = "/Vue/Images/" + souvenirs.getNom() + ".jpg";
 
