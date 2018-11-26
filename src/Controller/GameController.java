@@ -43,6 +43,7 @@ public class GameController {
     Label scoreLabel;
 
     public GameController(){
+        System.out.println("nouveau controller");
         model=new Model();
 
     }
@@ -237,19 +238,27 @@ public class GameController {
 
     public void selectionJoueur(){
         ArrayList<String> choix = new ArrayList<String>();
-        choix.add("a");
-        choix.add("b");
-        choix.add("c");
+        choix.add("Kinko");
+        choix.add("Sasayakko");
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("b", choix);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Kinko", choix);
         dialog.setTitle("Choix des joueurs !");
         dialog.setHeaderText("Start");
         dialog.setContentText("Choisissez un joueur.");
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            labelJ1.setText("Joueur selectionné");
-            selectJoueur = true;
+            if(result.get()=="Kinko") {
+                kinkoSelect = true;
+                labelJ1.setText("Kinko selectionné");
+                selectJoueur = true;
+            }else{
+                SasaSelect = true;
+                model.addJoueur(new Sasayakko());
+                labelJ1.setText("Sasayakko selectionné");
+                selectJoueur = true;
+            }
+
         }
     }
 
