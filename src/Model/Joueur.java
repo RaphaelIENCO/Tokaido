@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Joueur {
     protected int gold;
-    protected ArrayList<Cartes> cartes;
-    protected int points;
+    protected ArrayList cartes;
+    protected int points = 0;
     protected String nom;
     protected boolean piocheRelais;
     protected boolean piocheSource;
@@ -32,6 +32,31 @@ public class Joueur {
        piocheSouvenir=false;
    }
 
+   public int getPoints(){
+
+        for (int i=0; i<cartes.size() ;i++){
+            if (cartes.get(i) instanceof Repas){
+                Repas repas = (Repas) cartes.get(i);
+                this.points += repas.getPoint();
+            }
+            else if (cartes.get(i) instanceof Sources){
+                Sources sources = (Sources) cartes.get(i);
+                this.points += sources.getPoint();
+            }
+            else if (cartes.get(i) instanceof Panoramas){
+                Panoramas panoramas = (Panoramas) cartes.get(i);
+                this.points += panoramas.getPoint();
+            }
+            else if (cartes.get(i) instanceof Acomplis){
+                Acomplis acomplis = (Acomplis) cartes.get(i);
+                this.points += getPoints();
+            }
+        }
+        return this.points;
+   }
+
+
+
     public String getNom() {
         return nom;
     }
@@ -46,10 +71,6 @@ public class Joueur {
 
     public void setGold(int gold) {
         this.gold = gold;
-    }
-
-    public int getPoints() {
-        return points;
     }
 
     public void setPoints(int points) {
