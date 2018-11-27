@@ -233,65 +233,6 @@ public class GameController {
     }
 
 
-    @FXML
-    public void fenetreLauncher() throws IOException {
-        if(selectJoueur){
-
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/plateau.fxml"));
-            Parent root = loader.load();
-            System.out.println("loader créer");
-
-            Scene scene = new Scene(root);
-            Stage secondaryStage = new Stage();
-            loader.<GameController>getController().setData(model);
-            secondaryStage.setScene(scene);
-            secondaryStage.setMaximized(false);
-            secondaryStage.setResizable(true);
-            secondaryStage.setTitle("Tokaido");
-            secondaryStage.show();
-            Stage stage = (Stage) commencerP.getScene().getWindow();
-            stage.close();
-        }else{ messageErreur("Veuillez selectionner un joueur");
-        }
-    }
-
-    public void selectionJoueur(){
-        ArrayList<String> choix = new ArrayList<String>();
-        choix.add("Kinko");
-        choix.add("Sasayakko");
-
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Kinko", choix);
-        dialog.setTitle("Choix des joueurs !");
-        dialog.setHeaderText("Start");
-        dialog.setContentText("Choisissez un joueur.");
-
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            if(selectJoueur){
-                if(result.get()=="Kinko") {
-                    model.addJoueur(new Kinko());
-                    labelJ2.setText("Kinko selectionné");
-                    labelJ2.setVisible(true);
-                }else{
-                    model.addJoueur(new Sasayakko());
-                    labelJ2.setText("Sasayakko selectionné");
-                    labelJ2.setVisible(true);
-                }
-            }else{
-                if(result.get()=="Kinko") {
-                    model.addJoueur(new Kinko());
-                    labelJ1.setText("Kinko selectionné");
-                    selectJoueur = true;
-                }else{
-                    model.addJoueur(new Sasayakko());
-                    labelJ1.setText("Sasayakko selectionné");
-                    selectJoueur = true;
-                }
-            }
-
-        }
-    }
-
     public void updateScore(){
         goldLabel.setText(model.getListJoueur().get(0).getGold()+"");
         nameLabel.setText(model.getListJoueur().get(0).getNom());
