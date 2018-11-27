@@ -291,6 +291,10 @@ public class GameController {
         nameLabel.setText(model.getListJoueur().get(0).getNom());
         scoreLabel.setText(model.getListJoueur().get(0).getPoints()+"");
     }
+    public void viewCards(){
+
+
+    }
 
 
 

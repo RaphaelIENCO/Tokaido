@@ -24,13 +24,12 @@
       <Button id="sourceChaude" fx:id="button7" layoutX="1317.0" layoutY="95.0" mnemonicParsing="false" onAction="#piocheSourceChaude" prefHeight="149.0" prefWidth="96.0" styleClass="sourceChaud" stylesheets="@style.css" />
       <Button id="Souvenir" fx:id="button8" layoutX="980.0" layoutY="95.0" mnemonicParsing="false" onAction="#piocheSouvenir" prefHeight="149.0" prefWidth="96.0" styleClass="souvenir" stylesheets="@style.css" />
       <Button id="Rencontre" fx:id="button9" layoutX="1091.0" layoutY="95.0" mnemonicParsing="false" onAction="#piocheRencontre" prefHeight="149.0" prefWidth="96.0" styleClass="rencontre" stylesheets="@style.css" />
-      <Button id="score" fx:id="button10" layoutX="110.0" layoutY="1.0" mnemonicParsing="false" onAction="#updateScore" text="Update score tmp" />
       <Label fx:id="scoreLabel" layoutX="147.0" layoutY="126.0" prefHeight="31.0" prefWidth="103.0" wrapText="true" />
       <Button id="souvenir" fx:id="button11" layoutX="998.0" layoutY="372.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="" fx:id="button12" layoutX="705.0" layoutY="425.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="rencontre" fx:id="button13" layoutX="321.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="" fx:id="button14" accessibleHelp="" layoutX="447.0" layoutY="518.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Label fx:id="goldLabel" layoutX="142.0" layoutY="183.0" prefHeight="31.0" prefWidth="103.0" wrapText="true" />
-      <Label fx:id="nameLabel" layoutX="55.0" layoutY="56.0" prefHeight="31.0" prefWidth="226.0" wrapText="true" />
+      <Label fx:id="nameLabel" layoutX="55.0" layoutY="64.0" prefHeight="31.0" prefWidth="155.0" wrapText="true" />
    </children>
 </AnchorPane>
