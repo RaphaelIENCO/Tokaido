@@ -6,8 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -115,7 +113,7 @@ public class GameController {
                 } else if (nbchoix==0){
                     for (int i=0;i<model.getListJoueur().size()+1;i++) {
                         Repas temp = model.getListRepas().get(i);
-                        model.getListRepas().remove(i);
+                        model.getListRepas().remove(0);
                         model.getListRepas().add(temp);
                     }
                 }else {
@@ -126,16 +124,21 @@ public class GameController {
                             if (repas.getPrix()<model.getListJoueur().get(0).getGold()){
                                 model.getListJoueur().get(0).addCarte(repas);
                                 model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-repas.getPrix());
+                                model.getListRepas().remove(repas);
                             } else {
                                 messageErreur("Vous n'avez pas assez d'or");
                                 piocheRelais();
                             }
-
-                            updateScore();
-                            return;
-                        }else  compteur++;
+                        }else{
+                            Repas repas = model.getListRepas().get(compteur);
+                            model.getListRepas().remove(repas);
+                            model.getListRepas().add(repas);
+                            compteur++;
+                        }
                     }
                 }
+                model.getListJoueur().get(0).setPiocheRelais(false);
+                updateScore();
             }else messageErreur("Vous ne pouvez pas piocher");
         }else messageErreur("Pas assez de carte repas");
     }
