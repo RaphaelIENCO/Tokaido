@@ -2,6 +2,7 @@ package Controller;
 
 
 import Model.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -17,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -76,7 +78,7 @@ public class GameController {
 
 
     }
-    public void actionColor(javafx.event.ActionEvent event){
+    public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
         if (button.getId().contains("relais")){
             model.getListJoueur().get(0).setPiocheRelais(true);
@@ -297,20 +299,17 @@ public class GameController {
     }
     public void viewCards(){
         GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        ImageView customImage = new ImageView(new Image("Vue/Images/Dango.jpg"));
-        ImageView customImage1 = new ImageView(new Image("Vue/Images/Dango.jpg"));
-        grid.add(customImage, 0, 0);
-        grid.add(customImage1, 0, 1);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setGraphic(grid);
+        alert.setHeaderText("Vos cartes:");
+        if (!model.getListJoueur().get(0).getCartes().isEmpty()) {
+            for (int i = 0; i < model.getListJoueur().get(0).getCartes().size(); i++) {
+                grid.add(new ImageView(new Image("Vue/Images/" + model.getListJoueur().get(0).getCartes().get(i).getNom() + ".jpg")), i, 0);
+            }
+            alert.setGraphic(grid);
+        }else alert.setContentText("Pas de cartes");
+        grid.alignmentProperty();
         alert.showAndWait();
-
-
     }
-
-
 
     public void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);

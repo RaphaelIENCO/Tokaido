@@ -31,5 +31,6 @@
       <Button id="" fx:id="button14" accessibleHelp="" layoutX="447.0" layoutY="518.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Label fx:id="goldLabel" layoutX="142.0" layoutY="183.0" prefHeight="31.0" prefWidth="103.0" wrapText="true" />
       <Label fx:id="nameLabel" layoutX="55.0" layoutY="64.0" prefHeight="31.0" prefWidth="155.0" wrapText="true" />
+      <Button layoutX="273.0" layoutY="64.0" mnemonicParsing="false" onAction="#viewCards" text="Consulter mes cartes" />
    </children>
 </AnchorPane>
