@@ -33,11 +33,12 @@ public class Joueur {
    }
 
    public int getPoints(){
+        this.points=0;
 
         for (int i=0; i<cartes.size() ;i++){
             if (cartes.get(i) instanceof Repas){
                 Repas repas = (Repas) cartes.get(i);
-                this.points += repas.getPoint();
+                this.points+= repas.getPoint();
             }
             else if (cartes.get(i) instanceof Sources){
                 Sources sources = (Sources) cartes.get(i);
@@ -52,6 +53,7 @@ public class Joueur {
                 this.points += acomplis.getPoints();
             }
         }
+        this.points+=getScoreSouvenir();
         return this.points;
    }
 

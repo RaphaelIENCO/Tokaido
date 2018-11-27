@@ -48,6 +48,8 @@ public class GameController {
     @FXML Label labelJ2;
     @FXML Button commencerP;
     @FXML Label scoreLabel;
+    @FXML Label goldLabel;
+    @FXML Label nameLabel;
 
     public GameController(){
         model=new Model();
@@ -143,6 +145,7 @@ public class GameController {
                 messageErreur("Vous n'êtes pas autorisé à piocher une carte relais");
             }
         }else messageErreur("Plus de cartes repas");
+        updateScore();
     }
 
     public void piocheSourceChaude(){
@@ -164,6 +167,7 @@ public class GameController {
                 messageErreur("impossible de piocher une carte source chaude");
             }
         }else messageErreur("Plus de carte source chaude");
+        updateScore();
     }
     public void piocheSouvenir(){
         if (!model.getListSouvenir().isEmpty()) {
@@ -196,6 +200,7 @@ public class GameController {
                 messageErreur("Vous ne pouvez pas piocher de carte souvenirs!");
             }
         }else messageErreur("Il n'y à plus de carte souvenir");
+        updateScore();
 }
 
     public void piocheRencontre(){
@@ -218,6 +223,7 @@ public class GameController {
                 messageErreur("Vous ne pouvez pas piocher de carte Rencontre");
             }
         }else messageErreur("Plus de cartes rencontre");
+        updateScore();
     }
 
 
@@ -281,8 +287,11 @@ public class GameController {
     }
 
     public void updateScore(){
-        scoreLabel.setText(model.getScore());
+        goldLabel.setText(model.getListJoueur().get(0).getGold()+"");
+        nameLabel.setText(model.getListJoueur().get(0).getNom());
+        scoreLabel.setText(model.getListJoueur().get(0).getPoints()+"");
     }
+
 
 
     public void messageErreur(String message){
