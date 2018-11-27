@@ -102,6 +102,10 @@ public class LauncherController {
     }
 
     public void showReglement(){
+        reglement();
+    }
+
+    static void reglement() {
         if( Desktop.isDesktopSupported() )
         {
             new Thread(() -> {

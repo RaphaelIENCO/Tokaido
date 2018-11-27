@@ -4,36 +4,20 @@ package Controller;
 import Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Circle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.Optional;
 
 public class GameController {
     private Model model;
-    private Label nomJ1;
-    boolean selectJoueur = false;
     private ArrayList<Button> boutonsPlateau;
 
     @FXML Button button1;
@@ -50,15 +34,14 @@ public class GameController {
     @FXML Button button12;
     @FXML Button button13;
     @FXML Button button14;
-    @FXML Label labelJ1;
-    @FXML Label labelJ2;
-    @FXML Button commencerP;
     @FXML Label scoreLabel;
     @FXML Label goldLabel;
     @FXML Label nameLabel;
 
     public GameController(){
         model=new Model();
+        boutonsPlateau = new ArrayList<>();
+        ajoutBouton();
     }
 
     public void survolEntered(MouseEvent event){
@@ -74,8 +57,6 @@ public class GameController {
         if (button.getId().contains("true")){
             button.setStyle("-fx-background-color: green;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
         } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
-
-
 
     }
     public void actionColor(ActionEvent event){
@@ -102,26 +83,8 @@ public class GameController {
     }
 
     /**
-     * Partie menu
+     * Partie pioche
      */
-    public void leaveGame(){
-        System.exit(0);
-    }
-    public void restart(){
-    }
-    public void showReglement(){
-        if( Desktop.isDesktopSupported() )
-        {
-            new Thread(() -> {
-                try {
-                    Desktop.getDesktop().browse( new URI( "http://www.funforge.fr/US/files/tokaido/Tokaido_rules_FR_LD.pdf" ) );
-                } catch (IOException | URISyntaxException e1) {
-                    e1.printStackTrace();
-                }
-            }).start();
-        }
-
-    }
     public void piocheRelais() {
         if (!model.getListRepas().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheRelais()) {
@@ -208,6 +171,33 @@ public class GameController {
         }else messageErreur("Il n'y à plus de carte souvenir");
         updateScore();
 }
+    public void testSouvenir(){
+        if (model.getListSouvenir().size()>3) {
+            Souvenirs cartes1 = model.getListSouvenir().get(0);
+            Souvenirs cartes2 = model.getListSouvenir().get(1);
+            Souvenirs cartes3 = model.getListSouvenir().get(2);
+            CheckBox checkBox1 = new CheckBox();
+            CheckBox checkBox2 = new CheckBox();
+            CheckBox checkBox3 = new CheckBox();
+
+            checkBox1.setGraphic(new ImageView("/Vue/Images/"+cartes1.getNom()+".jpg"));
+            checkBox2.setGraphic(new ImageView("/Vue/Images/"+cartes2.getNom()+".jpg"));
+            checkBox3.setGraphic(new ImageView("/Vue/Images/"+cartes3.getNom()+".jpg"));
+
+
+            GridPane grille = new GridPane();
+            grille.add(checkBox1,1,0);
+            grille.add(checkBox2,2,0);
+            grille.add(checkBox3,3,0);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setGraphic(grille);
+            alert.setHeaderText("Veuillez cocher les cartes voulues");
+            alert.showAndWait();
+        } else messageErreur("Pas assez de carte");
+
+
+    }
 
     public void piocheRencontre(){
         if(!model.getListRecontre().isEmpty()) {
@@ -233,6 +223,9 @@ public class GameController {
     }
 
 
+    /**
+     * Partie Affichage
+     */
     public void updateScore(){
         goldLabel.setText(model.getListJoueur().get(0).getGold()+"");
         nameLabel.setText(model.getListJoueur().get(0).getNom());
@@ -279,4 +272,18 @@ public class GameController {
     public void setData(Model m){
         this.model =m;
     }
+
+    /**
+     * Partie menu
+     */
+    public void leaveGame(){
+        System.exit(0);
+    }
+    public void restart(){
+    }
+    public void showReglement(){
+        LauncherController.reglement();
+
+    }
+
 }

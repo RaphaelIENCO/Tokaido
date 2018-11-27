@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="Score" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
-      <Button id="false" fx:id="button1" layoutX="81.0" layoutY="588.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="false" fx:id="button1" layoutX="81.0" layoutY="588.0" mnemonicParsing="false" onAction="#testSouvenir" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="source" fx:id="button2" layoutX="213.0" layoutY="507.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="" fx:id="button3" layoutX="573.0" layoutY="440.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="relais" fx:id="button4" layoutX="844.0" layoutY="360.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
