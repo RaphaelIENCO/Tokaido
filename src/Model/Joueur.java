@@ -49,7 +49,7 @@ public class Joueur {
             }
             else if (cartes.get(i) instanceof Acomplis){
                 Acomplis acomplis = (Acomplis) cartes.get(i);
-                this.points += getPoints();
+                this.points += acomplis.getPoints();
             }
         }
         return this.points;
