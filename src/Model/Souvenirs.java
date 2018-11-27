@@ -29,4 +29,13 @@ public class Souvenirs extends Cartes{
     public void setTypeSouvenir(int typeSouvenir) {
         this.typeSouvenir = typeSouvenir;
     }
+
+    @Override
+    public String toString() {
+        return "Souvenirs{" +
+                "prix=" + prix +
+                ", typeSouvenir=" + typeSouvenir +
+                ", nom='" + nom + '\'' +
+                '}';
+    }
 }
