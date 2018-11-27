@@ -33,6 +33,8 @@ public class GameController {
     private ArrayList<Button> boutonsPlateau;
 
 
+    @FXML
+    Button button1;
 
     @FXML
     Label labelJ1;
@@ -44,9 +46,7 @@ public class GameController {
 
 
     public GameController(){
-        System.out.println("nouveau controller");
         model=new Model();
-
     }
 
     public void survolEntered(MouseEvent event){
@@ -95,7 +95,7 @@ public class GameController {
     public void leaveGame(){
         System.exit(0);
     }
-    public void restart(){
+    public void restart()  {
     }
     public void showReglement(){
         if( Desktop.isDesktopSupported() )
@@ -216,7 +216,7 @@ public class GameController {
 
 
     @FXML
-    public void fenetreLauncher(ActionEvent event) throws IOException {
+    public void fenetreLauncher() throws IOException {
         if(selectJoueur){
 
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/plateau.fxml"));
@@ -233,11 +233,7 @@ public class GameController {
             secondaryStage.show();
             Stage stage = (Stage) commencerP.getScene().getWindow();
             stage.close();
-        }else{
-            Alert dialog = new Alert(Alert.AlertType.WARNING);
-            dialog.setTitle("Impossible !");
-            dialog.setContentText("Veuillez sélectionner un joueur !");
-            dialog.showAndWait();
+        }else{ messageErreur("Veuillez selectionner un joueur");
         }
     }
 
