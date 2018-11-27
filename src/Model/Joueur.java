@@ -11,6 +11,9 @@ public class Joueur {
     protected boolean piocheSource;
     protected boolean piocheSouvenir;
     protected boolean piocheRencontre;
+
+
+    protected boolean temple;
     //Crée un joueur différent des joueurs proposés.
     public Joueur(int g,String n){
         gold = g;
@@ -21,6 +24,7 @@ public class Joueur {
         piocheRencontre=false;
         piocheSource=false;
         piocheSouvenir=false;
+        temple=false;
    }
 
    public Joueur(){
@@ -30,10 +34,11 @@ public class Joueur {
        piocheRencontre=false;
        piocheSource=false;
        piocheSouvenir=false;
+       temple = false;
    }
 
    public int getPoints(){
-        this.points=0;
+        //this.points=0;       // permet pas d'incrémenter pour les temples si décommenter
 
         for (int i=0; i<cartes.size() ;i++){
             if (cartes.get(i) instanceof Repas){
@@ -56,6 +61,7 @@ public class Joueur {
         this.points+=getScoreSouvenir();
         return this.points;
    }
+
 
    public int getScoreSouvenir(){
         int total = 0;
@@ -168,4 +174,9 @@ public class Joueur {
     public void setPiocheRencontre(boolean piocheRencontre) {
         this.piocheRencontre = piocheRencontre;
     }
+
+
+    public boolean isTemple() { return temple; }
+
+    public void setTemple(boolean temple) { this.temple = temple; }
 }
