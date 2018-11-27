@@ -2,8 +2,13 @@ package Controller;
 
 
 import Model.*;
+import Vue.Main;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,6 +16,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -59,7 +67,7 @@ public class GameController {
     }
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
-        button.setStyle("-fx-background-color: green;");
+
         if (button.getId().contains("relais")){
             model.getListJoueur().get(0).setPiocheRelais(true);
             piocheRelais();
@@ -79,6 +87,7 @@ public class GameController {
             model.getListJoueur().get(0).setTemple(true);
             rencontreTemple(button);
         }
+        button.setStyle("-fx-background-color: green;");
          button.setId(button.getId()+"true");
 
     }
@@ -311,6 +320,7 @@ public class GameController {
                 grid.add(new ImageView(new Image("Vue/Images/" + model.getListJoueur().get(0).getCartes().get(i).getNom() + ".jpg")), i, 0);
             }
             alert.setGraphic(grid);
+//            alert.setContentText("Total de points : "+model.getListJoueur().get(0).getPoints());
         }else alert.setContentText("Pas de cartes");
         grid.alignmentProperty();
         alert.showAndWait();
@@ -350,11 +360,23 @@ public class GameController {
     public void leaveGame(){
         System.exit(0);
     }
-    public void restart(){
-    }
-    public void showReglement(){
-        LauncherController.reglement();
+    public void restart() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/luncher.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) button1.getScene().getWindow();
+        Scene scene = new Scene(root);
+        Stage secondaryStage = new Stage();
+        secondaryStage.setScene(scene);
+        secondaryStage.setMaximized(false);
+        secondaryStage.setResizable(true);
+        secondaryStage.setTitle("Launcher");
+        secondaryStage.show();
+        stage.close();
 
+
+    }
+    public void showReglement() {
+        LauncherController.reglement();
     }
 
 }
