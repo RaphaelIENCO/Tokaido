@@ -37,8 +37,7 @@ public class Joueur {
        temple = false;
    }
 
-   public int getScoreAdd(){
-        //this.points=0;       // permet pas d'incrémenter pour les temples si décommenter
+    public int getScoreAdd(){
        int total = 0;
 
         for (int i=0; i<cartes.size() ;i++){
@@ -63,8 +62,7 @@ public class Joueur {
         return total;
    }
 
-
-   public int getScoreSouvenir(){
+    public int getScoreSouvenir(){
         int total = 0;
         int coef = 1;
         boolean verif1 = true;
@@ -110,7 +108,7 @@ public class Joueur {
         return total;
    }
 
-   public int getPoints(){
+    public int getPoints(){
         return this.points;
    }
 
@@ -178,8 +176,11 @@ public class Joueur {
         this.piocheRencontre = piocheRencontre;
     }
 
+    public boolean isTemple() {
+        return temple;
+    }
 
-    public boolean isTemple() { return temple; }
-
-    public void setTemple(boolean temple) { this.temple = temple; }
+    public void setTemple(boolean temple) {
+        this.temple = temple;
+    }
 }

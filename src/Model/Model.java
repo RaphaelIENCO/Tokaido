@@ -200,16 +200,6 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         return listJoueur;
     }
 
-    public String getScore() {
-        String str = "";
-        for (int i=0 ; i<listJoueur.size() ;i++){
-            str += listJoueur.get(i).getNom() + "\n";
-            str += (listJoueur.get(i).getPoints()+listJoueur.get(i).getScoreSouvenir()) + "\n";
-            str += listJoueur.get(i).getGold() + "\n";
-        }
-        return str;
-    }
-
     public void addJoueur(Joueur j){
         listJoueur.add(j);
     }

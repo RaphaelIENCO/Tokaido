@@ -65,6 +65,7 @@ public class GameController {
         } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
 
     }
+
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
 
@@ -173,6 +174,7 @@ public class GameController {
         }else messageErreur("Plus de carte source chaude");
         updateScore();
     }
+
     public void piocheSouvenir(){
         if (model.getListJoueur().get(0).isPiocheSouvenir()) {
             if (model.getListSouvenir().size() > 3) {
@@ -239,6 +241,7 @@ public class GameController {
         model.getListJoueur().get(0).setPiocheSouvenir(false);
         updateScore();
     }
+
     public void piocheRencontre(){
         if(!model.getListRecontre().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheRencontre()) {
@@ -311,6 +314,7 @@ public class GameController {
         nameLabel.setText(model.getListJoueur().get(0).getNom());
         scoreLabel.setText((model.getListJoueur().get(0).getPoints()+model.getListJoueur().get(0).getScoreAdd())+"");
     }
+
     public void viewCards(){
         GridPane grid = new GridPane();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -332,6 +336,7 @@ public class GameController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
     private void ajoutBouton() {
         boutonsPlateau.add(button1);
         boutonsPlateau.add(button2);
@@ -349,7 +354,6 @@ public class GameController {
         boutonsPlateau.add(button14);
     }
 
-
     public void setData(Model m){
         this.model =m;
     }
@@ -360,6 +364,7 @@ public class GameController {
     public void leaveGame(){
         System.exit(0);
     }
+
     public void restart() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/luncher.fxml"));
         Parent root = loader.load();
@@ -375,6 +380,7 @@ public class GameController {
 
 
     }
+
     public void showReglement() {
         LauncherController.reglement();
     }
