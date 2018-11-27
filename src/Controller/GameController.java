@@ -16,10 +16,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.Collections;
 import java.util.Optional;
 
@@ -41,14 +43,13 @@ public class GameController {
     @FXML Button button12;
     @FXML Button button13;
     @FXML Button button14;
-    @FXML Label scoreLabel;
-    @FXML Label goldLabel;
-    @FXML Label nameLabel;
+    @FXML GridPane grille;
 
     public GameController(){
         model=new Model();
         boutonsPlateau = new ArrayList<>();
         ajoutBouton();
+
     }
 
     public void survolEntered(MouseEvent event){
@@ -91,6 +92,7 @@ public class GameController {
         }
         button.setStyle("-fx-background-color: green;");
          button.setId(button.getId()+"true");
+         afficheCartes();
 
     }
 
@@ -155,7 +157,6 @@ public class GameController {
                                 piocheRelais();
                                 break;
                     }
-                    updateScore();
 
                 }else messageErreur("Vous n'êtes pas autorisé à piocher");
 
@@ -181,7 +182,6 @@ public class GameController {
                 messageErreur("impossible de piocher une carte source chaude");
             }
         }else messageErreur("Plus de carte source chaude");
-        updateScore();
     }
 
     public void piocheSouvenir(){
@@ -232,7 +232,6 @@ public class GameController {
                     model.getListJoueur().get(0).getCartes().addAll(toAdd);
                     model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-prixTotal);
                     model.getListJoueur().get(0).setPiocheSouvenir(false);
-                    updateScore();
                     return;
                 } else {
                     messageErreur("Pas assez d'or");
@@ -249,7 +248,6 @@ public class GameController {
             } else messageErreur("Pas assez de carte");
         }else messageErreur("Vous ne pouvez pas piocher");
         model.getListJoueur().get(0).setPiocheSouvenir(false);
-        updateScore();
     }
 
     public void piocheRencontre(){
@@ -272,7 +270,6 @@ public class GameController {
                 messageErreur("Vous ne pouvez pas piocher de carte Rencontre");
             }
         }else messageErreur("Plus de cartes rencontre");
-        updateScore();
     }
 
     public void rencontreTemple(Button button){
@@ -312,33 +309,24 @@ public class GameController {
             messageErreur("Vous n'avez plus d'or, allez à un autre arrêt");
             button.setStyle("-fx-background-color: gray;");
         }
-        updateScore();
     }
 
 
     /**
      * Partie Affichage
      */
-    public void updateScore(){
-        goldLabel.setText(model.getListJoueur().get(0).getGold()+"");
-        nameLabel.setText(model.getListJoueur().get(0).getNom());
-        scoreLabel.setText((model.getListJoueur().get(0).getPoints()+model.getListJoueur().get(0).getScoreAdd())+"");
+
+    public void afficheCartes(){
+        grille.getChildren().clear();
+        for (int i=0;i<model.getListJoueur().size();i++){
+            Text descriptif = new Text(model.getListJoueur().get(i).getNom()+" \n or : "+model.getListJoueur().get(i).getGold()+" \n points : "+model.getListJoueur().get(i).getPoints());
+            grille.add(descriptif,0,i);
+            for (int j=0;j<model.getListJoueur().get(i).getCartes().size();j++){
+                grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+1,i);
+            }
+        }
     }
 
-    public void viewCards(){
-        GridPane grid = new GridPane();
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText("Vos cartes:");
-        if (!model.getListJoueur().get(0).getCartes().isEmpty()) {
-            for (int i = 0; i < model.getListJoueur().get(0).getCartes().size(); i++) {
-                grid.add(new ImageView(new Image("Vue/Images/" + model.getListJoueur().get(0).getCartes().get(i).getNom() + ".jpg")), i, 0);
-            }
-            alert.setGraphic(grid);
-//            alert.setContentText("Total de points : "+model.getListJoueur().get(0).getPoints());
-        }else alert.setContentText("Pas de cartes");
-        grid.alignmentProperty();
-        alert.showAndWait();
-    }
 
     public void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);

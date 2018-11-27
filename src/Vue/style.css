@@ -77,5 +77,8 @@
     -fx-text-fill: black;
     -fx-opacity: 0.6;
 }
+.backgroundColor{
+    -fx-background-color: #F9F4DF80;
+}
 
 
