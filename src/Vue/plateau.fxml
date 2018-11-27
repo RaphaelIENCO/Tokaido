@@ -30,5 +30,7 @@
       <Button fx:id="button12" id="" layoutX="705.0" layoutY="425.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button fx:id="button13" id="rencontre" layoutX="321.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button fx:id="button14" accessibleHelp=""  id="" layoutX="447.0" layoutY="518.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+       <Label fx:id="infoJ1" layoutX="63.0" layoutY="95.0" styleClass="labelInfoJ" stylesheets="@style.css" text="Joueur 1: " />
+       <Label fx:id="infoJ2" layoutX="63.0" layoutY="122.0" styleClass="labelInfoJ" stylesheets="@style.css" text="Joueur 2: " visible="false"/>
    </children>
 </AnchorPane>

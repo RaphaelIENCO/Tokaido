@@ -45,8 +45,12 @@ public class GameController {
     @FXML Button button13;
     @FXML Button button14;
     @FXML Label labelJ1;
+    @FXML Label labelJ2;
     @FXML Button commencerP;
     @FXML Label scoreLabel;
+
+    @FXML Label infoJ1;
+    @FXML Label infoJ2;
 
 
     public GameController(){
@@ -99,7 +103,7 @@ public class GameController {
     public void leaveGame(){
         System.exit(0);
     }
-    public void restart()  {
+    public void restart(){
     }
     public void showReglement(){
         if( Desktop.isDesktopSupported() )
@@ -255,14 +259,26 @@ public class GameController {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            if(result.get().equals("Kinko")) {
-                model.addJoueur(new Kinko());
-                labelJ1.setText("Kinko selectionné");
-                selectJoueur = true;
+            if(selectJoueur){
+                if(result.get()=="Kinko") {
+                    model.addJoueur(new Kinko());
+                    labelJ2.setText("Kinko selectionné");
+                    labelJ2.setVisible(true);
+                }else{
+                    model.addJoueur(new Sasayakko());
+                    labelJ2.setText("Sasayakko selectionné");
+                    labelJ2.setVisible(true);
+                }
             }else{
-                model.addJoueur(new Sasayakko());
-                labelJ1.setText("Sasayakko selectionné");
-                selectJoueur = true;
+                if(result.get()=="Kinko") {
+                    model.addJoueur(new Kinko());
+                    labelJ1.setText("Kinko selectionné");
+                    selectJoueur = true;
+                }else{
+                    model.addJoueur(new Sasayakko());
+                    labelJ1.setText("Sasayakko selectionné");
+                    selectJoueur = true;
+                }
             }
 
         }
@@ -304,5 +320,10 @@ public class GameController {
 
     public void setData(Model m){
         this.model =m;
+        infoJ1.setText("Joueur 1 : "+model.getListJoueur().get(0).getNom() + " | Or : "+ model.getListJoueur().get(0).getGold());
+        if(model.getListJoueur().size()==2){
+            infoJ2.setText("Joueur 2 : "+model.getListJoueur().get(1).getNom() + " | Or : "+ model.getListJoueur().get(1).getGold());
+            infoJ2.setVisible(true);
+        }
     }
 }

@@ -71,4 +71,11 @@
     -fx-background-image: url("Images/Souvenir.jpg");
 }
 
+.labelInfoJ {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.6;
+}
+
 
