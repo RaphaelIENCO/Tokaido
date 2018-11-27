@@ -139,66 +139,69 @@ public class GameController {
         updateScore();
     }
     public void piocheSouvenir(){
-        if (!model.getListSouvenir().isEmpty()) {
-            if (model.getListJoueur().get(0).isPiocheSouvenir()) {
-                Souvenirs souvenirs = model.getListSouvenir().get(0);
-                String nomImage = "/Vue/Images/" + souvenirs.getNom() + ".jpg";
+        if (model.getListJoueur().get(0).isPiocheSouvenir()) {
+            if (model.getListSouvenir().size() > 3) {
+                int prixTotal = 0;
+                Souvenirs cartes1 = model.getListSouvenir().get(0);
+                Souvenirs cartes2 = model.getListSouvenir().get(1);
+                Souvenirs cartes3 = model.getListSouvenir().get(2);
 
-                Alert show = new Alert(Alert.AlertType.CONFIRMATION);
-                ImageView imageView = new ImageView(new Image(nomImage));
-                show.setGraphic(imageView);
-                show.setTitle("Souvenirs");
-                show.setHeaderText("prix : " + souvenirs.getPrix());
-                show.setContentText("Il vous reste : " + model.getListJoueur().get(0).getGold() + " or");
+                CheckBox checkBox1 = new CheckBox();
+                CheckBox checkBox2 = new CheckBox();
+                CheckBox checkBox3 = new CheckBox();
 
-                ButtonType btnAcheter = new ButtonType("Acheter (-" + souvenirs.getPrix() + " or)");
-                ButtonType btnRefuser = new ButtonType("Refuser", ButtonBar.ButtonData.CANCEL_CLOSE);
-                show.getButtonTypes().setAll(btnAcheter, btnRefuser);
-                Optional<ButtonType> choice = show.showAndWait();
-                model.getListSouvenir().remove(souvenirs);
-                if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() >= souvenirs.getPrix()) {
-                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - souvenirs.getPrix());
-                    model.getListJoueur().get(0).addCarte(souvenirs);
+                checkBox1.setGraphic(new ImageView("/Vue/Images/" + cartes1.getNom() + ".jpg"));
+                checkBox2.setGraphic(new ImageView("/Vue/Images/" + cartes2.getNom() + ".jpg"));
+                checkBox3.setGraphic(new ImageView("/Vue/Images/" + cartes3.getNom() + ".jpg"));
 
-                } else if (choice.get() == btnAcheter && model.getListJoueur().get(0).getGold() < souvenirs.getPrix()) {
-                    model.getListSouvenir().add(souvenirs);
-                    messageErreur("Vous n'avez pas l'or nécessaire");
+
+                GridPane grille = new GridPane();
+                grille.add(checkBox1, 1, 0);
+                grille.add(checkBox2, 2, 0);
+                grille.add(checkBox3, 3, 0);
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setGraphic(grille);
+                alert.setHeaderText("Veuillez cocher les cartes voulues");
+                alert.showAndWait();
+                ArrayList<Souvenirs> toAdd = new ArrayList<Souvenirs>();
+                if (checkBox1.isSelected()) {
+                    toAdd.add(cartes1);
+                    prixTotal += cartes1.getPrix();
                 }
-                model.getListJoueur().get(0).setPiocheSouvenir(false);
-            } else {
-                messageErreur("Vous ne pouvez pas piocher de carte souvenirs!");
-            }
-        }else messageErreur("Il n'y à plus de carte souvenir");
+                if (checkBox2.isSelected()) {
+                    toAdd.add(cartes2);
+                    prixTotal += cartes2.getPrix();
+                }
+                if (checkBox3.isSelected()) {
+                    toAdd.add(cartes3);
+                    prixTotal += cartes3.getPrix();
+                }
+
+                if (model.getListJoueur().get(0).getGold() >= prixTotal) {
+                    model.getListSouvenir().remove(cartes1);
+                    model.getListSouvenir().remove(cartes2);
+                    model.getListSouvenir().remove(cartes3);
+                    model.getListJoueur().get(0).getCartes().addAll(toAdd);
+                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-prixTotal);
+                    updateScore();
+                    return;
+                } else {
+                    messageErreur("Pas assez d'or");
+                    piocheSouvenir();
+                }
+                model.getListSouvenir().remove(cartes1);
+                model.getListSouvenir().remove(cartes2);
+                model.getListSouvenir().remove(cartes3);
+
+                model.getListSouvenir().add(cartes1);
+                model.getListSouvenir().add(cartes2);
+                model.getListSouvenir().add(cartes3);
+
+            } else messageErreur("Pas assez de carte");
+        }else messageErreur("Vous ne pouvez pas piocher");
         updateScore();
-}
-    public void testSouvenir(){
-        if (model.getListSouvenir().size()>3) {
-            Souvenirs cartes1 = model.getListSouvenir().get(0);
-            Souvenirs cartes2 = model.getListSouvenir().get(1);
-            Souvenirs cartes3 = model.getListSouvenir().get(2);
-            CheckBox checkBox1 = new CheckBox();
-            CheckBox checkBox2 = new CheckBox();
-            CheckBox checkBox3 = new CheckBox();
-
-            checkBox1.setGraphic(new ImageView("/Vue/Images/"+cartes1.getNom()+".jpg"));
-            checkBox2.setGraphic(new ImageView("/Vue/Images/"+cartes2.getNom()+".jpg"));
-            checkBox3.setGraphic(new ImageView("/Vue/Images/"+cartes3.getNom()+".jpg"));
-
-
-            GridPane grille = new GridPane();
-            grille.add(checkBox1,1,0);
-            grille.add(checkBox2,2,0);
-            grille.add(checkBox3,3,0);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setGraphic(grille);
-            alert.setHeaderText("Veuillez cocher les cartes voulues");
-            alert.showAndWait();
-        } else messageErreur("Pas assez de carte");
-
-
     }
-
     public void piocheRencontre(){
         if(!model.getListRecontre().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheRencontre()) {

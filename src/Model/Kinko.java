@@ -11,7 +11,7 @@ public class Kinko extends Joueur {
     public Kinko() {
         super();
         nom = "Kinko";
-        gold = 700000000;
+        gold = 7;
     }
 
     @Override
