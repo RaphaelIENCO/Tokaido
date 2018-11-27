@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Joueur {
     protected int gold;
-    protected ArrayList cartes;
+    protected ArrayList<Cartes> cartes;
     protected int points = 0;
     protected String nom;
     protected boolean piocheRelais;
@@ -18,7 +18,7 @@ public class Joueur {
     public Joueur(int g,String n){
         gold = g;
         nom = n;
-        cartes = new ArrayList<>();
+        cartes = new ArrayList<Cartes>();
         points = 0;
         piocheRelais =false;
         piocheRencontre=false;
@@ -182,5 +182,14 @@ public class Joueur {
 
     public void setTemple(boolean temple) {
         this.temple = temple;
+    }
+
+    public boolean contient(Repas repas) {
+        for (Cartes cartes : cartes){
+            if (cartes instanceof Repas){
+                if (cartes.getNom().equals(repas.getNom())) return true;
+            }
+        }
+        return false;
     }
 }

@@ -135,15 +135,19 @@ public class GameController {
                             model.getListRepas().addAll(mesRepas);
                             break;
                         case 1:
-                            if (model.getListJoueur().get(0).getGold()>mesRepas.get(indice).getPrix()) {
-                                model.getListJoueur().get(0).addCarte(mesRepas.get(indice));
-                                model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-mesRepas.get(indice).getPrix());
-                                model.getListRepas().removeAll(mesRepas);
-                                mesRepas.remove(indice);
-                                model.getListRepas().addAll(mesRepas);
-                            } else {
-                                messageErreur("Vous n'avez pas l'or nécessaire");
-                                piocheRelais();
+                            if (!model.getListJoueur().get(0).contient(mesRepas.get(indice))){
+                                if (model.getListJoueur().get(0).getGold() > mesRepas.get(indice).getPrix()) {
+                                    model.getListJoueur().get(0).addCarte(mesRepas.get(indice));
+                                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - mesRepas.get(indice).getPrix());
+                                    model.getListRepas().removeAll(mesRepas);
+                                    mesRepas.remove(indice);
+                                    model.getListRepas().addAll(mesRepas);
+                                } else {
+                                    messageErreur("Vous n'avez pas l'or nécessaire");
+                                    piocheRelais();
+                                }
+                            }else {
+                                messageErreur("Vous avez deja gouté "+mesRepas.get(indice).getNom());
                             }
                             break;
                             default:
