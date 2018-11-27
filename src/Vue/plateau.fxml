@@ -28,7 +28,7 @@
       <Button id="souvenir" fx:id="button11" layoutX="998.0" layoutY="372.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="" fx:id="button12" layoutX="705.0" layoutY="425.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="rencontre" fx:id="button13" layoutX="321.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <Button id="" fx:id="button14" accessibleHelp="" layoutX="447.0" layoutY="518.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+      <Button id="temple" fx:id="button14" accessibleHelp="" layoutX="447.0" layoutY="518.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Label fx:id="goldLabel" layoutX="142.0" layoutY="183.0" prefHeight="31.0" prefWidth="103.0" wrapText="true" />
       <Label fx:id="nameLabel" layoutX="55.0" layoutY="64.0" prefHeight="31.0" prefWidth="155.0" wrapText="true" />
       <Button layoutX="273.0" layoutY="64.0" mnemonicParsing="false" onAction="#viewCards" text="Consulter mes cartes" />
