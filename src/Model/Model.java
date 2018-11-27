@@ -196,10 +196,6 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         return listRepas;
     }
 
-    public void setListRepas(ArrayList<Repas> listRepas) {
-        this.listRepas = listRepas;
-    }
-
     public ArrayList<Joueur> getListJoueur() {
         return listJoueur;
     }
