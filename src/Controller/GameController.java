@@ -4,16 +4,20 @@ package Controller;
 import Model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -292,6 +296,16 @@ public class GameController {
         scoreLabel.setText(model.getListJoueur().get(0).getPoints()+"");
     }
     public void viewCards(){
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        ImageView customImage = new ImageView(new Image("Vue/Images/Dango.jpg"));
+        ImageView customImage1 = new ImageView(new Image("Vue/Images/Dango.jpg"));
+        grid.add(customImage, 0, 0);
+        grid.add(customImage1, 0, 1);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setGraphic(grid);
+        alert.showAndWait();
 
 
     }
