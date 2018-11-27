@@ -300,7 +300,7 @@ public class GameController {
     public void updateScore(){
         goldLabel.setText(model.getListJoueur().get(0).getGold()+"");
         nameLabel.setText(model.getListJoueur().get(0).getNom());
-        scoreLabel.setText(model.getListJoueur().get(0).getPoints()+"");
+        scoreLabel.setText((model.getListJoueur().get(0).getPoints()+model.getListJoueur().get(0).getScoreAdd())+"");
     }
     public void viewCards(){
         GridPane grid = new GridPane();

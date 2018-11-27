@@ -37,29 +37,30 @@ public class Joueur {
        temple = false;
    }
 
-   public int getPoints(){
+   public int getScoreAdd(){
         //this.points=0;       // permet pas d'incrémenter pour les temples si décommenter
+       int total = 0;
 
         for (int i=0; i<cartes.size() ;i++){
             if (cartes.get(i) instanceof Repas){
                 Repas repas = (Repas) cartes.get(i);
-                this.points+= repas.getPoint();
+                total+= repas.getPoint();
             }
             else if (cartes.get(i) instanceof Sources){
                 Sources sources = (Sources) cartes.get(i);
-                this.points += sources.getPoint();
+                total += sources.getPoint();
             }
             else if (cartes.get(i) instanceof Panoramas){
                 Panoramas panoramas = (Panoramas) cartes.get(i);
-                this.points += panoramas.getPoint();
+                total += panoramas.getPoint();
             }
             else if (cartes.get(i) instanceof Acomplis){
                 Acomplis acomplis = (Acomplis) cartes.get(i);
-                this.points += acomplis.getPoints();
+                total += acomplis.getPoints();
             }
         }
-        this.points+=getScoreSouvenir();
-        return this.points;
+        total += getScoreSouvenir();
+        return total;
    }
 
 
@@ -109,7 +110,9 @@ public class Joueur {
         return total;
    }
 
-
+   public int getPoints(){
+        return this.points;
+   }
 
     public String getNom() {
         return nom;
