@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 public class GameController {
@@ -97,60 +98,64 @@ public class GameController {
      * Partie pioche
      */
     public void piocheRelais() {
-        if (!model.getListRepas().isEmpty()) {
-            if (model.getListJoueur().get(0).isPiocheRelais()) {
-                ArrayList<CheckBox> listChoix = new ArrayList<CheckBox>();
-                GridPane gridPane = new GridPane();
-                for (int i=0;i<model.getListJoueur().size()+1;i++){
-                    CheckBox choix =new CheckBox();
-                    choix.setGraphic(new ImageView("Vue/Images/"+model.getListRepas().get(i).getNom()+".jpg"));
-                    gridPane.add(choix,i,0);
-                    listChoix.add(choix);
-                }
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Relais");
-                alert.setHeaderText("Vous ne pouvez prendre qu'une carte");
-                alert.setGraphic(gridPane);
-                alert.showAndWait();
-                int nbchoix=0;
-                for (CheckBox checkBox:listChoix){
-                    if (checkBox.isSelected()) nbchoix++;
-                }
-                if (nbchoix>1){
-                    messageErreur("Veuillez ne choisir qu'une carte \n ou ne rien prendre");
-                    piocheRelais();
-                    return;
-                } else if (nbchoix==0){
-                    for (int i=0;i<model.getListJoueur().size()+1;i++) {
-                        Repas temp = model.getListRepas().get(i);
-                        model.getListRepas().remove(0);
-                        model.getListRepas().add(temp);
+            if (!model.getListRepas().isEmpty()){
+                if (model.getListJoueur().get(0).isPiocheRelais()){
+                    GridPane gridPane = new GridPane();
+                    ArrayList<CheckBox> box = new ArrayList<CheckBox>();
+                    ArrayList<Repas> mesRepas = new ArrayList<Repas>();
+                    for(int i=0;i<model.getListJoueur().size()+1;i++){
+                        CheckBox choix = new CheckBox();
+                        choix.setGraphic(new ImageView("/Vue/Images/"+model.getListRepas().get(i).getNom()+".jpg"));
+                        mesRepas.add(model.getListRepas().get(i));
+                        box.add(choix);
+                        gridPane.add(choix,i,0);
                     }
-                }else {
-                    int compteur=0;
-                    for (CheckBox checkBox:listChoix){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Repas");
+                    alert.setHeaderText("Une seule carte possible");
+                    alert.setGraphic(gridPane);
+                    alert.showAndWait();
+                    int nbChoix=0;
+                    int indice=0;
+                    for (CheckBox checkBox :box){
                         if (checkBox.isSelected()){
-                            Repas repas = model.getListRepas().get(compteur);
-                            if (repas.getPrix()<model.getListJoueur().get(0).getGold()){
-                                model.getListJoueur().get(0).addCarte(repas);
-                                model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-repas.getPrix());
-                                model.getListRepas().remove(repas);
-                            } else {
-                                messageErreur("Vous n'avez pas assez d'or");
-                                piocheRelais();
-                            }
-                        }else{
-                            Repas repas = model.getListRepas().get(compteur);
-                            model.getListRepas().remove(repas);
-                            model.getListRepas().add(repas);
-                            compteur++;
+                            nbChoix++;
                         }
                     }
-                }
-                model.getListJoueur().get(0).setPiocheRelais(false);
-                updateScore();
-            }else messageErreur("Vous ne pouvez pas piocher");
-        }else messageErreur("Pas assez de carte repas");
+                    if (nbChoix==1){
+                        for (CheckBox checkBox:box){
+                            if (checkBox.isSelected()) break;
+                            indice++;
+                        }
+                    }
+                    switch (nbChoix){
+
+                        case 0:
+                            model.getListRepas().removeAll(mesRepas);
+                            model.getListRepas().addAll(mesRepas);
+                            break;
+                        case 1:
+                            if (model.getListJoueur().get(0).getGold()>mesRepas.get(indice).getPrix()) {
+                                model.getListJoueur().get(0).addCarte(mesRepas.get(indice));
+                                model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-mesRepas.get(indice).getPrix());
+                                model.getListRepas().removeAll(mesRepas);
+                                mesRepas.remove(indice);
+                                model.getListRepas().addAll(mesRepas);
+                            } else {
+                                messageErreur("Vous n'avez pas l'or nécessaire");
+                                piocheRelais();
+                            }
+                            break;
+                            default:
+                                messageErreur("Vous ne pouvez acheté qu'une seule carte");
+                                piocheRelais();
+                                break;
+                    }
+                    updateScore();
+
+                }else messageErreur("Vous n'êtes pas autorisé à piocher");
+
+            }else messageErreur("Plus de carte relais");
     }
 
     public void piocheSourceChaude(){
@@ -199,6 +204,7 @@ public class GameController {
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setGraphic(grille);
+                alert.setTitle("Echoppe");
                 alert.setHeaderText("Veuillez cocher les cartes voulues");
                 alert.showAndWait();
                 ArrayList<Souvenirs> toAdd = new ArrayList<Souvenirs>();
