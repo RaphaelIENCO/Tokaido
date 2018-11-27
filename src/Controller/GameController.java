@@ -253,7 +253,7 @@ public class GameController {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            if(result.get()=="Kinko") {
+            if(result.get().equals("Kinko")) {
                 model.addJoueur(new Kinko());
                 labelJ1.setText("Kinko selectionné");
                 selectJoueur = true;
@@ -278,7 +278,7 @@ public class GameController {
 
     public void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("Erreur :");
+        alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
