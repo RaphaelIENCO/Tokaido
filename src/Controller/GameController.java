@@ -61,6 +61,7 @@ public class GameController {
     }
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
+        button.setStyle("-fx-background-color: green;");
         if (button.getId().contains("relais")){
             model.getListJoueur().get(0).setPiocheRelais(true);
             piocheRelais();
@@ -78,10 +79,9 @@ public class GameController {
             piocheRencontre();
         }else if (button.getId().contains("temple")){
             model.getListJoueur().get(0).setTemple(true);
-            rencontreTemple();
+            rencontreTemple(button);
         }
          button.setId(button.getId()+"true");
-        button.setStyle("-fx-background-color: green;");
 
     }
 
@@ -228,28 +228,42 @@ public class GameController {
         updateScore();
     }
 
-    public void rencontreTemple(){
-        if(model.getListJoueur().get(0).isTemple()){
-            ArrayList<Integer> choix = new ArrayList<Integer>();
-            choix.add(1);
-            choix.add(2);
-            choix.add(3);
+    public void rencontreTemple(Button button){
+        if(model.getListJoueur().get(0).getGold()>0) {
+            if (model.getListJoueur().get(0).isTemple()) {
+                ArrayList<Integer> choix = new ArrayList<Integer>();
+                choix.add(1);
+                choix.add(2);
+                choix.add(3);
 
-            String nomImage = "/Vue/Images/temple.png";
-            ImageView image = new ImageView(nomImage);
+                String nomImage = "/Vue/Images/temple.png";
+                ImageView image = new ImageView(nomImage);
 
-            ChoiceDialog<Integer> dialog = new ChoiceDialog<Integer>(1, choix);
-            dialog.setGraphic(image);
-            dialog.setTitle("Temple");
-            dialog.setHeaderText("Combien voulez vous donner au temple ?");
-            dialog.setContentText("Donnation");
+                ChoiceDialog<Integer> dialog = new ChoiceDialog<Integer>(1, choix);
 
-            Optional<Integer> result = dialog.showAndWait();
-            if(result.isPresent()){
-                model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - result.get());
-                model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints() + result.get());
-                model.getListJoueur().get(0).setTemple(false);
+                dialog.setGraphic(image);
+                dialog.setTitle("Temple");
+                dialog.setHeaderText("Combien voulez vous donner au temple ?");
+                dialog.setContentText("Donnation");
+
+                Optional<Integer> result = dialog.showAndWait();
+                if (result.isPresent()) {
+                    if(model.getListJoueur().get(0).getGold() >= result.get()) {
+                        model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - result.get());
+                        model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints() + result.get());
+                        model.getListJoueur().get(0).setTemple(false);
+                    }else{
+                        messageErreur("Vous n'avez pas autant d'argent...");
+                        rencontreTemple(button);
+                    }
+                }else {
+                    messageErreur("Vous devez faire un don !");
+                    rencontreTemple(button);
+                }
             }
+        }else{
+            messageErreur("Vous n'avez plus d'or, allez à un autre arrêt");
+            button.setStyle("-fx-background-color: gray;");
         }
         updateScore();
     }
