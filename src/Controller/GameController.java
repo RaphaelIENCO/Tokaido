@@ -49,10 +49,6 @@ public class GameController {
     @FXML Button commencerP;
     @FXML Label scoreLabel;
 
-    @FXML Label infoJ1;
-    @FXML Label infoJ2;
-
-
     public GameController(){
         model=new Model();
     }
@@ -284,11 +280,6 @@ public class GameController {
         }
     }
 
-
-    public void afficheScore(javafx.event.ActionEvent event) {
-        updateScore();
-    }
-
     public void updateScore(){
         scoreLabel.setText(model.getScore());
     }
@@ -320,10 +311,5 @@ public class GameController {
 
     public void setData(Model m){
         this.model =m;
-        infoJ1.setText("Joueur 1 : "+model.getListJoueur().get(0).getNom() + " | Or : "+ model.getListJoueur().get(0).getGold());
-        if(model.getListJoueur().size()==2){
-            infoJ2.setText("Joueur 2 : "+model.getListJoueur().get(1).getNom() + " | Or : "+ model.getListJoueur().get(1).getGold());
-            infoJ2.setVisible(true);
-        }
     }
 }

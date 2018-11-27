@@ -55,6 +55,52 @@ public class Joueur {
         return this.points;
    }
 
+   public int getScoreSouvenir(){
+        int total = 0;
+        int coef = 1;
+        boolean verif1 = true;
+        boolean verif2 = true;
+        boolean verif3 = true;
+        boolean verif4 = true;
+        ArrayList<Souvenirs> souv = new ArrayList<Souvenirs>();
+        int tab[] = new int[8];
+       for (Object carte : cartes) {
+           if (carte instanceof Souvenirs) {
+               souv.add((Souvenirs) carte);
+           }
+       }
+        for (int i=0; i<souv.size() ;i++){
+            for (int j=1 ; j<5 ;j++){
+                if (souv.get(i).getTypeSouvenir() == j){
+                    tab[j-1]++;
+                }
+            }
+        }
+        for (int i=0; i<souv.size() ;i++){
+            if (souv.get(i).getTypeSouvenir() == 1 && verif1){
+                total += tab[0]*coef;
+                coef += 2;
+                verif1 = false;
+            }
+            if (souv.get(i).getTypeSouvenir() == 2 && verif2){
+                total += tab[1]*coef;
+                coef += 2;
+                verif2 = false;
+            }
+            if (souv.get(i).getTypeSouvenir() == 3 && verif3){
+                total += tab[2]*coef;
+                coef += 2;
+                verif3 = false;
+            }
+            if (souv.get(i).getTypeSouvenir() == 4 && verif4){
+                total += tab[3]*coef;
+                coef += 2;
+                verif4 = false;
+            }
+        }
+        return total;
+   }
+
 
 
     public String getNom() {
