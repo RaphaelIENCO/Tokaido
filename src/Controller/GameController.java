@@ -223,10 +223,6 @@ public class GameController {
             Parent root = loader.load();
             System.out.println("loader créer");
 
-
-            //Stage stage = (Stage) commencerP.getScene().getWindow();
-            //stage.close();
-            //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("Vue/plateau.fxml")));
             Scene scene = new Scene(root);
             Stage secondaryStage = new Stage();
             loader.<GameController>getController().setData(model);
@@ -235,6 +231,8 @@ public class GameController {
             secondaryStage.setResizable(true);
             secondaryStage.setTitle("Tokaido");
             secondaryStage.show();
+            Stage stage = (Stage) commencerP.getScene().getWindow();
+            stage.close();
         }else{
             Alert dialog = new Alert(Alert.AlertType.WARNING);
             dialog.setTitle("Impossible !");
