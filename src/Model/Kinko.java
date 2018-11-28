@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.paint.Color;
+
 public class Kinko extends Joueur {
     /**
      * Les cartes Repas achetées par Kinko lui coûtent
@@ -12,6 +14,7 @@ public class Kinko extends Joueur {
         super();
         nom = "Kinko";
         gold = 70000;
+        couleur = "blue";
     }
 
     @Override

@@ -12,7 +12,25 @@ public class Joueur {
     protected boolean piocheSouvenir;
     protected boolean piocheRencontre;
     protected int positions;
+    protected String couleur;
+    protected int orTemple;
+
+
     protected boolean temple;
+    //Crée un joueur différent des joueurs proposés.
+    public Joueur(int g,String n){
+        gold = g;
+        nom = n;
+        cartes = new ArrayList<Cartes>();
+        points = 0;
+        piocheRelais =false;
+        piocheRencontre=false;
+        piocheSource=false;
+        piocheSouvenir=false;
+        temple=false;
+        orTemple=0;
+        positions=0;
+   }
 
    public Joueur(){
        cartes = new ArrayList<Cartes>();
@@ -22,6 +40,7 @@ public class Joueur {
        piocheSource=false;
        piocheSouvenir=false;
        temple = false;
+       orTemple=0;
        positions=0;
    }
 
@@ -178,6 +197,22 @@ public class Joueur {
 
     public void setTemple(boolean temple) {
         this.temple = temple;
+    }
+
+    public int getOrTemple() {
+        return orTemple;
+    }
+
+    public void setOrTemple(int orTemple) {
+        this.orTemple = orTemple;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
     }
 
     public boolean contient(Repas repas) {
