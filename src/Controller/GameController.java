@@ -2,16 +2,13 @@ package Controller;
 
 
 import Model.*;
-import Vue.Main;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -22,7 +19,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import java.util.Collections;
 import java.util.Optional;
 
 public class GameController {
@@ -90,11 +86,15 @@ public class GameController {
             model.getListJoueur().get(0).setTemple(true);
             rencontreTemple(button);
         }
+        else if(button.getId().contains("ferme")){
+            rencontreFerme();
+        }
         button.setStyle("-fx-background-color: green;");
          button.setId(button.getId()+"true");
          afficheCartes();
 
     }
+
 
     /**
      * Partie pioche
@@ -272,7 +272,7 @@ public class GameController {
         }else messageErreur("Plus de cartes rencontre");
     }
 
-    public void rencontreTemple(Button button){
+    private void rencontreTemple(Button button){
         if(model.getListJoueur().get(0).getGold()>0) {
             if (model.getListJoueur().get(0).isTemple()) {
                 ArrayList<Integer> choix = new ArrayList<Integer>();
@@ -280,7 +280,7 @@ public class GameController {
                 choix.add(2);
                 choix.add(3);
 
-                String nomImage = "/Vue/Images/temple.png";
+                String nomImage = "/Vue/Images/Temple.png";
                 ImageView image = new ImageView(nomImage);
 
                 ChoiceDialog<Integer> dialog = new ChoiceDialog<Integer>(1, choix);
@@ -311,17 +311,26 @@ public class GameController {
         }
     }
 
+    private void rencontreFerme() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ferme");
+        alert.setHeaderText(null);
+        alert.setGraphic(new ImageView("/Vue/Images/Ferme.png"));
+        alert.setContentText("Vous arrivé à une ferme \n vous gagnez 3 pièce d'or");
+        model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+3);
+        alert.showAndWait();
+    }
+
 
     /**
      * Partie Affichage
      */
-
-    public void afficheCartes(){
+    private void afficheCartes(){
+        model.getListJoueur().get(0).trierCarte();
         grille.getChildren().clear();
         for (int i=0;i<model.getListJoueur().size();i++){
             Text descriptif = new Text(model.getListJoueur().get(i).getNom()+" \n or : "+model.getListJoueur().get(i).getGold()+" \n points : "+model.getListJoueur().get(i).getPoints());
             grille.add(descriptif,0,i);
-            System.out.println(model.getListJoueur().get(0).getNom());
             grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+".jpg"),1,i);
             for (int j=0;j<model.getListJoueur().get(i).getCartes().size();j++){
                 grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);
@@ -330,7 +339,7 @@ public class GameController {
     }
 
 
-    public void messageErreur(String message){
+    private void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
         alert.setContentText(message);

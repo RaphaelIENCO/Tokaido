@@ -28,7 +28,7 @@ public class Joueur {
    }
 
    public Joueur(){
-       cartes = new ArrayList<>();
+       cartes = new ArrayList<Cartes>();
        points = 0;
        piocheRelais =false;
        piocheRencontre=false;
@@ -191,5 +191,35 @@ public class Joueur {
             }
         }
         return false;
+    }
+    public void trierCarte(){
+        ArrayList<Cartes> repas = new ArrayList<Cartes>();
+        ArrayList<Cartes> souvenirs = new ArrayList<Cartes>();
+        ArrayList<Cartes> rencontres = new ArrayList<Cartes>();
+        ArrayList<Cartes> sources = new ArrayList<Cartes>();
+        ArrayList<Cartes> acomplissements = new ArrayList<Cartes>();
+        for (int i = 0; i < cartes.size(); i++) {
+            if (cartes.get(i) instanceof Repas ){
+                repas.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Souvenirs){
+                souvenirs.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Rencontre){
+                rencontres.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Sources){
+                sources.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Acomplis){
+                acomplissements.add(cartes.get(i));
+            }
+        }
+        cartes.clear();
+        cartes.addAll(repas);
+        cartes.addAll(souvenirs);
+        cartes.addAll(rencontres);
+        cartes.addAll(sources);
+        cartes.addAll(acomplissements);
     }
 }
