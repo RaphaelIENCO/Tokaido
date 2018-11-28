@@ -84,11 +84,12 @@ public class GameController {
         Button button = (Button) event.getSource();
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i))){
-                System.out.println(model.getListJoueur().get(0).getNom());
+                boutonsPlateau.get(i).setText(model.getListJoueur().get(0).getNom());
                 model.getListJoueur().get(0).setPositions(i);
-                System.out.println(model.getListJoueur().get(0).getPositions());
             } else {
-                boutonsPlateau.get(i).setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+                for(Joueur j: model.getListJoueur()){
+                    if(!boutonsPlateau.get(i).getText().equals(j.getNom()))boutonsPlateau.get(i).setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+                }
             }
         }
     }
