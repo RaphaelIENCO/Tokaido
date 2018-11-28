@@ -228,6 +228,11 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
                 }
             }
         }while(permut);
+        for(Joueur joueur :listJoueur){
+            System.out.println(joueur.getNom());
+            System.out.println(joueur.getPositions());
+            System.out.println("----------------");
+        }
 
         }
 }

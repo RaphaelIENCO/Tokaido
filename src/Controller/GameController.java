@@ -11,13 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import java.util.Optional;
@@ -47,6 +45,12 @@ public class GameController {
 
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
+        for (int i = 0; i < boutonsPlateau.size(); i++) {
+            if (button.equals(boutonsPlateau.get(i)) && i<model.getListJoueur().get(0).getPositions()){
+                messageErreur("Vous devez avancer");
+                return;
+            }
+        }
         if (button.getId().equals("relais")){
             model.getListJoueur().get(0).setPiocheRelais(true);
             piocheRelais();
@@ -81,15 +85,25 @@ public class GameController {
     }
 
     private void updatePos(ActionEvent event) {
+        Boolean exist = false;
         Button button = (Button) event.getSource();
         for (int i = 0; i < boutonsPlateau.size(); i++) {
-            if (button.equals(boutonsPlateau.get(i))){
-                boutonsPlateau.get(i).setText(model.getListJoueur().get(0).getNom());
+            if (button.equals(boutonsPlateau.get(i))) {
                 model.getListJoueur().get(0).setPositions(i);
-            } else {
-                for(Joueur j: model.getListJoueur()){
-                    if(!boutonsPlateau.get(i).getText().equals(j.getNom()))boutonsPlateau.get(i).setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
-                }
+            }
+        }
+        for (int i = 0; i < boutonsPlateau.size(); i++) {
+            for (int j = 0; j < model.getListJoueur().size(); j++) {
+                if (model.getListJoueur().get(j).getPositions() == i) exist = true;
+            }
+            if (!exist) {
+                boutonsPlateau.get(i).setStyle("-fx-background-radius: 50%;" +
+                        "-fx-background-color: gray;" +
+                        "-fx-border-style: solid;" +
+                        "-fx-border-radius: 50% ;" +
+                        "-fx-border-width: 5px;" +
+                        "-fx-border-color: black;");
+                exist = false;
             }
         }
     }
