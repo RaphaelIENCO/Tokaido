@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import java.util.Optional;
@@ -198,29 +199,59 @@ public class GameController {
                 alert.setTitle("Echoppe");
                 alert.setHeaderText("Veuillez cocher les cartes voulues");
                 alert.showAndWait();
+
+                ArrayList<Souvenirs> choice = new ArrayList<Souvenirs>();
+                choice.add(cartes1);
+                choice.add(cartes2);
+                choice.add(cartes3);
                 ArrayList<Souvenirs> toAdd = new ArrayList<Souvenirs>();
                 if (checkBox1.isSelected()) {
+                    choice.remove(cartes1);
                     toAdd.add(cartes1);
                     prixTotal += cartes1.getPrix();
                 }
                 if (checkBox2.isSelected()) {
+                    choice.remove(cartes2);
                     toAdd.add(cartes2);
                     prixTotal += cartes2.getPrix();
                 }
                 if (checkBox3.isSelected()) {
+                    choice.remove(cartes3);
                     toAdd.add(cartes3);
                     prixTotal += cartes3.getPrix();
                 }
+                if(model.getListJoueur().get(0) instanceof Sasayakko){
+                    int prixMin =0;
+                    if(toAdd.size()>=2){  // Si le joueur a selectionné 2 souvenirs ou plus
+                        prixMin=toAdd.get(0).getPrix(); //prixMin devient le prix du premier d'entre eux
+                        for (Souvenirs carte: toAdd){
+                            if (prixMin>carte.getPrix()) prixMin = carte.getPrix();  //Si on trouve ensuite un souvenirs valant -cher, on remplace le prix max
+                        }
+                    }
+                    prixTotal -= prixMin;
+                }
 
                 if (model.getListJoueur().get(0).getGold() >= prixTotal) {
-                    model.getListSouvenir().remove(cartes1);
-                    model.getListSouvenir().remove(cartes2);
-                    model.getListSouvenir().remove(cartes3);
+                    for(Souvenirs carte: toAdd){
+                        model.getListSouvenir().remove(carte);
+                    }
+                    for(Souvenirs carte: choice){
+                        model.getListSouvenir().remove(carte);
+                        model.getListSouvenir().add(carte);
+                    }
                     model.getListJoueur().get(0).getCartes().addAll(toAdd);
                     model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-prixTotal);
                     model.getListJoueur().get(0).setPiocheSouvenir(false);
-                    return;
+
                 } else {
+                    for(Souvenirs carte: toAdd){
+                        model.getListSouvenir().remove(carte);
+                        model.getListSouvenir().add(carte);
+                    }
+                    for(Souvenirs carte: choice){
+                        model.getListSouvenir().remove(carte);
+                        model.getListSouvenir().add(carte);
+                    }
                     messageErreur("Pas assez d'or");
                     piocheSouvenir();
                 }
