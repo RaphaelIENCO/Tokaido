@@ -31,13 +31,14 @@
       <Button id="" fx:id="button12" layoutX="705.0" layoutY="425.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="rencontre" fx:id="button13" layoutX="321.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="temple" fx:id="button14" accessibleHelp="" layoutX="447.0" layoutY="518.0" mnemonicParsing="false" onAction="#actionColor" onMouseEntered="#survolEntered" onMouseExited="#survolExited" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <ScrollPane layoutX="123.0" layoutY="14.0" styleClass="backgroundColor" stylesheets="@style.css">
+      <ScrollPane layoutX="123.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="230.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@style.css">
          <content>
-            <GridPane fx:id="grille" prefHeight="200.0" prefWidth="814.0" styleClass="backgroundColor" stylesheets="@style.css">
+            <GridPane fx:id="grille" prefHeight="440.0" prefWidth="800.0" styleClass="backgroundColor" stylesheets="@style.css">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="100.0" prefWidth="150.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
