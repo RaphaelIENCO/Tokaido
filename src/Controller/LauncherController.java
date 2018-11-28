@@ -8,10 +8,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -58,40 +59,83 @@ public class LauncherController {
     }
 
     public void selectionJoueur(){
-        ArrayList<String> choix = new ArrayList<String>();
-        choix.add("Kinko");
-        choix.add("Sasayakko");
+        //ArrayList<String> choix = new ArrayList<String>();
+        //choix.add("Kinko");
+        //choix.add("Sasayakko");
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Kinko", choix);
-        dialog.setTitle("Choix des joueurs !");
-        dialog.setHeaderText("Start");
-        dialog.setContentText("Choisissez un joueur.");
+        //ChoiceDialog<String> dialog = new ChoiceDialog<>("Kinko", choix);
+        //dialog.setTitle("Choix des joueurs !");
+        //dialog.setHeaderText("Start");
+        //dialog.setContentText("Choisissez un joueur.");
 
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
+        //Optional<String> result = dialog.showAndWait();
+        RadioButton radioButton1 = new RadioButton();
+        RadioButton radioButton2 = new RadioButton();
+
+        radioButton1.setGraphic(new ImageView("/Vue/Images/Kinko.png"));
+        radioButton2.setGraphic(new ImageView("/Vue/Images/Sasayakko.png"));
+
+        ToggleGroup group = new ToggleGroup();
+        radioButton1.setToggleGroup(group);
+        radioButton2.setToggleGroup(group);
+
+
+        GridPane grille = new GridPane();
+        grille.add(radioButton1, 1, 0);
+        grille.add(radioButton2, 2, 0);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setGraphic(grille);
+        alert.setTitle("Choix des personnages");
+        alert.setHeaderText("Choisissez votre personnage");
+        alert.showAndWait();
+        if (radioButton1.isSelected()) {
             if(selectJoueur){
-                if(result.get()=="Kinko") {
-                    model.addJoueur(new Kinko());
-                    labelJ2.setText("Kinko selectionné");
-                    labelJ2.setVisible(true);
-                }else{
-                    model.addJoueur(new Sasayakko());
-                    labelJ2.setText("Sasayakko selectionné");
-                    labelJ2.setVisible(true);
-                }
+                model.addJoueur(new Kinko());
+                labelJ2.setText("Kinko selectionné");
+                labelJ2.setVisible(true);
             }else{
-                if(result.get()=="Kinko") {
-                    model.addJoueur(new Kinko());
-                    labelJ1.setText("Kinko selectionné");
-                    selectJoueur = true;
-                }else{
-                    model.addJoueur(new Sasayakko());
-                    labelJ1.setText("Sasayakko selectionné");
-                    selectJoueur = true;
-                }
+                model.addJoueur(new Kinko());
+                labelJ1.setText("Kinko selectionné");
+                selectJoueur = true;
             }
-
         }
+        if (radioButton2.isSelected()) {
+            if(selectJoueur){
+                model.addJoueur(new Sasayakko());
+                labelJ2.setText("Sasayakko selectionné");
+                labelJ2.setVisible(true);
+            }else{
+                model.addJoueur(new Sasayakko());
+                labelJ1.setText("Sasayakko selectionné");
+                selectJoueur = true;
+            }
+        }
+
+//        if (result.isPresent()){
+//            if(selectJoueur){
+//                if(result.get()=="Kinko") {
+//                    model.addJoueur(new Kinko());
+//                    labelJ2.setText("Kinko selectionné");
+//                    labelJ2.setVisible(true);
+//                }else{
+//                    model.addJoueur(new Sasayakko());
+//                    labelJ2.setText("Sasayakko selectionné");
+//                    labelJ2.setVisible(true);
+//                }
+//            }else{
+//                if(result.get()=="Kinko") {
+//                    model.addJoueur(new Kinko());
+//                    labelJ1.setText("Kinko selectionné");
+//                    selectJoueur = true;
+//                }else{
+//                    model.addJoueur(new Sasayakko());
+//                    labelJ1.setText("Sasayakko selectionné");
+//                    selectJoueur = true;
+//                }
+
+
+
     }
 
     public void messageErreur(String message){

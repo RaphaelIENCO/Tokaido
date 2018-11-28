@@ -10,6 +10,6 @@ public class Sasayakko extends Joueur {
     public Sasayakko() {
         super();
         nom = "Sasayakko";
-        gold = 7;
+        gold = 5;
     }
 }
