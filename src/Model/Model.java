@@ -1,12 +1,12 @@
 package Model;
 
-import javafx.print.Collation;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 public class Model {   // classe dans laquel on initie toutes les carte du joueur.
     private ArrayList<Rencontre>listRecontre = new ArrayList<Rencontre>();
@@ -17,7 +17,6 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
     private ArrayList<Sources>listSource = new ArrayList<>();
     private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
-
     public Model(){
         initPartie();
     }
@@ -200,7 +199,8 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         return listJoueur;
     }
 
+
     public void addJoueur(Joueur j){
         listJoueur.add(j);
-    }
+}
 }

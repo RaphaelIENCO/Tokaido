@@ -11,21 +11,8 @@ public class Joueur {
     protected boolean piocheSource;
     protected boolean piocheSouvenir;
     protected boolean piocheRencontre;
-
-
+    protected int positions;
     protected boolean temple;
-    //Crée un joueur différent des joueurs proposés.
-    public Joueur(int g,String n){
-        gold = g;
-        nom = n;
-        cartes = new ArrayList<Cartes>();
-        points = 0;
-        piocheRelais =false;
-        piocheRencontre=false;
-        piocheSource=false;
-        piocheSouvenir=false;
-        temple=false;
-   }
 
    public Joueur(){
        cartes = new ArrayList<Cartes>();
@@ -35,6 +22,7 @@ public class Joueur {
        piocheSource=false;
        piocheSouvenir=false;
        temple = false;
+       positions=0;
    }
 
     public int getScoreAdd(){
@@ -142,6 +130,14 @@ public class Joueur {
 
     public void setCartes(ArrayList<Cartes> cartes) {
         this.cartes = cartes;
+    }
+
+    public int getPositions() {
+        return positions;
+    }
+
+    public void setPositions(int positions) {
+        this.positions = positions;
     }
 
     public boolean isPiocheRelais() {

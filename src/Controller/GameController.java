@@ -26,15 +26,15 @@ public class GameController {
     private ArrayList<Button> boutonsPlateau;
     private boolean initButton;
 
-    @FXML Button button1;
-    @FXML Button button2;
-    @FXML Button button3;
-    @FXML Button button4;
-    @FXML Button button5;
-    @FXML Button button6;
-    @FXML Button button7;
-    @FXML Button button8;
-    @FXML Button button9;
+    @FXML Button b1;
+    @FXML Button b2;
+    @FXML Button b3;
+    @FXML Button b4;
+    @FXML Button b5;
+    @FXML Button b6;
+    @FXML Button b7;
+    @FXML Button b8;
+    @FXML Button b0;
     @FXML GridPane grille;
 
     public GameController(){
@@ -90,11 +90,24 @@ public class GameController {
             ajoutBouton();
             initButton=true;
         }
-         button.setId(button.getId()+"true");
-        parcours(event);
+        button.setId(button.getId()+"true");
+        updatePos(event);
         afficheCartes();
         button.setStyle("-fx-background-color: green;");
 
+    }
+
+    private void updatePos(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        for (int i = 0; i < boutonsPlateau.size(); i++) {
+            if (button.equals(boutonsPlateau.get(i))){
+                model.getListJoueur().get(0).setPositions(i);
+                System.out.println(model.getListJoueur().get(0).getPositions());
+            } else {
+                boutonsPlateau.get(i).setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+            }
+
+        }
     }
 
 
@@ -315,11 +328,10 @@ public class GameController {
 
     public void parcours (ActionEvent event) {
         Button boutonCourant = (Button) event.getSource();
-        for (int i = 0; i < boutonsPlateau.size(); i++) {
+        for (int i=0; i<boutonsPlateau.size();i++){
             if (boutonCourant.getId().equals(boutonsPlateau.get(i).getId())){
-
-            }else {
-                boutonsPlateau.get(i).setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+                model.getListJoueur().get(i).setPositions(i);
+                System.out.println(model.getListJoueur().get(i).getPositions());
             }
         }
     }
@@ -350,15 +362,16 @@ public class GameController {
     }
 
     private void ajoutBouton() {
-        boutonsPlateau.add(button1);
-        boutonsPlateau.add(button2);
-        boutonsPlateau.add(button3);
-        boutonsPlateau.add(button4);
-        boutonsPlateau.add(button5);
-        boutonsPlateau.add(button6);
-        boutonsPlateau.add(button7);
-        boutonsPlateau.add(button8);
-        boutonsPlateau.add(button9);
+        boutonsPlateau.add(b0);
+        boutonsPlateau.add(b1);
+        boutonsPlateau.add(b2);
+        boutonsPlateau.add(b3);
+        boutonsPlateau.add(b4);
+        boutonsPlateau.add(b5);
+        boutonsPlateau.add(b6);
+        boutonsPlateau.add(b7);
+        boutonsPlateau.add(b8);
+
     }
 
     public void setData(Model m){
@@ -375,7 +388,7 @@ public class GameController {
     public void restart() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/luncher.fxml"));
         Parent root = loader.load();
-        Stage stage = (Stage) button1.getScene().getWindow();
+        Stage stage = (Stage) b1.getScene().getWindow();
         Scene scene = new Scene(root);
         Stage secondaryStage = new Stage();
         secondaryStage.setScene(scene);
