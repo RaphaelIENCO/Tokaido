@@ -103,62 +103,52 @@ public class GameController {
             if (!model.getListRepas().isEmpty()){
                 if (model.getListJoueur().get(0).isPiocheRelais()){
                     GridPane gridPane = new GridPane();
-                    ArrayList<CheckBox> box = new ArrayList<CheckBox>();
+                    ArrayList<RadioButton> rbox = new ArrayList<RadioButton>();
                     ArrayList<Repas> mesRepas = new ArrayList<Repas>();
-                    for(int i=0;i<model.getListJoueur().size()+1;i++){
-                        CheckBox choix = new CheckBox();
-                        choix.setGraphic(new ImageView("/Vue/Images/"+model.getListRepas().get(i).getNom()+".jpg"));
+
+                    ToggleGroup group = new ToggleGroup();
+                    for (int i=0;i<model.getListJoueur().size()+1;i++){
+                        RadioButton radioButton = new RadioButton();
                         mesRepas.add(model.getListRepas().get(i));
-                        box.add(choix);
-                        gridPane.add(choix,i,0);
+                        radioButton.setGraphic(new ImageView("/Vue/Images/"+model.getListRepas().get(i).getNom()+".jpg"));
+                        rbox.add(radioButton);
+                        radioButton.setToggleGroup(group);
+                        gridPane.add(radioButton,i,0);
                     }
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Repas");
-                    alert.setHeaderText("Une seule carte possible");
+                    alert.setTitle("Relais");
+                    alert.setHeaderText("Choisissez un repas \n vous ne pouvez pas gouter deux fois le même");
                     alert.setGraphic(gridPane);
                     alert.showAndWait();
-                    int nbChoix=0;
                     int indice=0;
-                    for (CheckBox checkBox :box){
-                        if (checkBox.isSelected()){
-                            nbChoix++;
-                        }
-                    }
-                    if (nbChoix==1){
-                        for (CheckBox checkBox:box){
-                            if (checkBox.isSelected()) break;
-                            indice++;
-                        }
-                    }
-                    switch (nbChoix){
-
-                        case 0:
-                            model.getListRepas().removeAll(mesRepas);
-                            model.getListRepas().addAll(mesRepas);
+                    boolean choix=false;
+                    for (RadioButton radioButton : rbox){
+                        if (radioButton.isSelected()){
+                            choix=true;
                             break;
-                        case 1:
-                            if (!model.getListJoueur().get(0).contient(mesRepas.get(indice))){
-                                if (model.getListJoueur().get(0).getGold() > mesRepas.get(indice).getPrix()) {
-                                    model.getListJoueur().get(0).addCarte(mesRepas.get(indice));
-                                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - mesRepas.get(indice).getPrix());
-                                    model.getListRepas().removeAll(mesRepas);
-                                    mesRepas.remove(indice);
-                                    model.getListRepas().addAll(mesRepas);
-                                } else {
-                                    messageErreur("Vous n'avez pas l'or nécessaire");
-                                    piocheRelais();
-                                }
+                        }
+                        else  indice++;
+                    }
+                    if (choix) {
+                        if (!model.getListJoueur().get(0).contient(mesRepas.get(indice))){
+                            if (model.getListJoueur().get(0).getGold()>=mesRepas.get(indice).getPrix()){
+                                model.getListJoueur().get(0).addCarte(mesRepas.get(indice));
+                                model.getListRepas().removeAll(mesRepas);
+                                mesRepas.remove(indice);
+                                model.getListRepas().addAll(mesRepas);
                             }else {
-                                messageErreur("Vous avez deja gouté "+mesRepas.get(indice).getNom());
+                                messageErreur("Vous n'avez pas les fond nécéssaires pour : \n"+mesRepas.get(indice).getNom());
                             }
-                            break;
-                            default:
-                                messageErreur("Vous ne pouvez acheté qu'une seule carte");
-                                piocheRelais();
-                                break;
+                        }else {
+                            messageErreur("Vous avez déjà gouté "+mesRepas.get(indice).getNom());
+                            piocheRelais();
+                        }
+                    }else  {
+                        model.getListRepas().removeAll(mesRepas);
+                        model.getListRepas().addAll(mesRepas);
                     }
 
-                }else messageErreur("Vous n'êtes pas autorisé à piocher");
+                }else messageErreur("Vous n'êtes pas autorisé à piocher des repas");
 
             }else messageErreur("Plus de carte relais");
     }
@@ -331,7 +321,7 @@ public class GameController {
         for (int i=0;i<model.getListJoueur().size();i++){
             Text descriptif = new Text(model.getListJoueur().get(i).getNom()+" \n or : "+model.getListJoueur().get(i).getGold()+" \n points : "+model.getListJoueur().get(i).getPoints());
             grille.add(descriptif,0,i);
-            grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+".jpg"),1,i);
+            grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(i).getNom()+".jpg"),1,i);
             for (int j=0;j<model.getListJoueur().get(i).getCartes().size();j++){
                 grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);
             }

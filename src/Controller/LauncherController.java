@@ -80,6 +80,7 @@ public class LauncherController {
         radioButton2.setToggleGroup(group);
 
 
+
         GridPane grille = new GridPane();
         grille.add(radioButton1, 1, 0);
         grille.add(radioButton2, 2, 0);
