@@ -13,6 +13,13 @@ public class Joueur {
     protected boolean piocheRencontre;
 
 
+
+    protected String couleur;
+
+
+    protected int orTemple;
+
+
     protected boolean temple;
     //Crée un joueur différent des joueurs proposés.
     public Joueur(int g,String n){
@@ -25,6 +32,7 @@ public class Joueur {
         piocheSource=false;
         piocheSouvenir=false;
         temple=false;
+        orTemple=0;
    }
 
    public Joueur(){
@@ -182,6 +190,22 @@ public class Joueur {
 
     public void setTemple(boolean temple) {
         this.temple = temple;
+    }
+
+    public int getOrTemple() {
+        return orTemple;
+    }
+
+    public void setOrTemple(int orTemple) {
+        this.orTemple = orTemple;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
     }
 
     public boolean contient(Repas repas) {

@@ -51,7 +51,7 @@ public class GameController {
     public void survolEntered(MouseEvent event){
         Button button =(Button) event.getSource();
         if (button.getId().contains("true")){
-            button.setStyle("-fx-background-color: green;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
+            button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
         } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
 
 }
@@ -59,7 +59,7 @@ public class GameController {
     public void survolExited(MouseEvent event){
         Button button =(Button) event.getSource();
         if (button.getId().contains("true")){
-            button.setStyle("-fx-background-color: green;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+            button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";"+"-fx-border-style: solid;"+"-fx-border-color: black;");
         } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
 
     }
@@ -89,7 +89,7 @@ public class GameController {
         else if(button.getId().contains("ferme")){
             rencontreFerme();
         }
-        button.setStyle("-fx-background-color: green;");
+        button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
          button.setId(button.getId()+"true");
          afficheCartes();
 
@@ -285,6 +285,7 @@ public class GameController {
                     if(model.getListJoueur().get(0).getGold() >= result.get()) {
                         model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - result.get());
                         model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints() + result.get());
+                        model.getListJoueur().get(0).setOrTemple(model.getListJoueur().get(0).getOrTemple() + result.get());
                         model.getListJoueur().get(0).setTemple(false);
                     }else{
                         messageErreur("Vous n'avez pas autant d'argent...");
