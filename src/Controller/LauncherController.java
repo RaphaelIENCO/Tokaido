@@ -72,8 +72,8 @@ public class LauncherController {
         RadioButton radioButton1 = new RadioButton();
         RadioButton radioButton2 = new RadioButton();
 
-        radioButton1.setGraphic(new ImageView("/Vue/Images/Kinko.png"));
-        radioButton2.setGraphic(new ImageView("/Vue/Images/Sasayakko.png"));
+        radioButton1.setGraphic(new ImageView("/Vue/Images/Kinko.jpg"));
+        radioButton2.setGraphic(new ImageView("/Vue/Images/Sasayakko.jpg"));
 
         ToggleGroup group = new ToggleGroup();
         radioButton1.setToggleGroup(group);

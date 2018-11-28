@@ -6,7 +6,6 @@ import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 
 public class Model {   // classe dans laquel on initie toutes les carte du joueur.
     private ArrayList<Rencontre>listRecontre = new ArrayList<Rencontre>();
@@ -28,9 +27,6 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         initPanorama();
         initSource();
         shuffle();
-        //listJoueur = new ArrayList<Joueur>();
-        //Joueur joueur= new Joueur(3,"bob");
-        //listJoueur.add(joueur);
     }
 
     public void shuffle(){
@@ -203,4 +199,22 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     public void addJoueur(Joueur j){
         listJoueur.add(j);
 }
+
+    public void trieJoueur() {
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getPositions() > listJoueur.get(i+1).getPositions()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+
+        }
 }

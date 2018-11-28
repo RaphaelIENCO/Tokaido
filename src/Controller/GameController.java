@@ -25,7 +25,7 @@ public class GameController {
     private Model model;
     private ArrayList<Button> boutonsPlateau;
     private boolean initButton;
-
+    @FXML Button b0;
     @FXML Button b1;
     @FXML Button b2;
     @FXML Button b3;
@@ -34,7 +34,6 @@ public class GameController {
     @FXML Button b6;
     @FXML Button b7;
     @FXML Button b8;
-    @FXML Button b0;
     @FXML GridPane grille;
 
     public GameController(){
@@ -45,41 +44,24 @@ public class GameController {
 
     }
 
-    public void survolEntered(MouseEvent event){
-        Button button =(Button) event.getSource();
-        if (button.getId().contains("true")){
-            button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
-        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: dashed;"+"-fx-border-color: red;");
-
-}
-
-    public void survolExited(MouseEvent event){
-        Button button =(Button) event.getSource();
-        if (button.getId().contains("true")){
-            button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";"+"-fx-border-style: solid;"+"-fx-border-color: black;");
-        } else button.setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
-
-    }
-
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
-
-        if (button.getId().contains("relais")){
+        if (button.getId().equals("relais")){
             model.getListJoueur().get(0).setPiocheRelais(true);
             piocheRelais();
         }
-        else if (button.getId().contains("source")){
+        else if (button.getId().equals("source")){
             model.getListJoueur().get(0).setPiocheSource(true);
             piocheSourceChaude();
         }
-        else if (button.getId().contains("souvenir")){
+        else if (button.getId().equals("souvenir")){
             model.getListJoueur().get(0).setPiocheSouvenir(true);
             piocheSouvenir();
         }
-        else if (button.getId().contains("rencontre")){
+        else if (button.getId().equals("rencontre")){
             model.getListJoueur().get(0).setPiocheRencontre(true);
             piocheRencontre();
-        }else if (button.getId().contains("temple")){
+        }else if (button.getId().equals("temple")){
             model.getListJoueur().get(0).setTemple(true);
             rencontreTemple(button);
         }
@@ -90,8 +72,8 @@ public class GameController {
             ajoutBouton();
             initButton=true;
         }
-        button.setId(button.getId()+"true");
         updatePos(event);
+        model.trieJoueur();
         afficheCartes();
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
 
@@ -101,12 +83,12 @@ public class GameController {
         Button button = (Button) event.getSource();
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i))){
+                System.out.println(model.getListJoueur().get(0).getNom());
                 model.getListJoueur().get(0).setPositions(i);
                 System.out.println(model.getListJoueur().get(0).getPositions());
             } else {
                 boutonsPlateau.get(i).setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
             }
-
         }
     }
 
@@ -120,7 +102,6 @@ public class GameController {
                     GridPane gridPane = new GridPane();
                     ArrayList<RadioButton> rbox = new ArrayList<RadioButton>();
                     ArrayList<Repas> mesRepas = new ArrayList<Repas>();
-
                     ToggleGroup group = new ToggleGroup();
                     for (int i=0;i<model.getListJoueur().size()+1;i++){
                         RadioButton radioButton = new RadioButton();
@@ -147,6 +128,7 @@ public class GameController {
                     if (choix) {
                         if (!model.getListJoueur().get(0).contient(mesRepas.get(indice))){
                             if (model.getListJoueur().get(0).getGold()>=mesRepas.get(indice).getPrix()){
+                                model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-mesRepas.get(indice).getPrix());
                                 model.getListJoueur().get(0).addCarte(mesRepas.get(indice));
                                 model.getListRepas().removeAll(mesRepas);
                                 mesRepas.remove(indice);
@@ -327,15 +309,6 @@ public class GameController {
         alert.showAndWait();
     }
 
-    public void parcours (ActionEvent event) {
-        Button boutonCourant = (Button) event.getSource();
-        for (int i=0; i<boutonsPlateau.size();i++){
-            if (boutonCourant.getId().equals(boutonsPlateau.get(i).getId())){
-                model.getListJoueur().get(i).setPositions(i);
-                System.out.println(model.getListJoueur().get(i).getPositions());
-            }
-        }
-    }
 
 
     /**
