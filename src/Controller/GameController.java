@@ -81,6 +81,12 @@ public class GameController {
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
         model.trieJoueur();
         afficheCartes();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Nouveau Tour");
+        alert.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+".jpg"));
+        alert.setHeaderText(null);
+        alert.setContentText("à vous de joué");
+        alert.showAndWait();
 
     }
 
