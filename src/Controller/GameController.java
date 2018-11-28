@@ -24,6 +24,7 @@ import java.util.Optional;
 public class GameController {
     private Model model;
     private ArrayList<Button> boutonsPlateau;
+    private boolean initButton;
 
     @FXML Button button1;
     @FXML Button button2;
@@ -34,17 +35,13 @@ public class GameController {
     @FXML Button button7;
     @FXML Button button8;
     @FXML Button button9;
-    @FXML Button button10;
-    @FXML Button button11;
-    @FXML Button button12;
-    @FXML Button button13;
-    @FXML Button button14;
     @FXML GridPane grille;
 
     public GameController(){
         model=new Model();
         boutonsPlateau = new ArrayList<>();
-        ajoutBouton();
+        initButton=false;
+
 
     }
 
@@ -89,9 +86,14 @@ public class GameController {
         else if(button.getId().contains("ferme")){
             rencontreFerme();
         }
-        button.setStyle("-fx-background-color: green;");
+        if (!initButton){
+            ajoutBouton();
+            initButton=true;
+        }
          button.setId(button.getId()+"true");
-         afficheCartes();
+        parcours(event);
+        afficheCartes();
+        button.setStyle("-fx-background-color: green;");
 
     }
 
@@ -311,6 +313,17 @@ public class GameController {
         alert.showAndWait();
     }
 
+    public void parcours (ActionEvent event) {
+        Button boutonCourant = (Button) event.getSource();
+        for (int i = 0; i < boutonsPlateau.size(); i++) {
+            if (boutonCourant.getId().equals(boutonsPlateau.get(i).getId())){
+
+            }else {
+                boutonsPlateau.get(i).setStyle("-fx-background-color: gray;"+"-fx-border-style: solid;"+"-fx-border-color: black;");
+            }
+        }
+    }
+
 
     /**
      * Partie Affichage
@@ -346,11 +359,6 @@ public class GameController {
         boutonsPlateau.add(button7);
         boutonsPlateau.add(button8);
         boutonsPlateau.add(button9);
-        boutonsPlateau.add(button10);
-        boutonsPlateau.add(button11);
-        boutonsPlateau.add(button12);
-        boutonsPlateau.add(button13);
-        boutonsPlateau.add(button14);
     }
 
     public void setData(Model m){
