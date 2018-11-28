@@ -16,6 +16,10 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
     private ArrayList<Sources>listSource = new ArrayList<>();
     private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
+
+
+
+    private ArrayList<Joueur>recapJoueur = new ArrayList<Joueur>();
     public Model(){
         initPartie();
     }
@@ -195,9 +199,18 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         return listJoueur;
     }
 
+    public ArrayList<Joueur> getRecapJoueur() {
+        return recapJoueur;
+    }
+
+    public void setRecapJoueur(ArrayList<Joueur> recapJoueur) {
+        this.recapJoueur = recapJoueur;
+    }
+
 
     public void addJoueur(Joueur j){
         listJoueur.add(j);
+        recapJoueur.add(j);
 }
 
     public void trieJoueur() {

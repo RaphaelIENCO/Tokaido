@@ -74,9 +74,9 @@ public class GameController {
             initButton=true;
         }
         updatePos(event);
+        button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
         model.trieJoueur();
         afficheCartes();
-        button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
 
     }
 
@@ -348,12 +348,12 @@ public class GameController {
     private void afficheCartes(){
         model.getListJoueur().get(0).trierCarte();
         grille.getChildren().clear();
-        for (int i=0;i<model.getListJoueur().size();i++){
-            Text descriptif = new Text(model.getListJoueur().get(i).getNom()+" \n or : "+model.getListJoueur().get(i).getGold()+" \n points : "+model.getListJoueur().get(i).getPoints());
+        for (int i=0;i<model.getRecapJoueur().size();i++){
+            Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints());
             grille.add(descriptif,0,i);
-            grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(i).getNom()+".jpg"),1,i);
-            for (int j=0;j<model.getListJoueur().get(i).getCartes().size();j++){
-                grille.add(new ImageView("/Vue/Images/"+model.getListJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);
+            grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg"),1,i);
+            for (int j=0;j<model.getRecapJoueur().get(i).getCartes().size();j++){
+                grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);
             }
         }
     }
