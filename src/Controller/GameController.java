@@ -272,7 +272,7 @@ public class GameController {
                 choix.add(2);
                 choix.add(3);
 
-                String nomImage = "/Vue/Images/Temple.png";
+                String nomImage = "/Vue/Images/temple.png";
                 ImageView image = new ImageView(nomImage);
 
                 ChoiceDialog<Integer> dialog = new ChoiceDialog<Integer>(1, choix);
