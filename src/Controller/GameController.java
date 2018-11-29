@@ -34,6 +34,7 @@ public class GameController {
     @FXML Button b7;
     @FXML Button b8;
     @FXML GridPane grille;
+    @FXML Label affichageJoueur;
 
     public GameController(){
         model=new Model();
@@ -80,21 +81,17 @@ public class GameController {
         updatePos(event);
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
         if (model.getListJoueur().get(model.getListJoueur().size()-1).getPositions()>=boutonsPlateau.size()-1){
-            messageErreur("Fin de partie");
-            System.exit(0);
+            try {
+                finDePartie();
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         model.trieJoueur();
         afficheCartes();
-
-
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Nouveau Tour");
-        alert.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+".jpg"));
-        alert.setHeaderText(null);
-        alert.setContentText("à vous de joué");
-        alert.showAndWait();
-
+        affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
+//        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+".jpg"));
     }
 
     private void updatePos(ActionEvent event) {
@@ -418,6 +415,21 @@ public class GameController {
         boutonsPlateau.add(b7);
         boutonsPlateau.add(b8);
 
+    }
+    public void finDePartie() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Fin de partie");
+        alert.setContentText("Classements :");
+
+
+        ButtonType buttonRecommencer = new ButtonType("Recommencer");
+        ButtonType buttonQuiter = new ButtonType("Quitter");
+
+        alert.getButtonTypes().setAll(buttonRecommencer, buttonQuiter);
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonRecommencer) {
+            restart();
+        } else System.exit(0);
     }
 
     public void setData(Model m){
