@@ -29,17 +29,19 @@ public class LauncherController {
     Button commencerP;
     @FXML
     Label labelJ1;
-    @FXML
-    Label labelJ2;
+
+    private ArrayList<String> persoDispo = new ArrayList<String>();
 
     public LauncherController(){
         this.model = new Model();
+        System.out.println(model.getListJoueur().size());
+        persoDispo.add("Kinko");
+        persoDispo.add("Sasayakko");
     }
 
     @FXML
     public void fenetreLauncher() throws IOException {
-        if(selectJoueur){
-
+        if(model.getListJoueur().size()>=2){
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/plateau.fxml"));
             Parent root = loader.load();
             System.out.println("loader créer");
@@ -54,88 +56,52 @@ public class LauncherController {
             secondaryStage.show();
             Stage stage = (Stage) commencerP.getScene().getWindow();
             stage.close();
-        }else{ messageErreur("Veuillez selectionner un joueur");
+        }else{ messageErreur("Veuillez selectionner au moins deux joueurs");
         }
     }
 
     public void selectionJoueur(){
-        //ArrayList<String> choix = new ArrayList<String>();
-        //choix.add("Kinko");
-        //choix.add("Sasayakko");
-
-        //ChoiceDialog<String> dialog = new ChoiceDialog<>("Kinko", choix);
-        //dialog.setTitle("Choix des joueurs !");
-        //dialog.setHeaderText("Start");
-        //dialog.setContentText("Choisissez un joueur.");
-
-        //Optional<String> result = dialog.showAndWait();
-        RadioButton radioButton1 = new RadioButton();
-        RadioButton radioButton2 = new RadioButton();
-
-        radioButton1.setGraphic(new ImageView("/Vue/Images/Kinko.jpg"));
-        radioButton2.setGraphic(new ImageView("/Vue/Images/Sasayakko.jpg"));
-
+        if(model.getListJoueur().size()>=5){
+            messageErreur("Vous ne pouvez plus ajouter de joueurs !");
+            return;
+        }
+        ArrayList<RadioButton> listeBouton = new ArrayList<RadioButton>();
         ToggleGroup group = new ToggleGroup();
-        radioButton1.setToggleGroup(group);
-        radioButton2.setToggleGroup(group);
-
-
-
         GridPane grille = new GridPane();
-        grille.add(radioButton1, 1, 0);
-        grille.add(radioButton2, 2, 0);
+        int i = 1;
+        for(String s: persoDispo){
+            RadioButton radioButton = new RadioButton();
+            radioButton.setGraphic(new ImageView("/Vue/Images/"+s+".jpg"));
+            radioButton.setToggleGroup(group);
+            grille.add(radioButton,i,0);
+            listeBouton.add(radioButton);
+            i++;
+        }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setGraphic(grille);
         alert.setTitle("Choix des personnages");
         alert.setHeaderText("Choisissez votre personnage");
         alert.showAndWait();
-        if (radioButton1.isSelected()) {
-            if(selectJoueur){
-                model.addJoueur(new Kinko());
-                labelJ2.setText("Kinko selectionné");
-                labelJ2.setVisible(true);
-            }else{
-                model.addJoueur(new Kinko());
-                labelJ1.setText("Kinko selectionné");
-                selectJoueur = true;
+        String nomPersos="";
+
+        for (int j = 0; j < listeBouton.size(); j++) {
+            if(listeBouton.get(j).isSelected()){
+                if(persoDispo.get(j).equals("Kinko")) {
+                    model.addJoueur(new Kinko());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Sasayakko")) {
+                    model.addJoueur(new Sasayakko());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }
             }
         }
-        if (radioButton2.isSelected()) {
-            if(selectJoueur){
-                model.addJoueur(new Sasayakko());
-                labelJ2.setText("Sasayakko selectionné");
-                labelJ2.setVisible(true);
-            }else{
-                model.addJoueur(new Sasayakko());
-                labelJ1.setText("Sasayakko selectionné");
-                selectJoueur = true;
-            }
-        }
-
-//        if (result.isPresent()){
-//            if(selectJoueur){
-//                if(result.get()=="Kinko") {
-//                    model.addJoueur(new Kinko());
-//                    labelJ2.setText("Kinko selectionné");
-//                    labelJ2.setVisible(true);
-//                }else{
-//                    model.addJoueur(new Sasayakko());
-//                    labelJ2.setText("Sasayakko selectionné");
-//                    labelJ2.setVisible(true);
-//                }
-//            }else{
-//                if(result.get()=="Kinko") {
-//                    model.addJoueur(new Kinko());
-//                    labelJ1.setText("Kinko selectionné");
-//                    selectJoueur = true;
-//                }else{
-//                    model.addJoueur(new Sasayakko());
-//                    labelJ1.setText("Sasayakko selectionné");
-//                    selectJoueur = true;
-//                }
-
-
+        if(labelJ1.getText().equals("Aucun joueurs selectionnés")) labelJ1.setText("Personnages selectionnés: \n");
+        labelJ1.setText(labelJ1.getText()+nomPersos);
 
     }
 
