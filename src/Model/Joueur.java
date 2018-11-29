@@ -44,7 +44,7 @@ public class Joueur {
        positions=0;
    }
 
-    public int getScoreAdd(){
+    public void updateScore(){
        int total = 0;
 
         for (int i=0; i<cartes.size() ;i++){
@@ -63,13 +63,13 @@ public class Joueur {
             else if (cartes.get(i) instanceof Acomplis){
                 Acomplis acomplis = (Acomplis) cartes.get(i);
                 total += acomplis.getPoints();
-            }
+            }else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Samurai")) total+=3;
         }
         total += getScoreSouvenir();
-        return total;
+        points=total;
    }
 
-    public int getScoreSouvenir(){
+    private int getScoreSouvenir(){
         int total = 0;
         int coef = 1;
         boolean verif1 = true;

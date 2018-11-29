@@ -51,7 +51,7 @@ public class GameController {
             initButton=true;
         }
         for (int i = 0; i < boutonsPlateau.size(); i++) {
-            if (button.equals(boutonsPlateau.get(i)) && i<model.getListJoueur().get(0).getPositions()){
+            if (button.equals(boutonsPlateau.get(i)) && i<=model.getListJoueur().get(0).getPositions()){
                 messageErreur("Vous devez avancer");
                 return;
             }
@@ -89,9 +89,9 @@ public class GameController {
             }
         }
         model.trieJoueur();
+        model.majScore();
         afficheCartes();
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
-//        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+".jpg"));
     }
 
     private void updatePos(ActionEvent event) {
@@ -419,12 +419,15 @@ public class GameController {
     public void finDePartie() throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Fin de partie");
-        alert.setContentText("Classements :");
-
-
+        alert.setHeaderText("Classements :");
+        model.trieJoueurScore();
+        String classement="";
+        for (int i=0;i<model.getListJoueur().size();i++){
+            classement+=i+1+" ---> "+model.getListJoueur().get(i).getNom()+" avec : "+model.getListJoueur().get(i).getPoints()+" points \n";
+        }
+        alert.setContentText(classement);
         ButtonType buttonRecommencer = new ButtonType("Recommencer");
         ButtonType buttonQuiter = new ButtonType("Quitter");
-
         alert.getButtonTypes().setAll(buttonRecommencer, buttonQuiter);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonRecommencer) {

@@ -233,6 +233,32 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
             System.out.println(joueur.getPositions());
             System.out.println("----------------");
         }
+        }
 
+    public void trieJoueurScore() {
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getPoints() < listJoueur.get(i+1).getPoints()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+        for(Joueur joueur :listJoueur){
+            System.out.println(joueur.getNom());
+            System.out.println(joueur.getPositions());
+            System.out.println("----------------");
+        }
+    }
+        public void majScore(){
+        for (Joueur joueur:listJoueur){
+            joueur.updateScore();
+        }
         }
 }
