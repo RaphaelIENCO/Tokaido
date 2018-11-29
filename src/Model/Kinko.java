@@ -21,4 +21,6 @@ public class Kinko extends Joueur {
     public String toString() {
         return super.toString();
     }
+
+
 }

@@ -37,11 +37,8 @@ public class GameController {
     @FXML Label affichageJoueur;
 
     public GameController(){
-        model=new Model();
         boutonsPlateau = new ArrayList<>();
         initButton=false;
-
-
     }
 
     public void actionColor(ActionEvent event){
@@ -80,7 +77,10 @@ public class GameController {
         }
         updatePos(event);
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
-        if (model.getListJoueur().get(model.getListJoueur().size()-1).getPositions()>=boutonsPlateau.size()-1){
+        model.trieJoueur();
+        model.majScore();
+        afficheCartes();
+        if (model.getListJoueur().get(0).getPositions()>=boutonsPlateau.size()-1){
             try {
                 finDePartie();
                 return;
@@ -88,10 +88,9 @@ public class GameController {
                 e.printStackTrace();
             }
         }
-        model.trieJoueur();
-        model.majScore();
-        afficheCartes();
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
+
+
     }
 
     private void updatePos(ActionEvent event) {
@@ -426,17 +425,38 @@ public class GameController {
             classement+=i+1+" ---> "+model.getListJoueur().get(i).getNom()+" avec : "+model.getListJoueur().get(i).getPoints()+" points \n";
         }
         alert.setContentText(classement);
-        ButtonType buttonRecommencer = new ButtonType("Recommencer");
+        ButtonType buttonResetGame = new ButtonType("Recommencer");
+        ButtonType buttonRestart = new ButtonType("Retour a l'acceuil");
         ButtonType buttonQuiter = new ButtonType("Quitter");
-        alert.getButtonTypes().setAll(buttonRecommencer, buttonQuiter);
+        alert.getButtonTypes().setAll(buttonResetGame,buttonRestart, buttonQuiter);
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonRecommencer) {
+        if (result.get() == buttonRestart) {
             restart();
-        } else System.exit(0);
+        } else if (result.get()==buttonResetGame) {
+            for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: gray"); }
+            ArrayList<Joueur> listeJoueur = model.getListJoueur();
+            this.model= new Model();
+            for (Joueur joueur:listeJoueur){
+                switch (joueur.getNom()){
+                    case "Kinko":
+                        model.addJoueur(new Kinko());
+                        break;
+                    case "Sasayakko":
+                        model.addJoueur(new Sasayakko());
+                        break;
+                }
+            }
+            afficheCartes();
+            affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
+        } else {
+            System.exit(0);
+        }
     }
 
     public void setData(Model m){
         this.model =m;
+        afficheCartes();
+        affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
     }
 
     /**

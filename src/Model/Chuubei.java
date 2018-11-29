@@ -12,7 +12,7 @@ public class Chuubei extends Joueur {
         super();
         nom = "Chuubei";
         gold = 4;
-        couleur = "orange";
+        couleur = "#E7DC1F";
     }
 
     @Override
