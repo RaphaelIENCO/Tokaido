@@ -92,6 +92,19 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         listRecontre.add(shokunin);
         listRecontre.add(shokunin);
 
+        Rencontre miko = new Rencontre("Miko") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                joueur.orTemple+=1;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Vous placer une piece gratuite au temple \n et vous gagnez un point pour cette piece";
+            }
+        };
+        listRecontre.add(miko);
+        listRecontre.add(miko);
     }
 
     public void initRepas(){ //Init de touts les repas

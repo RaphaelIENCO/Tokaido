@@ -13,7 +13,7 @@ public class Kinko extends Joueur {
     public Kinko() {
         super();
         nom = "Kinko";
-        gold = 70000;
+        gold = 7;
         couleur = "blue";
     }
 

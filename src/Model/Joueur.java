@@ -60,10 +60,12 @@ public class Joueur {
                 Panoramas panoramas = (Panoramas) cartes.get(i);
                 total += panoramas.getPoint();
             }
-            else if (cartes.get(i) instanceof Acomplis){
-                Acomplis acomplis = (Acomplis) cartes.get(i);
+            else if (cartes.get(i) instanceof Acomplissement){
+                Acomplissement acomplis = (Acomplissement) cartes.get(i);
                 total += acomplis.getPoints();
             }else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Samurai")) total+=3;
+            else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Miko")) total+=1;
+
         }
         total += getScoreSouvenir();
         points=total;
@@ -242,7 +244,7 @@ public class Joueur {
             if (cartes.get(i) instanceof Sources){
                 sources.add(cartes.get(i));
             }
-            if (cartes.get(i) instanceof Acomplis){
+            if (cartes.get(i) instanceof Acomplissement){
                 acomplissements.add(cartes.get(i));
             }
         }

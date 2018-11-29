@@ -1,13 +1,13 @@
 package Model;
 
-public class Acomplis extends Cartes {
+public class Acomplissement extends Cartes {
     protected int point;
 
-    public Acomplis(String nom){
+    public Acomplissement(String nom){
         super(nom);
     }
 
-    public Acomplis(String nom, int point){
+    public Acomplissement(String nom, int point){
         super(nom);
         this.point = point;
     }
