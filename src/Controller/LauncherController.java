@@ -39,7 +39,7 @@ public class LauncherController {
         persoDispo.add("Hiroshige");
         persoDispo.add("Hirotada");
         persoDispo.add("Mitsukuni");
-        persoDispo.add("Uimegae");
+        persoDispo.add("Umegae");
         persoDispo.add("Yoshiyasu");
         persoDispo.add("ZenEmon");
     }
@@ -49,8 +49,6 @@ public class LauncherController {
         if(model.getListJoueur().size()>=2){
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/plateau.fxml"));
             Parent root = loader.load();
-            System.out.println("loader créer");
-
             Scene scene = new Scene(root);
             Stage secondaryStage = new Stage();
             loader.<GameController>getController().setData(model);
@@ -78,7 +76,6 @@ public class LauncherController {
         for(String s: persoDispo){
             RadioButton radioButton = new RadioButton();
             radioButton.setGraphic(new ImageView("/Vue/Images/"+s+".jpg"));
-            System.out.println(s+" a marché");
             radioButton.setToggleGroup(group);
             if(i>5){
                 i=1;
@@ -133,7 +130,7 @@ public class LauncherController {
                     nomPersos+=persoDispo.get(j)+"\n";
                     persoDispo.remove(persoDispo.get(j));
                     selectJoueur = true;
-                }else if(persoDispo.get(j).equals("Uimegae")) {
+                }else if(persoDispo.get(j).equals("Umegae")) {
                     model.addJoueur(new Umegae());
                     nomPersos+=persoDispo.get(j)+"\n";
                     persoDispo.remove(persoDispo.get(j));

@@ -12,7 +12,7 @@ et  replace  la  seconde  au-dessous  de  la  pioche
         super();
         nom = "Yoshiyasu";
         gold = 9;
-        couleur = "darkslateblue";
+        couleur = "#3333CC";
     }
 
     @Override

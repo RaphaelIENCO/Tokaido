@@ -388,6 +388,7 @@ public class GameController {
         for (int i=0;i<model.getRecapJoueur().size();i++){
             Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints());
             grille.add(descriptif,0,i);
+            System.out.println("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg");
             grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg"),1,i);
             for (int j=0;j<model.getRecapJoueur().get(i).getCartes().size();j++){
                 grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);

@@ -11,7 +11,7 @@ public class Hiroshige extends Joueur {
         super();
         nom = "Hiroshige";
         gold = 4;
-        couleur = "pink";
+        couleur = "#FF6699";
     }
 
     @Override

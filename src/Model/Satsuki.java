@@ -12,7 +12,7 @@ public class Satsuki extends Joueur {
         super();
         nom = "Satsuki";
         gold = 2;
-        couleur = "black";
+        couleur = "#9900FF";
     }
 
     @Override

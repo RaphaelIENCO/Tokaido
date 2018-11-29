@@ -10,7 +10,7 @@ public class ZenEmon extends Joueur {
         super();
         nom = "ZenEmon";
         gold = 6    ;
-        couleur = "orangered";
+        couleur = "#FF9933";
     }
 
     @Override

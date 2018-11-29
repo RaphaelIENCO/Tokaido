@@ -12,7 +12,7 @@ public class Hirotada extends Joueur {
         super();
         nom = "Hirotada";
         gold = 8;
-        couleur = "lawngreen";
+        couleur = "#99CC00";
     }
 
     @Override

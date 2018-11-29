@@ -11,7 +11,7 @@ public class Umegae extends Joueur {
         super();
         nom = "Umegae";
         gold = 5;
-        couleur = "rebeccapurple";
+        couleur = "#CC0033";
     }
 
     @Override

@@ -14,7 +14,7 @@ public class Kinko extends Joueur {
         super();
         nom = "Kinko";
         gold = 7;
-        couleur = "blue";
+        couleur = "#33CCFF";
     }
 
     @Override
