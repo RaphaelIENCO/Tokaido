@@ -105,9 +105,13 @@ public class GameController {
                 model.getListJoueur().get(0).setPositions(i);
             }
         }
+        int indice=0;
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             for (int j = 0; j < model.getListJoueur().size(); j++) {
-                if (model.getListJoueur().get(j).getPositions() == i) exist = true;
+                if (model.getListJoueur().get(j).getPositions() == i) {
+                    exist = true;
+                    indice=j;
+                }
             }
             if (!exist) {
                 boutonsPlateau.get(i).setStyle("-fx-background-radius: 50%;" +
@@ -117,6 +121,15 @@ public class GameController {
                         "-fx-border-width: 5px;" +
                         "-fx-border-color: black;");
                 exist = false;
+            } else {
+                boutonsPlateau.get(i).setStyle("-fx-background-radius: 50%;" +
+                        "-fx-background-color:"+model.getListJoueur().get(indice).getCouleur()+";" +
+                        "-fx-border-style: solid;" +
+                        "-fx-border-radius: 50% ;" +
+                        "-fx-border-width: 5px;" +
+                        "-fx-border-color: black;");
+                        exist=false;
+
             }
         }
     }
