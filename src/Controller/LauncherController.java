@@ -32,13 +32,16 @@ public class LauncherController {
 
     public LauncherController(){
         this.model = new Model();
-        System.out.println(model.getListJoueur().size());
         persoDispo.add("Kinko");
         persoDispo.add("Sasayakko");
         persoDispo.add("Satsuki");
         persoDispo.add("Chuubei");
         persoDispo.add("Hiroshige");
         persoDispo.add("Hirotada");
+        persoDispo.add("Mitsukuni");
+        persoDispo.add("Uimegae");
+        persoDispo.add("Yoshiyasu");
+        persoDispo.add("ZenEmon");
     }
 
     @FXML
@@ -70,12 +73,18 @@ public class LauncherController {
         ArrayList<RadioButton> listeBouton = new ArrayList<RadioButton>();
         ToggleGroup group = new ToggleGroup();
         GridPane grille = new GridPane();
+        int ligne=1;
         int i = 1;
         for(String s: persoDispo){
             RadioButton radioButton = new RadioButton();
             radioButton.setGraphic(new ImageView("/Vue/Images/"+s+".jpg"));
+            System.out.println(s+" a marché");
             radioButton.setToggleGroup(group);
-            grille.add(radioButton,i,0);
+            if(i>5){
+                i=1;
+                ligne++;
+            }
+            grille.add(radioButton,i,ligne);
             listeBouton.add(radioButton);
             i++;
         }
@@ -116,6 +125,26 @@ public class LauncherController {
                     selectJoueur = true;
                 }else if(persoDispo.get(j).equals("Hirotada")) {
                     model.addJoueur(new Hirotada());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Mitsukuni")) {
+                    model.addJoueur(new Mitsukuni());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Uimegae")) {
+                    model.addJoueur(new Umegae());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Yoshiyasu")) {
+                    model.addJoueur(new Yoshiyasu());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("ZenEmon")) {
+                    model.addJoueur(new ZenEmon());
                     nomPersos+=persoDispo.get(j)+"\n";
                     persoDispo.remove(persoDispo.get(j));
                     selectJoueur = true;
