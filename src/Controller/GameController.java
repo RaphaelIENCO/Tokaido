@@ -45,6 +45,10 @@ public class GameController {
 
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
+        if (!initButton){
+            ajoutBouton();
+            initButton=true;
+        }
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i)) && i<model.getListJoueur().get(0).getPositions()){
                 messageErreur("Vous devez avancer");
@@ -73,14 +77,17 @@ public class GameController {
         else if(button.getId().contains("ferme")){
             rencontreFerme();
         }
-        if (!initButton){
-            ajoutBouton();
-            initButton=true;
-        }
         updatePos(event);
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
+        if (model.getListJoueur().get(model.getListJoueur().size()-1).getPositions()>=boutonsPlateau.size()-1){
+            messageErreur("Fin de partie");
+            System.exit(0);
+        }
         model.trieJoueur();
         afficheCartes();
+
+
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Nouveau Tour");
         alert.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+".jpg"));
