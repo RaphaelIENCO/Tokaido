@@ -1,9 +1,7 @@
 package Controller;
 
-import Model.Model;
-import Model.Joueur;
-import Model.Kinko;
-import Model.Sasayakko;
+
+import Model.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,6 +35,10 @@ public class LauncherController {
         System.out.println(model.getListJoueur().size());
         persoDispo.add("Kinko");
         persoDispo.add("Sasayakko");
+        persoDispo.add("Satsuki");
+        persoDispo.add("Chuubei");
+        persoDispo.add("Hiroshige");
+        persoDispo.add("Hirotada");
     }
 
     @FXML
@@ -94,6 +96,26 @@ public class LauncherController {
                     selectJoueur = true;
                 }else if(persoDispo.get(j).equals("Sasayakko")) {
                     model.addJoueur(new Sasayakko());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Satsuki")) {
+                    model.addJoueur(new Satsuki());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Chuubei")) {
+                    model.addJoueur(new Chuubei());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Hiroshige")) {
+                    model.addJoueur(new Hiroshige());
+                    nomPersos+=persoDispo.get(j)+"\n";
+                    persoDispo.remove(persoDispo.get(j));
+                    selectJoueur = true;
+                }else if(persoDispo.get(j).equals("Hirotada")) {
+                    model.addJoueur(new Hirotada());
                     nomPersos+=persoDispo.get(j)+"\n";
                     persoDispo.remove(persoDispo.get(j));
                     selectJoueur = true;
