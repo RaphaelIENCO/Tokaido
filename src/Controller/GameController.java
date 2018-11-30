@@ -506,6 +506,27 @@ public class GameController {
                 case "Sasayakko":
                     model.addJoueur(new Sasayakko());
                     break;
+                case"Chuubei":
+                    model.addJoueur(new Chuubei());
+                    break;
+                case "Hiroshige":
+                    model.addJoueur(new Hiroshige());
+                    break;
+                case "Hirotada":
+                    model.addJoueur(new Hirotada());
+                    break;
+                case "Mitsukuni":
+                    model.addJoueur(new Mitsukuni());
+                    break;
+                case "Umegae":
+                    model.addJoueur(new Umegae());
+                    break;
+                case "Yoshiyasu":
+                    model.addJoueur(new Yoshiyasu());
+                    break;
+                case "ZenEmon":
+                    model.addJoueur(new ZenEmon());
+                    break;
             }
         }
         afficheCartes();
