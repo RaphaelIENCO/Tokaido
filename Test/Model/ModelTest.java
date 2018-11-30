@@ -2,6 +2,7 @@ package Model;
 
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -101,5 +102,99 @@ public class ModelTest {
             if (model.getListPanoramaMer().get(i) == null) verif=false;
         }
         Assert.assertTrue(verif);
+    }
+
+    @Test
+    public void testAddJoueur(){
+        boolean verif = false;
+        Model model = new Model();
+        Joueur j = new Joueur();
+        model.addJoueur(j);
+
+        if (model.getListJoueur().get(0) == j && model.getRecapJoueur().get(0) == j){
+            verif = true;
+        }
+
+        Assert.assertTrue(verif);
+    }
+
+    @Test
+    public void testTrieJoueurInitiale(){
+        Model model = new Model();
+        Joueur j1 = new Joueur();
+        Joueur j2 = new Joueur();
+        j1.setPositions(0);
+        j2.setPositions(0);
+
+        model.addJoueur(j1);
+        model.addJoueur(j2);
+        model.trieJoueur();
+
+        Assert.assertEquals(j1,model.getListJoueur().get(0));
+    }
+
+    @Test
+    public void testTrieJoueurDiffPos(){
+        boolean verif = false;
+        Model model = new Model();
+        Joueur j1 = new Joueur();
+        Joueur j2 = new Joueur();
+        j1.setPositions(1);
+        j2.setPositions(0);
+
+        model.addJoueur(j1);
+        model.addJoueur(j2);
+        model.trieJoueur();
+
+        if (model.getListJoueur().get(0) == j2 && model.getListJoueur().get(1) == j1){
+            verif = true;
+        }
+
+        Assert.assertTrue(verif);
+    }
+
+    @Test
+    public void testTrieJoueurScoreInit(){
+        Model model = new Model();
+        Joueur j1 = new Joueur();
+        Joueur j2 = new Joueur();
+        j1.setPoints(0);
+        j2.setPoints(0);
+
+        model.addJoueur(j1);
+        model.addJoueur(j2);
+        model.trieJoueurScore();
+
+        Assert.assertEquals(j1,model.getListJoueur().get(0));
+        Assert.assertEquals(j2,model.getListJoueur().get(1));
+    }
+
+    @Test
+    public void testTrieJoueurScoreDiff(){
+        Model model = new Model();
+        Joueur j1 = new Joueur();
+        Joueur j2 = new Joueur();
+        j1.setPoints(10);
+        j2.setPoints(100);
+
+        model.addJoueur(j1);
+        model.addJoueur(j2);
+        model.trieJoueurScore();
+
+        Assert.assertEquals(j1,model.getListJoueur().get(1));
+        Assert.assertEquals(j2,model.getListJoueur().get(0));
+    }
+
+    @Ignore
+    @Test
+    public void testMajScore(){
+        Model model = new Model();
+        Joueur j1 = new Joueur();
+        j1.setPoints(10);
+
+        model.addJoueur(j1);
+        model.majScore();
+
+        Assert.assertEquals(10,model.getListJoueur().get(0).getPoints());
     }
 }
