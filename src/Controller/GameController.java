@@ -323,6 +323,10 @@ public class GameController {
     public void piocheRencontre(){
         if(!model.getListRecontre().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheRencontre()) {
+                if (model.getListJoueur().get(0).getNom().equals("Umegae")) {
+                    model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints()+1);
+                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+1);
+                }
                     if (model.getListJoueur().get(0).getNom().equals("Yoshiyasu") && model.getListRecontre().size()>=2) {
                         GridPane gridPane = new GridPane();
                         RadioButton radioButton1 = new RadioButton();
@@ -435,7 +439,7 @@ public class GameController {
         model.getListJoueur().get(0).trierCarte();
         grille.getChildren().clear();
         for (int i=0;i<model.getRecapJoueur().size();i++){
-            Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints());
+            Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints()+" \n or temple: "+model.getRecapJoueur().get(i).getOrTemple());
             grille.add(descriptif,0,i);
             System.out.println("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg");
             grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg"),1,i);
