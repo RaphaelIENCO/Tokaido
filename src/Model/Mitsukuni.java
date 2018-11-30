@@ -11,7 +11,7 @@ public class Mitsukuni extends Joueur {
         super();
         nom = "Mitsukuni";
         gold = 6;
-        couleur = "#660099";
+        couleur = "#3DC84B";
     }
 
     @Override

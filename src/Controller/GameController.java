@@ -141,6 +141,30 @@ public class GameController {
                         model.getListJoueur().get(0).setPiocheRencontre(true);
                         piocheRencontre();
                     }
+                    if (model.getListJoueur().get(0).getNom().equals("Satsuki")){
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Satsuki");
+                        alert.setHeaderText("En tant que satsuki vous avez le droit à un repas gratuit \n que vous pouvez refuser pour acceder au relais normal");
+                        alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRepas().get(0).getNom()+".jpg"));
+                        if (model.getListJoueur().get(0).contient(model.getListRepas().get(0))){
+                            alert.setContentText("Vous l'avez déja gouté");
+                            ButtonType refuser = new ButtonType("Refuser");
+                            alert.getButtonTypes().setAll(refuser);
+                            Optional<ButtonType> result = alert.showAndWait();
+                            return;
+                        }else  {
+                            alert.setContentText(null);
+                            ButtonType accepter = new ButtonType("Accepter");
+                            ButtonType refuser = new ButtonType("Refuser");
+                            alert.getButtonTypes().setAll(accepter,refuser);
+                            Optional<ButtonType> result = alert.showAndWait();
+                            if (result.get() == accepter) {
+                                model.getListJoueur().get(0).addCarte(model.getListRepas().get(0));
+                                model.getListRepas().remove(0);
+                                return;
+                            }
+                        }
+                    }
                     GridPane gridPane = new GridPane();
                     ArrayList<RadioButton> rbox = new ArrayList<RadioButton>();
                     ArrayList<Repas> mesRepas = new ArrayList<Repas>();
@@ -455,7 +479,6 @@ public class GameController {
         for (int i=0;i<model.getRecapJoueur().size();i++){
             Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints()+" \n or temple: "+model.getRecapJoueur().get(i).getOrTemple());
             grille.add(descriptif,0,i);
-            System.out.println("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg");
             grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg"),1,i);
             for (int j=0;j<model.getRecapJoueur().get(i).getCartes().size();j++){
                 grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);
@@ -541,6 +564,9 @@ public class GameController {
                     break;
                 case "ZenEmon":
                     model.addJoueur(new ZenEmon());
+                    break;
+                case "Satsuki":
+                    model.addJoueur(new Satsuki());
                     break;
             }
         }

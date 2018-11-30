@@ -76,6 +76,7 @@ public class Joueur {
             else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Miko")) total+=1;
 
         }
+        total+=orTemple;
         total += getScoreSouvenir();
         points=total;
    }
@@ -226,14 +227,15 @@ public class Joueur {
         this.couleur = couleur;
     }
 
-    public boolean contient(Repas repas) {
+    public boolean contient(Cartes cartesTocompare) {
         for (Cartes cartes : cartes){
-            if (cartes instanceof Repas){
-                if (cartes.getNom().equals(repas.getNom())) return true;
+            System.out.println(cartes.getNom());
+            System.out.println(cartesTocompare.getNom());
+                if (cartes.getNom().equals(cartesTocompare.getNom())) return true;
             }
-        }
         return false;
-    }
+        }
+
     public void trierCarte(){
         ArrayList<Cartes> repas = new ArrayList<Cartes>();
         ArrayList<Cartes> souvenirs = new ArrayList<Cartes>();
