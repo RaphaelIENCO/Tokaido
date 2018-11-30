@@ -507,6 +507,57 @@ public class GameController {
 
     }
     public void finDePartie() throws IOException {
+        model.trieJoueurOrTemple();
+        if(model.getListJoueur().size()>=3){
+            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
+            model.getListOrTemple().add(maxOrTemple);
+            int compteur=0;
+            for (int i = 0; i < model.getListJoueur().size(); i++) {
+                if(compteur==3) break;
+                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
+                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
+                    model.getListOrTemple().add(maxOrTemple);
+                    compteur++;
+                }
+            }
+        }else {
+            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
+            model.getListOrTemple().add(maxOrTemple);
+            int compteur=0;
+            for (int i = 0; i < model.getListJoueur().size(); i++) {
+                if(compteur==2) break;
+                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
+                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
+                    model.getListOrTemple().add(maxOrTemple);
+                    compteur++;
+                }
+            }
+        }
+
+        for (int i = 0; i < model.getListJoueur().size()-1; i++) {
+                if(model.getListJoueur().get(i).getOrTemple()!=0){
+                    for (int j = 0; j < model.getListOrTemple().size()-1; j++) {
+                        if(model.getListJoueur().get(i).getOrTemple()==model.getListOrTemple().get(j)){
+                        switch (j){
+                            case 0:
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
+                                break;
+                            case 1:
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
+                                break;
+                            case 2:
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 4);
+                                break;
+
+                        }
+                    }else{
+                        model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 2);
+                    }
+                }
+            }else model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 0);
+        }
+
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Fin de partie");
         alert.setHeaderText("Classements :");
