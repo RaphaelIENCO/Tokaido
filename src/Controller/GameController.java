@@ -487,24 +487,29 @@ public class GameController {
         if (result.get() == buttonRestart) {
             restart();
         } else if (result.get()==buttonResetGame) {
-            for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: gray"); }
-            ArrayList<Joueur> listeJoueur = model.getListJoueur();
-            this.model= new Model();
-            for (Joueur joueur:listeJoueur){
-                switch (joueur.getNom()){
-                    case "Kinko":
-                        model.addJoueur(new Kinko());
-                        break;
-                    case "Sasayakko":
-                        model.addJoueur(new Sasayakko());
-                        break;
-                }
-            }
-            afficheCartes();
-            affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
+            restartGame();
+
         } else {
             System.exit(0);
         }
+    }
+
+    private void restartGame() {
+        for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: gray"); }
+        ArrayList<Joueur> listeJoueur = model.getListJoueur();
+        this.model= new Model();
+        for (Joueur joueur:listeJoueur){
+            switch (joueur.getNom()){
+                case "Kinko":
+                    model.addJoueur(new Kinko());
+                    break;
+                case "Sasayakko":
+                    model.addJoueur(new Sasayakko());
+                    break;
+            }
+        }
+        afficheCartes();
+        affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
     }
 
     public void setData(Model m){

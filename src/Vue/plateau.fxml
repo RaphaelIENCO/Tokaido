@@ -19,8 +19,9 @@
       <Button id="" fx:id="b8" layoutX="1187.0" layoutY="305.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="55.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <MenuButton layoutY="1.0" mnemonicParsing="false" text="Menu">
         <items>
+            <MenuItem mnemonicParsing="false"  text="Recommencer"/>
           <MenuItem mnemonicParsing="false" onAction="#showReglement" text="Consulter les régles du jeu" />
-          <MenuItem mnemonicParsing="false" onAction="#restart" text="Recommencer" />
+          <MenuItem mnemonicParsing="false" onAction="#restart" text="Acceuil" />
            <MenuItem mnemonicParsing="false" onAction="#leaveGame" text="Quitter" />
         </items>
       </MenuButton>
