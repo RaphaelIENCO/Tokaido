@@ -374,6 +374,20 @@ public class GameController {
     private void rencontreTemple(Button button){
         if(model.getListJoueur().get(0).getGold()>0) {
             if (model.getListJoueur().get(0).isTemple()) {
+                if (model.getListJoueur().get(0).getNom().equals("Hirotada")){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Hirotada");
+                    alert.setHeaderText("En tant qu'hirotada vous pouvez  \n ajouter une piece au temple si vous le voulez \n et cela gratuitement");
+                    ButtonType accepter = new ButtonType("Accepter");
+                    ButtonType refuser = new ButtonType("Refuser");
+
+                    alert.getButtonTypes().setAll(accepter,refuser);
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == accepter) {
+                        model.getListJoueur().get(0).setOrTemple(model.getListJoueur().get(0).getOrTemple()+1);
+                        model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints()+1);
+                    }
+                    }
                 ArrayList<Integer> choix = new ArrayList<Integer>();
                 choix.add(1);
                 choix.add(2);
@@ -494,6 +508,7 @@ public class GameController {
         }
     }
 
+    @FXML
     private void restartGame() {
         for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: gray"); }
         ArrayList<Joueur> listeJoueur = model.getListJoueur();

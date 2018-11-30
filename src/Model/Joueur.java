@@ -54,6 +54,9 @@ public class Joueur {
             }
             else if (cartes.get(i) instanceof Sources){
                 Sources sources = (Sources) cartes.get(i);
+                if (nom.equals("Mitsukuni")){
+                    total+=sources.getPoint()+1;
+                }else
                 total += sources.getPoint();
             }
             else if (cartes.get(i) instanceof Panoramas){
@@ -62,7 +65,13 @@ public class Joueur {
             }
             else if (cartes.get(i) instanceof Acomplissement){
                 Acomplissement acomplis = (Acomplissement) cartes.get(i);
-                total += acomplis.getPoints();
+                if (nom.equals("Mitsukuni")){
+                    total += acomplis.getPoints()+1;
+
+                }else {
+                    total += acomplis.getPoints();
+                }
+
             }else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Samurai")) total+=3;
             else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Miko")) total+=1;
 
