@@ -417,6 +417,16 @@ public class GameController {
 
     }
     public void finDePartie() throws IOException {
+        model.trieJoueurOrTemple();
+        for (int i = 0; i < model.getListJoueur().size()-1; i++) {
+            if(model.getListJoueur().get(i).getOrTemple()==model.getListJoueur().get(0).getOrTemple()){
+                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
+            }else if (model.getListJoueur().get(i).getOrTemple()<model.getListJoueur().get(0).getOrTemple()){
+                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
+            }
+        }
+
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Fin de partie");
         alert.setHeaderText("Classements :");
