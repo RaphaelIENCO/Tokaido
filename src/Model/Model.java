@@ -225,6 +225,15 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         this.listJoueur = listJoueur;
     }
 
+    public ArrayList<Integer> getListOrTemple() {
+        return listOrTemple;
+    }
+
+    public void setListOrTemple(ArrayList<Integer> listOrTemple) {
+        this.listOrTemple = listOrTemple;
+    }
+
+
     public void addJoueur(Joueur j){
         listJoueur.add(j);
         recapJoueur.add(j);
@@ -295,5 +304,6 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
                 }
             }
         }while(permut);
+
     }
 }
