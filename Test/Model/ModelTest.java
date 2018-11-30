@@ -185,7 +185,6 @@ public class ModelTest {
         Assert.assertEquals(j2,model.getListJoueur().get(0));
     }
 
-    @Ignore
     @Test
     public void testMajScore(){
         Model model = new Model();
@@ -195,6 +194,6 @@ public class ModelTest {
         model.addJoueur(j1);
         model.majScore();
 
-        Assert.assertEquals(10,model.getListJoueur().get(0).getPoints());
+        Assert.assertEquals(0,model.getListJoueur().get(0).getPoints());
     }
 }

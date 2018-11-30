@@ -272,9 +272,10 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
             System.out.println("----------------");
         }
     }
-        public void majScore(){
+
+    public void majScore(){
         for (Joueur joueur:listJoueur){
             joueur.updateScore();
         }
-        }
+    }
 }
