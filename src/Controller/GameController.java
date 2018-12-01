@@ -77,6 +77,8 @@ public class GameController {
     @FXML Button b50;
     @FXML Button b51;
     @FXML Button b52;
+    @FXML Button b53;
+    @FXML Button b54;
     @FXML ScrollPane scroll;
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
@@ -140,7 +142,6 @@ public class GameController {
             }
         }
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
-
     }
 
 
@@ -171,7 +172,6 @@ public class GameController {
             }
         }
     }
-
 
     /**
      * Partie pioche
@@ -678,6 +678,8 @@ public class GameController {
         boutonsPlateau.add(b50);
         boutonsPlateau.add(b51);
         boutonsPlateau.add(b52);
+        boutonsPlateau.add(b53);
+        boutonsPlateau.add(b54);
 
 
     }

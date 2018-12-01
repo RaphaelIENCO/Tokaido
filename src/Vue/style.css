@@ -78,10 +78,13 @@
     -fx-opacity: 0.6;
 }
 .backgroundColor{
-    -fx-background-color: #F9F4DF80;
+    -fx-background-color: gray;
 }
 .fond{
     -fx-background-image: url("Images/Tokaido.png");
+}
+.fondCarte{
+    -fx-background-color: gray;
 }
 
 
