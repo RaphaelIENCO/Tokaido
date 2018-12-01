@@ -286,7 +286,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         do{
             permut = false;
             for(i=0; i<listJoueur.size()-1; i++){
-                if(listJoueur.get(i).getOrTemple() > listJoueur.get(i+1).getOrTemple()){
+                if(listJoueur.get(i).getOrTemple() < listJoueur.get(i+1).getOrTemple()){
                     tampon = listJoueur.get(i);
                     listJoueur.set(i,listJoueur.get(i+1));
                     listJoueur.set(i+1,tampon);

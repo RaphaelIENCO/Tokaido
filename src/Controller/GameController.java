@@ -507,7 +507,8 @@ public class GameController {
 
     }
     public void finDePartie() throws IOException {
-        model.trieJoueurOrTemple();
+        model.trieJoueurOrTemple(); // tri OK
+
         if(model.getListJoueur().size()>=3){
             int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
             model.getListOrTemple().add(maxOrTemple);
@@ -520,7 +521,7 @@ public class GameController {
                     compteur++;
                 }
             }
-        }else {
+        }else if(model.getListJoueur().size()==2){
             int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
             model.getListOrTemple().add(maxOrTemple);
             int compteur=0;
@@ -534,27 +535,41 @@ public class GameController {
             }
         }
 
-        for (int i = 0; i < model.getListJoueur().size()-1; i++) {
+
+        for (int i = 0; i < model.getListJoueur().size(); i++) {
+                boolean ptsDonnee = false;
                 if(model.getListJoueur().get(i).getOrTemple()!=0){
-                    for (int j = 0; j < model.getListOrTemple().size()-1; j++) {
+                    for (int j = 0; j < model.getListOrTemple().size(); j++) {
+                        //System.out.println(j);
                         if(model.getListJoueur().get(i).getOrTemple()==model.getListOrTemple().get(j)){
                         switch (j){
                             case 0:
+                                //System.out.println("+10");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
+                                ptsDonnee = true;
                                 break;
                             case 1:
+                                //System.out.println("+7");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
+                                ptsDonnee = true;
                                 break;
                             case 2:
+                                //System.out.println("+4");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 4);
+                                ptsDonnee = true;
                                 break;
 
                         }
-                    }else{
+                        if(ptsDonnee) break;
+                    }else if(j==2){
+                        //System.out.println("+2");
                         model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 2);
                     }
                 }
-            }else model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 0);
+            }else{
+                    System.out.println("+ rien");
+                    model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints());
+                }
         }
 
 
