@@ -33,6 +33,11 @@ public class GameController {
     @FXML Button b6;
     @FXML Button b7;
     @FXML Button b8;
+    @FXML Button b9;
+    @FXML Button b10;
+    @FXML Button b11;
+    @FXML Button b12;
+    @FXML Button b13;
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
 
@@ -74,6 +79,12 @@ public class GameController {
         }
         else if(button.getId().contains("ferme")){
             rencontreFerme();
+        } else if(button.getId().contains("riziere")){
+            panoramaRiziere();
+        }else if(button.getId().contains("montagne")){
+            panoramaMontagne();
+        }else if(button.getId().contains("mer")){
+            panoramaMer();
         }
         updatePos(event);
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
@@ -92,6 +103,8 @@ public class GameController {
 
 
     }
+
+
 
     private void updatePos(ActionEvent event) {
         Boolean exist = false;
@@ -395,6 +408,91 @@ public class GameController {
         }else messageErreur("Plus de cartes rencontre");
     }
 
+    private void panoramaRiziere() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Riziere");
+        alert.setContentText(null);
+
+        for (int i = 0; i < model.getListPanoramaRiziere().size(); i++) {
+            System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i)));
+            if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i))) {
+                model.getListJoueur().get(0).addCarte(model.getListPanoramaRiziere().get(i));
+                alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg"));
+                System.out.println("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg");
+                alert.setHeaderText("Félicitation vous visiter une riziere \n vous obtenez donc :");
+                alert.showAndWait();
+                if (i==2 && !model.isRiziere()){
+                    alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas rizières vous gagnez donc :");
+                    alert.setGraphic(new ImageView("/Vue/Images/AcomplissementRiziere.jpg"));
+                    model.getListJoueur().get(0).addCarte(model.getListAcomplissement().get(0));
+                    model.setRiziere(true);
+                    alert.showAndWait();
+                }
+                return;
+            }
+        }
+        alert.setGraphic(null);
+        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas rizieres");
+        alert.showAndWait();
+        }
+
+    private void panoramaMontagne() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Montagne");
+        alert.setContentText(null);
+
+        for (int i = 0; i < model.getListPanoramaMontagnes().size(); i++) {
+        System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMontagnes().get(i)));
+        if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMontagnes().get(i))) {
+            model.getListJoueur().get(0).addCarte(model.getListPanoramaMontagnes().get(i));
+            alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg"));
+            System.out.println("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg");
+            alert.setHeaderText("Félicitation vous visiter une montagne \n vous obtenez donc :");
+            alert.showAndWait();
+            if (i==3 && !model.isMontagne()){
+                alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas montagnes vous gagnez donc :");
+                alert.setGraphic(new ImageView("/Vue/Images/AcomplissementMontagne.jpg"));
+                model.getListJoueur().get(0).addCarte(model.getListAcomplissement().get(1));
+                model.setMontagne(true);
+                alert.showAndWait();
+            }
+            return;
+        }
+    }
+        alert.setGraphic(null);
+        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas montatagnes");
+        alert.showAndWait();
+}
+
+    private void panoramaMer(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Mer");
+        alert.setContentText(null);
+
+        for (int i = 0; i < model.getListPanoramaMer().size(); i++) {
+            System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMer().get(i)));
+            if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMer().get(i))) {
+                model.getListJoueur().get(0).addCarte(model.getListPanoramaMer().get(i));
+                alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg"));
+                System.out.println("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg");
+                alert.setHeaderText("Félicitation vous visiter la mer \n vous obtenez donc :");
+                alert.showAndWait();
+                if (i==4 && !model.isMer()){
+                    alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas mer vous gagnez donc :");
+                    alert.setGraphic(new ImageView("/Vue/Images/AcomplissementMer.jpg"));
+                    model.getListJoueur().get(0).addCarte(model.getListAcomplissement().get(2));
+                    model.setMer(true);
+                    alert.showAndWait();
+                }
+                return;
+            }
+        }
+        alert.setGraphic(null);
+        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas mer");
+        alert.showAndWait();
+    }
+
+
     private void rencontreTemple(Button button){
         if(model.getListJoueur().get(0).getGold()>0) {
             if (model.getListJoueur().get(0).isTemple()) {
@@ -504,6 +602,12 @@ public class GameController {
         boutonsPlateau.add(b6);
         boutonsPlateau.add(b7);
         boutonsPlateau.add(b8);
+        boutonsPlateau.add(b9);
+        boutonsPlateau.add(b10);
+        boutonsPlateau.add(b11);
+        boutonsPlateau.add(b12);
+        boutonsPlateau.add(b13);
+
 
     }
     public void finDePartie() throws IOException {
@@ -517,7 +621,7 @@ public class GameController {
         }
         alert.setContentText(classement);
         ButtonType buttonResetGame = new ButtonType("Recommencer");
-        ButtonType buttonRestart = new ButtonType("Retour a l'acceuil");
+        ButtonType buttonRestart = new ButtonType("Retour a l'accueil");
         ButtonType buttonQuiter = new ButtonType("Quitter");
         alert.getButtonTypes().setAll(buttonResetGame,buttonRestart, buttonQuiter);
         Optional<ButtonType> result = alert.showAndWait();

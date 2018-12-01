@@ -7,7 +7,11 @@ import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Model {   // classe dans laquel on initie toutes les carte du joueur.
+public class Model {
+    private boolean riziere;
+    private boolean montagne;
+    private boolean mer;
+
     private ArrayList<Rencontre>listRecontre = new ArrayList<Rencontre>();
     private ArrayList<Repas>listRepas  = new ArrayList<>();
     private ArrayList<Souvenirs>listSouvenir = new ArrayList<>();
@@ -16,6 +20,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
     private ArrayList<Sources>listSource = new ArrayList<>();
     private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
+    private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
 
 
 
@@ -25,21 +30,29 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     }
 
     public void initPartie(){ //Creation de toutes les differentes cartes du jeu dans differents packets
+        mer=false;
+        montagne=false;
+        riziere=false;
         initRencontre();
         initRepas();
         initSouvenir();
         initPanorama();
         initSource();
+        initAccomplissement();
         shuffle();
+    }
+
+    private void initAccomplissement() {
+        listAcomplissement.add(new Acomplissement("AcomplissementRiziere"));
+        listAcomplissement.add(new Acomplissement("AcomplissementMontagne"));
+        listAcomplissement.add(new Acomplissement("AcomplissementMer"));
+
     }
 
     public void shuffle(){
         Collections.shuffle(listRecontre);
         Collections.shuffle(listRepas);
         Collections.shuffle(listSouvenir);
-        Collections.shuffle(listPanoramaRiziere);
-        Collections.shuffle(listPanoramaMontagnes);
-        Collections.shuffle(listPanoramaMer);
         Collections.shuffle(listSource);
     }
 
@@ -159,17 +172,22 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     }
 
     public void initPanorama(){ //Init des cartes Panoramas
-        for (int j=0 ; j<5 ;j++) {
-            for (int i = 0; i < 5; i++) {
-                if (j<3) {
-                    listPanoramaRiziere.add(new Panoramas("Riziere" + j, j));
-                }
-                if (j<4) {
-                    listPanoramaMontagnes.add(new Panoramas("Montagne" + j, j));
-                }
-                listPanoramaMer.add(new Panoramas("Mer" + j, j));
-            }
-        }
+        listPanoramaRiziere.add(new Panoramas("Riziere0",1,"Riziere"));
+        listPanoramaRiziere.add(new Panoramas("Riziere1",2,"Riziere"));
+        listPanoramaRiziere.add(new Panoramas("Riziere2",3,"Riziere"));
+
+        listPanoramaMontagnes.add(new Panoramas("Montagne0",1,"Montagne"));
+        listPanoramaMontagnes.add(new Panoramas("Montagne1",2,"Montagne"));
+        listPanoramaMontagnes.add(new Panoramas("Montagne2",3,"Montagne"));
+        listPanoramaMontagnes.add(new Panoramas("Montagne3",4,"Montagne"));
+
+        listPanoramaMer.add(new Panoramas("Mer0",1,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer1",2,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer2",3,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer3",4,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer4",5,"Mer"));
+
+
     }
 
     public void initSource(){ //Init des Cartes Source chaude
@@ -178,6 +196,38 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
                 listSource.add(new Sources("Source" + j, j+2));
             }
         }
+    }
+
+    public boolean isRiziere() {
+        return riziere;
+    }
+
+    public void setRiziere(boolean riziere) {
+        this.riziere = riziere;
+    }
+
+    public boolean isMontagne() {
+        return montagne;
+    }
+
+    public void setListAcomplissement(ArrayList<Acomplissement> listAcomplissement) {
+        this.listAcomplissement = listAcomplissement;
+    }
+    public ArrayList<Acomplissement> getListAcomplissement(){
+        return this.listAcomplissement;
+    }
+
+
+    public void setMontagne(boolean montagne) {
+        this.montagne = montagne;
+    }
+
+    public boolean isMer() {
+        return mer;
+    }
+
+    public void setMer(boolean mer) {
+        this.mer = mer;
     }
 
     public ArrayList<Rencontre> getListRecontre() {

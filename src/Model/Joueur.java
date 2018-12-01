@@ -242,6 +242,10 @@ public class Joueur {
         ArrayList<Cartes> rencontres = new ArrayList<Cartes>();
         ArrayList<Cartes> sources = new ArrayList<Cartes>();
         ArrayList<Cartes> acomplissements = new ArrayList<Cartes>();
+        ArrayList<Cartes> riziere = new ArrayList<Cartes>();
+        ArrayList<Cartes> mer = new ArrayList<Cartes>();
+        ArrayList<Cartes> montagne = new ArrayList<Cartes>();
+
         for (int i = 0; i < cartes.size(); i++) {
             if (cartes.get(i) instanceof Repas ){
                 repas.add(cartes.get(i));
@@ -258,6 +262,20 @@ public class Joueur {
             if (cartes.get(i) instanceof Acomplissement){
                 acomplissements.add(cartes.get(i));
             }
+            if (cartes.get(i) instanceof Panoramas){
+                Panoramas panoramas= (Panoramas)cartes.get(i);
+                switch (panoramas.getType()){
+                    case "Riziere":
+                        riziere.add(cartes.get(i));
+                        break;
+                    case "Mer":
+                        mer.add(cartes.get(i));
+                        break;
+                    case "Montagne":
+                        montagne.add(cartes.get(i));
+                        break;
+                }
+            }
         }
         cartes.clear();
         cartes.addAll(repas);
@@ -265,5 +283,8 @@ public class Joueur {
         cartes.addAll(rencontres);
         cartes.addAll(sources);
         cartes.addAll(acomplissements);
+        cartes.addAll(riziere);
+        cartes.addAll(montagne);
+        cartes.addAll(mer);
     }
 }
