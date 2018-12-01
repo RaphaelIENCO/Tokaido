@@ -80,5 +80,8 @@
 .backgroundColor{
     -fx-background-color: #F9F4DF80;
 }
+.fond{
+    -fx-background-image: url("Images/Tokaido.png");
+}
 
 

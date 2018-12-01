@@ -38,6 +38,46 @@ public class GameController {
     @FXML Button b11;
     @FXML Button b12;
     @FXML Button b13;
+    @FXML Button b14;
+    @FXML Button b15;
+    @FXML Button b16;
+    @FXML Button b17;
+    @FXML Button b18;
+    @FXML Button b19;
+    @FXML Button b20;
+    @FXML Button b21;
+    @FXML Button b22;
+    @FXML Button b23;
+    @FXML Button b24;
+    @FXML Button b25;
+    @FXML Button b26;
+    @FXML Button b27;
+    @FXML Button b28;
+    @FXML Button b29;
+    @FXML Button b30;
+    @FXML Button b31;
+    @FXML Button b32;
+    @FXML Button b33;
+    @FXML Button b34;
+    @FXML Button b35;
+    @FXML Button b36;
+    @FXML Button b37;
+    @FXML Button b38;
+    @FXML Button b39;
+    @FXML Button b40;
+    @FXML Button b41;
+    @FXML Button b42;
+    @FXML Button b43;
+    @FXML Button b44;
+    @FXML Button b45;
+    @FXML Button b46;
+    @FXML Button b47;
+    @FXML Button b48;
+    @FXML Button b49;
+    @FXML Button b50;
+    @FXML Button b51;
+    @FXML Button b52;
+    @FXML ScrollPane scroll;
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
 
@@ -101,7 +141,6 @@ public class GameController {
         }
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
 
-
     }
 
 
@@ -123,20 +162,10 @@ public class GameController {
                 }
             }
             if (!exist) {
-                boutonsPlateau.get(i).setStyle("-fx-background-radius: 50%;" +
-                        "-fx-background-color: gray;" +
-                        "-fx-border-style: solid;" +
-                        "-fx-border-radius: 50% ;" +
-                        "-fx-border-width: 5px;" +
-                        "-fx-border-color: black;");
+                boutonsPlateau.get(i).setStyle("-fx-background-color: gray;");
                 exist = false;
             } else {
-                boutonsPlateau.get(i).setStyle("-fx-background-radius: 50%;" +
-                        "-fx-background-color:"+model.getListJoueur().get(indice).getCouleur()+";" +
-                        "-fx-border-style: solid;" +
-                        "-fx-border-radius: 50% ;" +
-                        "-fx-border-width: 5px;" +
-                        "-fx-border-color: black;");
+                boutonsPlateau.get(i).setStyle("-fx-background-color:"+model.getListJoueur().get(indice).getCouleur()+";");
                         exist=false;
 
             }
@@ -577,7 +606,10 @@ public class GameController {
         for (int i=0;i<model.getRecapJoueur().size();i++){
             Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints()+" \n or temple: "+model.getRecapJoueur().get(i).getOrTemple());
             grille.add(descriptif,0,i);
-            grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getNom()+".jpg"),1,i);
+            if(model.getRecapJoueur().get(i).getNom().equals(model.getListJoueur().get(0).getNom())){
+                grille.add(new ImageView("/Vue/Images/" + model.getRecapJoueur().get(i).getNom() + "1.jpg"), 1, i);
+            } else grille.add(new ImageView("/Vue/Images/" + model.getRecapJoueur().get(i).getNom() + ".jpg"), 1, i);
+
             for (int j=0;j<model.getRecapJoueur().get(i).getCartes().size();j++){
                 grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);
             }
@@ -607,6 +639,45 @@ public class GameController {
         boutonsPlateau.add(b11);
         boutonsPlateau.add(b12);
         boutonsPlateau.add(b13);
+        boutonsPlateau.add(b14);
+        boutonsPlateau.add(b15);
+        boutonsPlateau.add(b16);
+        boutonsPlateau.add(b17);
+        boutonsPlateau.add(b18);
+        boutonsPlateau.add(b19);
+        boutonsPlateau.add(b20);
+        boutonsPlateau.add(b21);
+        boutonsPlateau.add(b22);
+        boutonsPlateau.add(b23);
+        boutonsPlateau.add(b24);
+        boutonsPlateau.add(b25);
+        boutonsPlateau.add(b26);
+        boutonsPlateau.add(b27);
+        boutonsPlateau.add(b28);
+        boutonsPlateau.add(b29);
+        boutonsPlateau.add(b30);
+        boutonsPlateau.add(b31);
+        boutonsPlateau.add(b32);
+        boutonsPlateau.add(b33);
+        boutonsPlateau.add(b34);
+        boutonsPlateau.add(b35);
+        boutonsPlateau.add(b36);
+        boutonsPlateau.add(b37);
+        boutonsPlateau.add(b38);
+        boutonsPlateau.add(b39);
+        boutonsPlateau.add(b40);
+        boutonsPlateau.add(b41);
+        boutonsPlateau.add(b42);
+        boutonsPlateau.add(b43);
+        boutonsPlateau.add(b44);
+        boutonsPlateau.add(b45);
+        boutonsPlateau.add(b46);
+        boutonsPlateau.add(b47);
+        boutonsPlateau.add(b48);
+        boutonsPlateau.add(b49);
+        boutonsPlateau.add(b50);
+        boutonsPlateau.add(b51);
+        boutonsPlateau.add(b52);
 
 
     }

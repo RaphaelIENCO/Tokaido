@@ -47,14 +47,14 @@ public class LauncherController {
     @FXML
     public void fenetreLauncher() throws IOException {
         if(model.getListJoueur().size()>=2){
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/plateau.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/tokaido.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage secondaryStage = new Stage();
             loader.<GameController>getController().setData(model);
             secondaryStage.setScene(scene);
             secondaryStage.setMaximized(false);
-            secondaryStage.setResizable(true);
+            secondaryStage.setResizable(false);
             secondaryStage.setTitle("Tokaido");
             secondaryStage.show();
             Stage stage = (Stage) commencerP.getScene().getWindow();

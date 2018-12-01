@@ -21,7 +21,7 @@
         <items>
             <MenuItem mnemonicParsing="false" onAction="#restartGame" text="Recommencer" />
           <MenuItem mnemonicParsing="false" onAction="#showReglement" text="Consulter les régles du jeu" />
-          <MenuItem mnemonicParsing="false" onAction="#restart" text="Acceuil" />
+          <MenuItem mnemonicParsing="false" onAction="#restart" text="Accueil" />
            <MenuItem mnemonicParsing="false" onAction="#leaveGame" text="Quitter" />
         </items>
       </MenuButton>
@@ -33,7 +33,7 @@
       <Button id="ferme" fx:id="b5" layoutX="705.0" layoutY="425.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="rencontre" fx:id="b2" layoutX="321.0" layoutY="450.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
       <Button id="temple" fx:id="b3" accessibleHelp="" layoutX="447.0" layoutY="518.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="62.0" prefWidth="61.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-      <ScrollPane layoutX="81.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="880.0" styleClass="backgroundColor" stylesheets="@style.css">
+      <ScrollPane fx:id="scroll" layoutX="81.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="220.0" prefWidth="880.0" styleClass="backgroundColor" stylesheets="@style.css">
          <content>
             <GridPane fx:id="grille" prefHeight="1100.0" prefWidth="880.0" styleClass="backgroundColor" stylesheets="@style.css">
               <columnConstraints>
