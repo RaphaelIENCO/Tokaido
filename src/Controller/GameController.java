@@ -684,6 +684,72 @@ public class GameController {
 
     }
     public void finDePartie() throws IOException {
+        model.trieJoueurOrTemple(); // tri OK
+
+        if(model.getListJoueur().size()>=3){
+            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
+            model.getListOrTemple().add(maxOrTemple);
+            int compteur=0;
+            for (int i = 0; i < model.getListJoueur().size(); i++) {
+                if(compteur==3) break;
+                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
+                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
+                    model.getListOrTemple().add(maxOrTemple);
+                    compteur++;
+                }
+            }
+        }else if(model.getListJoueur().size()==2){
+            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
+            model.getListOrTemple().add(maxOrTemple);
+            int compteur=0;
+            for (int i = 0; i < model.getListJoueur().size(); i++) {
+                if(compteur==2) break;
+                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
+                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
+                    model.getListOrTemple().add(maxOrTemple);
+                    compteur++;
+                }
+            }
+        }
+
+
+        for (int i = 0; i < model.getListJoueur().size(); i++) {
+                boolean ptsDonnee = false;
+                if(model.getListJoueur().get(i).getOrTemple()!=0){
+                    for (int j = 0; j < model.getListOrTemple().size(); j++) {
+                        //System.out.println(j);
+                        if(model.getListJoueur().get(i).getOrTemple()==model.getListOrTemple().get(j)){
+                        switch (j){
+                            case 0:
+                                //System.out.println("+10");
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
+                                ptsDonnee = true;
+                                break;
+                            case 1:
+                                //System.out.println("+7");
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
+                                ptsDonnee = true;
+                                break;
+                            case 2:
+                                //System.out.println("+4");
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 4);
+                                ptsDonnee = true;
+                                break;
+
+                        }
+                        if(ptsDonnee) break;
+                    }else if(j==2){
+                        //System.out.println("+2");
+                        model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 2);
+                    }
+                }
+            }else{
+                    System.out.println("+ rien");
+                    model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints());
+                }
+        }
+
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Fin de partie");
         alert.setHeaderText("Classements :");

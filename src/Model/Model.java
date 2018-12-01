@@ -20,6 +20,7 @@ public class Model {
     private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
     private ArrayList<Sources>listSource = new ArrayList<>();
     private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
+    private ArrayList<Integer>listOrTemple = new ArrayList<Integer>();
     private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
 
 
@@ -274,6 +275,15 @@ public class Model {
         this.listJoueur = listJoueur;
     }
 
+    public ArrayList<Integer> getListOrTemple() {
+        return listOrTemple;
+    }
+
+    public void setListOrTemple(ArrayList<Integer> listOrTemple) {
+        this.listOrTemple = listOrTemple;
+    }
+
+
     public void addJoueur(Joueur j){
         listJoueur.add(j);
         recapJoueur.add(j);
@@ -313,9 +323,27 @@ public class Model {
         }while(permut);
     }
 
-    public void majScore(){
-        for (Joueur joueur:listJoueur){
+    public void majScore() {
+        for (Joueur joueur : listJoueur) {
             joueur.updateScore();
         }
+    }
+
+    public void trieJoueurOrTemple(){
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getOrTemple() < listJoueur.get(i+1).getOrTemple()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+
     }
 }
