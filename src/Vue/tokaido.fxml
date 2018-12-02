@@ -77,9 +77,9 @@
          <Button id="mer" fx:id="b52" layoutX="1794.0" layoutY="153.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="souvenir" fx:id="b53" layoutX="1830.0" layoutY="124.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button fx:id="b54" layoutX="1881.0" layoutY="76.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-         <AnchorPane layoutY="588.0" prefHeight="1100.0" prefWidth="2000.0" styleClass="fondCarte" stylesheets="@style.css">
-            <children>
-                <GridPane fx:id="grille" prefHeight="1100.0" prefWidth="880.0" styleClass="backgroundColor" stylesheets="@style.css">
+         <ScrollPane layoutY="588.0" prefHeight="1100" prefWidth="2000" styleClass="buttonVert">
+            <content>
+                <GridPane fx:id="grille" prefHeight="1100.0" prefWidth="2000" styleClass="backgroundColor" stylesheets="@style.css">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="100.0" prefWidth="150.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="100.0" prefWidth="150.0" />
@@ -93,8 +93,8 @@
                         <RowConstraints prefHeight="220.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                 </GridPane>
-            </children>
-         </AnchorPane>
+            </content>
+         </ScrollPane>
     </AnchorPane>
   </content>
 </ScrollPane>
