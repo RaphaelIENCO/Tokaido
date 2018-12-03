@@ -70,7 +70,7 @@ public class JoueurTest {
     @Test
     public void testUpdateScorePointAvecCartePanorama(){
         Joueur joueur = new Joueur();
-        Panoramas panoramas = new Panoramas("P1",10);
+        Panoramas panoramas = new Panoramas("P1",10,"Riziere");
 
         joueur.addCarte(panoramas);
         joueur.updateScore();
@@ -104,12 +104,12 @@ public class JoueurTest {
     @Test
     public void testUpdateScorePointAvecCarteAccomplissement(){
         Joueur joueur = new Joueur();
-        Acomplissement acomplissement = new Acomplissement("AC",10);
+        Acomplissement acomplissement = new Acomplissement("AC");
 
         joueur.addCarte(acomplissement);
         joueur.updateScore();
 
-        Assert.assertEquals(10,joueur.getPoints());
+        Assert.assertEquals(3,joueur.getPoints());
     }
 
     @Test

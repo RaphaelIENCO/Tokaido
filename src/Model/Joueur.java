@@ -6,7 +6,7 @@ public class Joueur {
     protected int gold;
     protected ArrayList<Cartes> cartes;
     protected int points = 0;
-    protected String nom;
+    protected String nom = "";
     protected boolean piocheRelais;
     protected boolean piocheSource;
     protected boolean piocheSouvenir;
