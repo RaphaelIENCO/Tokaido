@@ -22,6 +22,7 @@ public class Model {
     private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
     private ArrayList<Integer>listOrTemple = new ArrayList<Integer>();
     private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
+    private ArrayList<Integer> listArretDouble= new ArrayList<Integer>();
 
 
 
@@ -40,7 +41,18 @@ public class Model {
         initPanorama();
         initSource();
         initAccomplissement();
+        initArretDouble();
         shuffle();
+    }
+    private void initArretDouble(){
+        listArretDouble.add(2);
+        listArretDouble.add(7);
+        listArretDouble.add(9);
+        listArretDouble.add(11);
+        listArretDouble.add(14);
+        listArretDouble.add(17);
+
+
     }
 
     private void initAccomplissement() {
@@ -197,6 +209,14 @@ public class Model {
                 listSource.add(new Sources("Source" + j, j+2));
             }
         }
+    }
+
+    public ArrayList<Integer> getListArretDouble() {
+        return listArretDouble;
+    }
+
+    public void setListArretDouble(ArrayList<Integer> listtArretDouble) {
+        this.listArretDouble = listtArretDouble;
     }
 
     public boolean isRiziere() {

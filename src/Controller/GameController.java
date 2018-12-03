@@ -24,17 +24,22 @@ public class GameController {
     private Model model;
     private ArrayList<Button> boutonsPlateau;
     @FXML Button b0;
+    @FXML Button b101;
     @FXML Button b1;
     @FXML Button b2;
     @FXML Button b3;
     @FXML Button b4;
     @FXML Button b5;
+    @FXML Button b501;
     @FXML Button b6;
+    @FXML Button b601;
     @FXML Button b7;
     @FXML Button b701;
     @FXML Button b8;
+    @FXML Button b901;
     @FXML Button b9;
     @FXML Button b10;
+    @FXML Button b111;
     @FXML Button b11;
     @FXML Button b12;
     @FXML Button b13;
@@ -88,9 +93,18 @@ public class GameController {
 
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
+        int indice=0;
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i)) && i<=model.getListJoueur().get(0).getPositions()){
                 messageErreur("Vous devez avancer");
+                return;
+            }else if (button==boutonsPlateau.get(i)){
+                indice=i;
+            }
+        }
+        for (Joueur joueur :model.getListJoueur()){
+            if (joueur.getPositions()==indice){
+                messageErreur("Il y à déja quelqu'un");
                 return;
             }
         }
@@ -127,6 +141,7 @@ public class GameController {
         model.trieJoueur();
         model.majScore();
         afficheCartes();
+        if (model.getListJoueur().size()>=4) afficheArretDouble();
         if (model.getListJoueur().get(0).getPositions()>=boutonsPlateau.size()-1){
             try {
                 finDePartie();
@@ -146,9 +161,6 @@ public class GameController {
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i))) {
                 model.getListJoueur().get(0).setPositions(i);
-                if (i==8){
-                    boutonsPlateau.get(7).setVisible(true);
-                }
             }
         }
         int indice=0;
@@ -168,6 +180,21 @@ public class GameController {
 
             }
         }
+    }
+
+    private void afficheArretDouble(){
+        boolean aCacher;
+       for (Integer integer:model.getListArretDouble()){
+           aCacher=true;
+           for (Joueur joueur: model.getListJoueur()){
+               if (joueur.getPositions()==integer){
+                   aCacher=false;
+               }
+           }
+           if (aCacher){
+               boutonsPlateau.get(integer-1).setVisible(false);
+           } else  boutonsPlateau.get(integer-1).setVisible(true);
+       }
     }
 
     /**
@@ -442,7 +469,6 @@ public class GameController {
         alert.setContentText(null);
 
         for (int i = 0; i < model.getListPanoramaRiziere().size(); i++) {
-            System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i)));
             if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i))) {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaRiziere().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg"));
@@ -625,18 +651,28 @@ public class GameController {
 
     private void ajoutBouton() {
         boutonsPlateau.add(b0);
+        boutonsPlateau.add(b101);
+        b101.setVisible(false);
         boutonsPlateau.add(b1);
         boutonsPlateau.add(b2);
         boutonsPlateau.add(b3);
         boutonsPlateau.add(b4);
+        boutonsPlateau.add(b501);
+        b501.setVisible(false);
         boutonsPlateau.add(b5);
+        boutonsPlateau.add(b601);
+        b601.setVisible(false);
         boutonsPlateau.add(b6);
         boutonsPlateau.add(b701);
         b701.setVisible(false);
         boutonsPlateau.add(b7);
         boutonsPlateau.add(b8);
+        boutonsPlateau.add(b901);
+        b901.setVisible(false);
         boutonsPlateau.add(b9);
         boutonsPlateau.add(b10);
+        boutonsPlateau.add(b111);
+        b111.setVisible(false);
         boutonsPlateau.add(b11);
         boutonsPlateau.add(b12);
         boutonsPlateau.add(b13);

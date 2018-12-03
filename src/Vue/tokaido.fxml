@@ -96,6 +96,11 @@
             </content>
          </ScrollPane>
          <Button id="ferme" fx:id="b701" layoutX="328.0" layoutY="317.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="montagne" fx:id="b601" layoutX="292.0" layoutY="394.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="source" fx:id="b501" layoutX="256.0" layoutY="280.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="souvenir" fx:id="b101" layoutX="113.0" layoutY="276.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="temple" fx:id="b901" layoutX="400.0" layoutY="342.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="mer" fx:id="b111" layoutX="461.0" layoutY="288.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
     </AnchorPane>
   </content>
 </ScrollPane>
