@@ -53,6 +53,24 @@ public class Model {
         listArretDouble.add(11);
         listArretDouble.add(14);
         listArretDouble.add(17);
+        listArretDouble.add(28);
+        listArretDouble.add(30);
+        listArretDouble.add(32);
+        listArretDouble.add(34);
+        listArretDouble.add(37);
+        listArretDouble.add(40);
+        listArretDouble.add(51);
+        listArretDouble.add(54);
+        listArretDouble.add(57);
+        listArretDouble.add(60);
+        listArretDouble.add(62);
+        listArretDouble.add(66);
+        listArretDouble.add(74);
+        listArretDouble.add(77);
+        listArretDouble.add(80);
+        listArretDouble.add(82);
+        listArretDouble.add(86);
+        listArretDouble.add(88);
 
     }
     private void initRelais(){
@@ -60,6 +78,18 @@ public class Model {
         listArretRelais.add(22);
         listArretRelais.add(23);
         listArretRelais.add(24);
+        listArretRelais.add(44);
+        listArretRelais.add(45);
+        listArretRelais.add(46);
+        listArretRelais.add(47);
+        listArretRelais.add(68);
+        listArretRelais.add(69);
+        listArretRelais.add(70);
+        listArretRelais.add(71);
+        listArretRelais.add(91);
+        listArretRelais.add(92);
+        listArretRelais.add(93);
+        listArretRelais.add(94);
     }
 
     private void initAccomplissement() {

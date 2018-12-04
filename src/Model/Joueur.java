@@ -17,24 +17,9 @@ public class Joueur {
     protected boolean isRelais1;
     protected  boolean isRelais2;
     protected boolean isRelais3;
-    protected boolean isRelais4;
 
 
     protected boolean temple;
-    //Crée un joueur différent des joueurs proposés.
-    public Joueur(int g,String n){
-        gold = g;
-        nom = n;
-        cartes = new ArrayList<Cartes>();
-        points = 0;
-        piocheRelais =false;
-        piocheRencontre=false;
-        piocheSource=false;
-        piocheSouvenir=false;
-        temple=false;
-        orTemple=0;
-        positions=0;
-   }
 
    public Joueur(){
        cartes = new ArrayList<Cartes>();
@@ -49,7 +34,6 @@ public class Joueur {
        isRelais1=false;
        isRelais2=false;
        isRelais3=false;
-       isRelais4=false;
    }
 
     public void updateScore(){
@@ -160,13 +144,6 @@ public class Joueur {
         isRelais3 = relais3;
     }
 
-    public boolean isRelais4() {
-        return isRelais4;
-    }
-
-    public void setRelais4(boolean relais4) {
-        isRelais4 = relais4;
-    }
 
     public int getPoints(){
         return this.points;
