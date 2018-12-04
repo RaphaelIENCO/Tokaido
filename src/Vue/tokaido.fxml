@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="2000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
   <content>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1700.0" prefWidth="2000.0" styleClass="fond" stylesheets="@style.css">
         <MenuButton layoutY="1.0" mnemonicParsing="false" text="Menu">
@@ -77,7 +77,7 @@
          <Button id="mer" fx:id="b52" layoutX="1794.0" layoutY="153.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="souvenir" fx:id="b53" layoutX="1830.0" layoutY="124.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="relais4" fx:id="b54" layoutX="1881.0" layoutY="76.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-         <ScrollPane layoutY="588.0" prefHeight="1200.0" prefWidth="2000" styleClass="buttonVert">
+         <ScrollPane layoutY="588.0" prefHeight="1200.0" prefWidth="20000" styleClass="buttonVert">
             <content>
                 <GridPane fx:id="grille" prefHeight="1100.0" prefWidth="2000" styleClass="backgroundColor" stylesheets="@style.css">
                     <columnConstraints>

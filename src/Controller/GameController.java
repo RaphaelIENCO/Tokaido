@@ -14,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -282,6 +280,10 @@ public class GameController {
                         case "relais3":
                             for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais3()) nbCartes++;
                             model.getListJoueur().get(0).setRelais3(true);
+                            break;
+                        case "relais4":
+                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais4()) nbCartes++;
+                            model.getListJoueur().get(0).setRelais4(true);
                             break;
                     }
                     if (model.getListJoueur().get(0).getNom().equals("Chuubei")){
@@ -595,7 +597,7 @@ public class GameController {
         }
     }
         alert.setGraphic(null);
-        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas montatagnes");
+        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas montagnes");
         alert.showAndWait();
 }
 

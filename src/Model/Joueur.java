@@ -20,8 +20,9 @@ public class Joueur {
 
 
     protected boolean temple;
+    protected boolean isRelais4;
 
-   public Joueur(){
+    public Joueur(){
        cartes = new ArrayList<Cartes>();
        points = 0;
        piocheRelais =false;
@@ -34,6 +35,7 @@ public class Joueur {
        isRelais1=false;
        isRelais2=false;
        isRelais3=false;
+       isRelais4=false;
    }
 
     public void updateScore(){
@@ -118,6 +120,10 @@ public class Joueur {
         }
         return total;
    }
+
+    public boolean isRelais4() {
+        return isRelais4;
+    }
 
     public boolean isRelais1() {
         return isRelais1;
@@ -304,5 +310,9 @@ public class Joueur {
         cartes.addAll(riziere);
         cartes.addAll(montagne);
         cartes.addAll(mer);
+    }
+
+    public void setRelais4(boolean b) {
+       this.isRelais4=b;
     }
 }

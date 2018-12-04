@@ -1,8 +1,13 @@
 package Model;
 
+import Controller.GameController;
+import Controller.LauncherController;
 import javafx.scene.control.Alert;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -176,6 +181,156 @@ public class Model {
         };
         listRecontre.add(miko);
         listRecontre.add(miko);
+
+        Rencontre anaibito0 = new Rencontre("Anaibito0") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                if (joueur.getCartes().contains(listPanoramaRiziere.get(2))) {
+
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Riziere");
+                    alert.setContentText(null);
+
+                    for (int i = 0; i < listPanoramaRiziere.size(); i++) {
+                        if (!listJoueur.get(0).cartes.contains(listPanoramaRiziere.get(i))) {
+                            listJoueur.get(0).addCarte(listPanoramaRiziere.get(i));
+                            alert.setGraphic(new ImageView("/Vue/Images/" + listPanoramaRiziere.get(i).getNom() + ".jpg"));
+                            System.out.println("/Vue/Images/" + getListPanoramaRiziere().get(i).getNom() + ".jpg");
+                            alert.setHeaderText("Félicitation vous visiter une riziere \n vous obtenez donc :");
+                            alert.showAndWait();
+                            if (i == 2 && !isRiziere()) {
+                                alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas rizières vous gagnez donc :");
+                                alert.setGraphic(new ImageView("/Vue/Images/AcomplissementRiziere.jpg"));
+                                listJoueur.get(0).addCarte(getListAcomplissement().get(0));
+                                setRiziere(true);
+                                alert.showAndWait();
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+            @Override
+            public String getDescription() {
+                return "Félicitation vous rencontrer anaibito \n celui ci vous offre une carte panorama";
+            }
+        };
+        listRecontre.add(anaibito0);
+        listRecontre.add(anaibito0);
+
+        Rencontre anaibit02 = new Rencontre("Anaibito2") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                if (joueur.getCartes().contains(listPanoramaMer.get(3))){
+
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Montagne");
+                    alert.setContentText(null);
+
+                    for (int i = 0; i < getListPanoramaMontagnes().size(); i++) {
+                        System.out.println(listJoueur.get(0).getCartes().contains(getListPanoramaMontagnes().get(i)));
+                        if (!listJoueur.get(0).getCartes().contains(getListPanoramaMontagnes().get(i))) {
+                            listJoueur.get(0).addCarte(getListPanoramaMontagnes().get(i));
+                            alert.setGraphic(new ImageView("/Vue/Images/" + getListPanoramaMontagnes().get(i).getNom() + ".jpg"));
+                            System.out.println("/Vue/Images/" + getListPanoramaMontagnes().get(i).getNom() + ".jpg");
+                            alert.setHeaderText("Félicitation vous visiter une montagne \n vous obtenez donc :");
+                            alert.showAndWait();
+                            if (i==3 && !isMontagne()){
+                                alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas montagnes vous gagnez donc :");
+                                alert.setGraphic(new ImageView("/Vue/Images/AcomplissementMontagne.jpg"));
+                                listJoueur.get(0).addCarte(getListAcomplissement().get(1));
+                                setMontagne(true);
+                                alert.showAndWait();
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public String getDescription() {
+                return "Félicitation vous rencontrer anaibito \n celui ci vous offre une carte panorama";
+            }
+        };
+        listRecontre.add(anaibit02);
+        listRecontre.add(anaibit02);
+
+        Rencontre anaibit01 = new Rencontre("Anaibito1") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                if (joueur.getCartes().contains(listPanoramaMer.get(4))){
+                    choixPanorama();
+
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Mer");
+                    alert.setContentText(null);
+
+                    for (int i = 0; i < getListPanoramaMer().size(); i++) {
+                        System.out.println(listJoueur.get(0).getCartes().contains(getListPanoramaMer().get(i)));
+                        if (!listJoueur.get(0).getCartes().contains(getListPanoramaMer().get(i))) {
+                            listJoueur.get(0).addCarte(getListPanoramaMer().get(i));
+                            alert.setGraphic(new ImageView("/Vue/Images/" + getListPanoramaMer().get(i).getNom() + ".jpg"));
+                            System.out.println("/Vue/Images/" + getListPanoramaMer().get(i).getNom() + ".jpg");
+                            alert.setHeaderText("Félicitation vous visiter la mer \n vous obtenez donc :");
+                            alert.showAndWait();
+                            if (i==4 && !isMer()){
+                                alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas mer vous gagnez donc :");
+                                alert.setGraphic(new ImageView("/Vue/Images/AcomplissementMer.jpg"));
+                                listJoueur.get(0).addCarte(getListAcomplissement().get(2));
+                                setMer(true);
+                                alert.showAndWait();
+                            }
+                            return;
+                        }
+                    }
+                }
+            }
+            @Override
+            public String getDescription() {
+                return "Félicitation vous rencontrer anaibito \n celui ci vous offre une carte panorama";
+            }
+        };
+        listRecontre.add(anaibit01);
+        listRecontre.add(anaibit01);
+    }
+
+    private void choixPanorama() {
+        if (listJoueur.get(0).getCartes().contains(listPanoramaRiziere.get(2)) && listJoueur.get(0).getCartes().contains(listPanoramaMontagnes.get(3)) && listJoueur.get(0).getCartes().contains(listPanoramaMer.get(4))) {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setHeaderText(null);
+            alert1.setContentText("Vous avez déja tout les panorama");
+            alert1.showAndWait();
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Panorama");
+        alert.setHeaderText("Choisisez le panorama que vous voulez obtenir");
+        ToggleGroup toggleGroup= new ToggleGroup();
+        GridPane gridPane = new GridPane();
+        if (!listJoueur.get(0).getCartes().contains(listPanoramaRiziere.get(2))){
+            RadioButton radioButton1 = new RadioButton("Riziere");
+            radioButton1.setToggleGroup(toggleGroup);
+            gridPane.add(radioButton1,0,0);
+        }
+        if (!listJoueur.get(0).getCartes().contains(listPanoramaMontagnes.get(3))){
+            RadioButton radioButton2 = new RadioButton("Montagne");
+            radioButton2.setToggleGroup(toggleGroup);
+            gridPane.add(radioButton2,1,0);
+        }
+        if (!listJoueur.get(0).getCartes().contains(listPanoramaRiziere.get(4))){
+            RadioButton radioButton3 = new RadioButton("Mer");
+            radioButton3.setToggleGroup(toggleGroup);
+            gridPane.add(radioButton3,2,0);
+        }
+        alert.setGraphic(gridPane);
+        alert.showAndWait();
+
+
+
+
     }
 
     public void initRepas(){ //Init de touts les repas
