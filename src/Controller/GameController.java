@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -689,12 +691,24 @@ public class GameController {
         model.majScore();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Fin de partie");
-        alert.setHeaderText("Classements :");
+        alert.setHeaderText("Accomplissements : ");
         model.trieJoueurScore();
-        String classement="";
+        String classement="Classement final :\n";
         for (int i=0;i<model.getListJoueur().size();i++){
             classement+=i+1+" ---> "+model.getListJoueur().get(i).getNom()+" avec : "+model.getListJoueur().get(i).getPoints()+" points \n";
         }
+        GridPane accomplissement = new GridPane();
+        int comptJ=0;
+        for(Joueur j: model.getListJoueur()){
+            for(Cartes c: j.getCartes()){
+                if(c instanceof Acomplissement) {
+                    accomplissement.add(new ImageView("/Vue/Images/" + j.getNom() + ".jpg"), 0, comptJ);
+                    accomplissement.add(new ImageView("/Vue/Images/" + c.getNom() + ".jpg"), 1, comptJ);
+                    comptJ++;
+                }
+            }
+        }
+        alert.setGraphic(accomplissement);
         alert.setContentText(classement);
         ButtonType buttonResetGame = new ButtonType("Recommencer");
         ButtonType buttonRestart = new ButtonType("Retour a l'accueil");
@@ -852,8 +866,9 @@ public class GameController {
         }
 
         int prixRepasTotal = 0;
-        int positionJ = 0;
+        ArrayList<Integer> positionJ = new ArrayList<Integer>();
         int compteurJ = 0;
+
         for(Joueur j: model.getListJoueur()){
             int prixRepas =0;
             for (int i = 0; i < j.getCartes().size(); i++) {
@@ -863,15 +878,19 @@ public class GameController {
             }
             if(prixRepas> prixRepasTotal){
                 prixRepasTotal = prixRepas;
-                positionJ = compteurJ;
+                positionJ.add(0,compteurJ);
+            }else if(prixRepas==prixRepasTotal && prixRepasTotal!=0){
+                positionJ.add(positionJ.size(),compteurJ);
             }
             compteurJ++;
         }
-
-        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Gourmet"));
+        for(int pos: positionJ){
+            model.getListJoueur().get(pos).addCarte(new Acomplissement("Gourmet"));
+            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu Gourmet");
+        }
 
         compteurJ =0;
-        positionJ = 0;
+        positionJ.clear();
         int nbSourceTotal=0;
         for(Joueur j: model.getListJoueur()){
             int nbSource =0;
@@ -882,14 +901,20 @@ public class GameController {
             }
             if(nbSource> nbSourceTotal){
                 nbSourceTotal = nbSource;
-                positionJ = compteurJ;
+                positionJ.add(0,compteurJ);
+            }else if(nbSource==nbSourceTotal && nbSourceTotal!=0){
+                positionJ.add(positionJ.size(),compteurJ);
             }
             compteurJ++;
         }
-        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Baigneur"));
+        for(int pos: positionJ){
+            model.getListJoueur().get(pos).addCarte(new Acomplissement("Baigneur"));
+            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu baigneur");
+
+        }
 
         compteurJ =0;
-        positionJ =0;
+        positionJ.clear();
         int nbRencontreTotal=0;
         for(Joueur j: model.getListJoueur()){
             int nbRencontre =0;
@@ -900,14 +925,20 @@ public class GameController {
             }
             if(nbRencontre> nbRencontreTotal){
                 nbRencontreTotal = nbRencontre;
-                positionJ = compteurJ;
+                positionJ.add(0,compteurJ);
+            }else if(nbRencontre==nbRencontreTotal && nbRencontreTotal!=0){
+                positionJ.add(positionJ.size(),compteurJ);
             }
             compteurJ++;
         }
-        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Bavard"));
+        for(int pos: positionJ){
+            model.getListJoueur().get(pos).addCarte(new Acomplissement("Bavard"));
+            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu bavard");
+
+        }
 
         compteurJ =0;
-        positionJ =0;
+        positionJ.clear();
         int nbSouvenirTotal=0;
         for(Joueur j: model.getListJoueur()){
             int nbSouvenir =0;
@@ -918,11 +949,17 @@ public class GameController {
             }
             if(nbSouvenir> nbSouvenirTotal){
                 nbSouvenirTotal = nbSouvenir;
-                positionJ = compteurJ;
+                positionJ.add(0,compteurJ);
+            }else if(nbSouvenir==nbSouvenirTotal && nbSouvenirTotal!=0){
+                positionJ.add(positionJ.size(),compteurJ);
             }
             compteurJ++;
         }
-        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Collectionneur"));
+        for(int pos: positionJ){
+            model.getListJoueur().get(pos).addCarte(new Acomplissement("Collectionneur"));
+            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu Collectionneur");
+
+        }
     }
 
 }
