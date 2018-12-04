@@ -871,6 +871,7 @@ public class GameController {
         model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Gourmet"));
 
         compteurJ =0;
+        positionJ = 0;
         int nbSourceTotal=0;
         for(Joueur j: model.getListJoueur()){
             int nbSource =0;
@@ -888,6 +889,7 @@ public class GameController {
         model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Baigneur"));
 
         compteurJ =0;
+        positionJ =0;
         int nbRencontreTotal=0;
         for(Joueur j: model.getListJoueur()){
             int nbRencontre =0;
@@ -905,6 +907,7 @@ public class GameController {
         model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Bavard"));
 
         compteurJ =0;
+        positionJ =0;
         int nbSouvenirTotal=0;
         for(Joueur j: model.getListJoueur()){
             int nbSouvenir =0;
