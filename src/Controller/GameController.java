@@ -120,9 +120,11 @@ public class GameController {
     @FXML Button b54;
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
+    boolean relanceRelais;
 
     public GameController(){
         boutonsPlateau = new ArrayList<>();
+        relanceRelais = false;
     }
 
     public void actionColor(ActionEvent event){
@@ -220,7 +222,7 @@ public class GameController {
                 }
             }
             if (!exist) {
-                boutonsPlateau.get(i).setStyle("-fx-background-color: gray;");
+                boutonsPlateau.get(i).setStyle("-fx-background-color: white;");
                 exist = false;
             } else {
                 boutonsPlateau.get(i).setStyle("-fx-background-color:"+model.getListJoueur().get(indice).getCouleur()+";");
@@ -286,11 +288,40 @@ public class GameController {
                             model.getListJoueur().get(0).setRelais4(true);
                             break;
                     }
-                    if (model.getListJoueur().get(0).getNom().equals("Chuubei")){
+                    if (model.getListJoueur().get(0).getNom().equals("Chuubei") && !relanceRelais){
                         model.getListJoueur().get(0).setPiocheRencontre(true);
                         piocheRencontre();
                     }
-                    if (model.getListJoueur().get(0).getNom().equals("Satsuki")){
+                    if(model.getListJoueur().get(0).getNom().equals("Hiroshige") && !relanceRelais){
+                        ToggleGroup group = new ToggleGroup();
+                        GridPane grille = new GridPane();
+                        RadioButton mer = new RadioButton("Panorama Mer");
+                        RadioButton riziere = new RadioButton("Panorama Riziere");
+                        RadioButton montagne = new RadioButton("Panorama Montagne");
+                        mer.setToggleGroup(group);
+                        riziere.setToggleGroup(group);
+                        montagne.setToggleGroup(group);
+                        if(!model.isMer())grille.add(mer,0,0);
+                        if(!model.isRiziere())grille.add(riziere,0,1);
+                        if(!model.isMontagne())grille.add(montagne,0,2);
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setGraphic(grille);
+                        alert.setTitle("Hiroshige");
+                        alert.setHeaderText("Choisissez un panorama : ");
+                        alert.showAndWait();
+
+                        if(mer.isSelected()){
+                            panoramaMer();
+                        }
+                        if(riziere.isSelected()){
+                            panoramaRiziere();
+                        }
+                        if(montagne.isSelected()){
+                            panoramaMontagne();
+                        }
+                    }
+                    if (model.getListJoueur().get(0).getNom().equals("Satsuki") && !relanceRelais){
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Satsuki");
                         alert.setHeaderText("En tant que satsuki vous avez le droit à un repas gratuit \n que vous pouvez refuser pour acceder au relais normal");
@@ -345,8 +376,11 @@ public class GameController {
                             if (model.getListJoueur().get(0).getNom().equals("Kinko")) {
                                 if (model.getListJoueur().get(0).getGold() >= (mesRepas.get(indice).getPrix() - 1)) {
                                     model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - (mesRepas.get(indice).getPrix() - 1));
-                                } else {
+                                }else {
                                     messageErreur("Vous n'avez pas les fond nécéssaires pour : \n"+mesRepas.get(indice).getNom());
+                                    relanceRelais=true;
+                                    piocheRelais(event);
+                                    return;
                                 }
                             } else {
                                 if (model.getListJoueur().get(0).getGold() >= mesRepas.get(indice).getPrix()) {
@@ -354,6 +388,9 @@ public class GameController {
 
                                 } else {
                                     messageErreur("Vous n'avez pas les fond nécéssaires pour : \n"+mesRepas.get(indice).getNom());
+                                    relanceRelais = true;
+                                    piocheRelais(event);
+                                    return;
                                 }
                             }
                             model.getListJoueur().get(0).addCarte(mesRepas.get(indice));
@@ -374,6 +411,7 @@ public class GameController {
                 }else messageErreur("Vous n'êtes pas autorisé à piocher des repas");
 
             }else messageErreur("Plus de carte relais");
+            relanceRelais=false;
     }
 
     private void piocheSourceChaude(){
@@ -556,7 +594,7 @@ public class GameController {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaRiziere().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg"));
                 System.out.println("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg");
-                alert.setHeaderText("Félicitation vous visiter une riziere \n vous obtenez donc :");
+                alert.setHeaderText("Félicitation vous visitez une riziere \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==2 && !model.isRiziere()){
                     alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas rizières vous gagnez donc :");
@@ -584,7 +622,7 @@ public class GameController {
             model.getListJoueur().get(0).addCarte(model.getListPanoramaMontagnes().get(i));
             alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg"));
             System.out.println("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg");
-            alert.setHeaderText("Félicitation vous visiter une montagne \n vous obtenez donc :");
+            alert.setHeaderText("Félicitation vous visitez une montagne \n vous obtenez donc :");
             alert.showAndWait();
             if (i==3 && !model.isMontagne()){
                 alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas montagnes vous gagnez donc :");
@@ -612,7 +650,7 @@ public class GameController {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaMer().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg"));
                 System.out.println("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg");
-                alert.setHeaderText("Félicitation vous visiter la mer \n vous obtenez donc :");
+                alert.setHeaderText("Félicitation vous visitez la mer \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==4 && !model.isMer()){
                     alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas mer vous gagnez donc :");
@@ -680,7 +718,7 @@ public class GameController {
             }
         }else{
             messageErreur("Vous n'avez plus d'or, allez à un autre arrêt");
-            button.setStyle("-fx-background-color: gray;");
+            button.setStyle("-fx-background-color: white;");
         }
     }
 
@@ -912,7 +950,7 @@ public class GameController {
 
     @FXML
     private void restartGame() {
-        for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: gray"); }
+        for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: white"); }
         ArrayList<Joueur> listeJoueur = model.getListJoueur();
         this.model= new Model();
         for (Joueur joueur:listeJoueur){
@@ -1027,14 +1065,17 @@ public class GameController {
                     if(model.getListJoueur().get(i).getOrTemple()==model.getListOrTemple().get(j)){
                         switch (j){
                             case 0:
+                                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 10");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
                                 ptsDonnee = true;
                                 break;
                             case 1:
+                                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 7");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
                                 ptsDonnee = true;
                                 break;
                             case 2:
+                                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 4");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 4);
                                 ptsDonnee = true;
                                 break;
@@ -1042,10 +1083,12 @@ public class GameController {
                         }
                         if(ptsDonnee) break;
                     }else if(j==2){
+                        //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 2");
                         model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 2);
                     }
                 }
             }else{
+                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 0");
                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints());
             }
         }
