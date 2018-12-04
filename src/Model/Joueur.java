@@ -14,6 +14,10 @@ public class Joueur {
     protected int positions;
     protected String couleur;
     protected int orTemple;
+    protected boolean isRelais1;
+    protected  boolean isRelais2;
+    protected boolean isRelais3;
+    protected boolean isRelais4;
 
 
     protected boolean temple;
@@ -42,6 +46,10 @@ public class Joueur {
        temple = false;
        orTemple=0;
        positions=0;
+       isRelais1=false;
+       isRelais2=false;
+       isRelais3=false;
+       isRelais4=false;
    }
 
     public void updateScore(){
@@ -126,6 +134,39 @@ public class Joueur {
         }
         return total;
    }
+
+    public boolean isRelais1() {
+        return isRelais1;
+    }
+
+    public void setRelais1(boolean relais1) {
+        isRelais1 = relais1;
+    }
+
+    public boolean isRelais2() {
+        return isRelais2;
+    }
+
+    public void setRelais2(boolean relais2) {
+        isRelais2 = relais2;
+    }
+
+
+    public boolean isRelais3() {
+        return isRelais3;
+    }
+
+    public void setRelais3(boolean relais3) {
+        isRelais3 = relais3;
+    }
+
+    public boolean isRelais4() {
+        return isRelais4;
+    }
+
+    public void setRelais4(boolean relais4) {
+        isRelais4 = relais4;
+    }
 
     public int getPoints(){
         return this.points;

@@ -26,6 +26,10 @@ public class GameController {
     @FXML Button b0;
     @FXML Button b101;
     @FXML Button b1;
+    @FXML Button b144;
+    @FXML Button b143;
+    @FXML Button b142;
+    @FXML Button b141;
     @FXML Button b2;
     @FXML Button b3;
     @FXML Button b4;
@@ -108,9 +112,14 @@ public class GameController {
                 return;
             }
         }
-        if (button.getId().equals("relais")){
+        if (indice>24 && !model.getListJoueur().get(0).isRelais1()){
+            messageErreur("Vous devez vous arreter au premier relais");
+            return;
+        }
+
+        if (button.getId().contains("relais")){
             model.getListJoueur().get(0).setPiocheRelais(true);
-            piocheRelais();
+            piocheRelais(event);
         }
         else if (button.getId().equals("source")){
             model.getListJoueur().get(0).setPiocheSource(true);
@@ -142,6 +151,7 @@ public class GameController {
         model.majScore();
         afficheCartes();
         if (model.getListJoueur().size()>=4) afficheArretDouble();
+        afficheArretRelais();
         if (model.getListJoueur().get(0).getPositions()>=boutonsPlateau.size()-1){
             try {
                 finDePartie();
@@ -197,12 +207,42 @@ public class GameController {
        }
     }
 
+    private void afficheArretRelais(){
+        boolean aCacher;
+        for (Integer integer:model.getListArretRelais()){
+            aCacher=true;
+            for (Joueur joueur: model.getListJoueur()){
+                if (joueur.getPositions()==integer){
+                    aCacher=false;
+                }
+            }
+            if (aCacher){
+                boutonsPlateau.get(integer-1).setVisible(false);
+            } else  boutonsPlateau.get(integer-1).setVisible(true);
+        }
+    }
+
     /**
      * Partie pioche
      */
-    public void piocheRelais() {
+    public void piocheRelais(ActionEvent event) {
+        Button button=(Button)event.getSource();
             if (!model.getListRepas().isEmpty()){
                 if (model.getListJoueur().get(0).isPiocheRelais()){
+                    switch (button.getId()){
+                        case "relais1":
+                            model.getListJoueur().get(0).setRelais1(true);
+                            break;
+                        case "relais2":
+                            model.getListJoueur().get(0).setRelais2(true);
+                            break;
+                        case "relais3":
+                            model.getListJoueur().get(0).setRelais3(true);
+                            break;
+                        case "relais4":
+                            model.getListJoueur().get(0).setRelais4(true);
+                            break;
+                    }
                     if (model.getListJoueur().get(0).getNom().equals("Chuubei")){
                         model.getListJoueur().get(0).setPiocheRencontre(true);
                         piocheRencontre();
@@ -281,7 +321,7 @@ public class GameController {
 
                         else {
                             messageErreur("Vous avez déjà gouté "+mesRepas.get(indice).getNom());
-                            piocheRelais();
+                            piocheRelais(event);
                         }
                     }else  {
                         model.getListRepas().removeAll(mesRepas);
@@ -676,6 +716,14 @@ public class GameController {
         boutonsPlateau.add(b11);
         boutonsPlateau.add(b12);
         boutonsPlateau.add(b13);
+        boutonsPlateau.add(b144);
+        b144.setVisible(false);
+        boutonsPlateau.add(b143);
+        b143.setVisible(false);
+        boutonsPlateau.add(b142);
+        b142.setVisible(false);
+        boutonsPlateau.add(b141);
+        b141.setVisible(false);
         boutonsPlateau.add(b14);
         boutonsPlateau.add(b15);
         boutonsPlateau.add(b16);

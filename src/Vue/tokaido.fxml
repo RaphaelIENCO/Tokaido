@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="2000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
   <content>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1700.0" prefWidth="2000.0" styleClass="fond" stylesheets="@style.css">
         <MenuButton layoutY="1.0" mnemonicParsing="false" text="Menu">
@@ -36,7 +36,7 @@
          <Button id="mer" fx:id="b11" layoutX="472.0" layoutY="342.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="montagne" fx:id="b12" layoutX="497.0" layoutY="296.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="source" fx:id="b13" layoutX="515.0" layoutY="259.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-         <Button id="relais" fx:id="b14" layoutX="557.0" layoutY="246.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais1" fx:id="b14" layoutX="557.0" layoutY="246.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="mer" fx:id="b15" layoutX="601.0" layoutY="267.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="temple" fx:id="b16" layoutX="629.0" layoutY="286.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="ferme" fx:id="b17" layoutX="654.0" layoutY="317.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
@@ -49,7 +49,7 @@
          <Button id="mer" fx:id="b24" layoutX="882.0" layoutY="470.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="souvenir" fx:id="b25" layoutX="911.0" layoutY="470.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="ferme" fx:id="b26" layoutX="943.0" layoutY="456.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-         <Button id="relais" fx:id="b27" layoutX="991.0" layoutY="436.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais2" fx:id="b27" layoutX="991.0" layoutY="436.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="riziere" fx:id="b28" layoutX="1040.0" layoutY="436.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="souvenir" fx:id="b29" layoutX="1076.0" layoutY="436.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="rencontre" fx:id="b30" layoutX="1101.0" layoutY="436.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
@@ -63,7 +63,7 @@
          <Button id="rencontre" fx:id="b38" layoutX="1342.0" layoutY="296.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="mer" fx:id="b39" layoutX="1360.0" layoutY="267.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="souvenir" fx:id="b40" layoutX="1396.0" layoutY="267.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-         <Button id="relais" fx:id="b41" layoutX="1442.0" layoutY="247.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais3" fx:id="b41" layoutX="1442.0" layoutY="247.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="source" fx:id="b42" layoutX="1488.0" layoutY="247.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="temple" fx:id="b43" layoutX="1517.0" layoutY="239.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="rencontre" fx:id="b44" layoutX="1546.0" layoutY="226.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
@@ -76,7 +76,7 @@
          <Button id="riziere" fx:id="b51" layoutX="1758.0" layoutY="165.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="mer" fx:id="b52" layoutX="1794.0" layoutY="153.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="souvenir" fx:id="b53" layoutX="1830.0" layoutY="124.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-         <Button fx:id="b54" layoutX="1881.0" layoutY="76.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais4" fx:id="b54" layoutX="1881.0" layoutY="76.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <ScrollPane layoutY="588.0" prefHeight="1200.0" prefWidth="2000" styleClass="buttonVert">
             <content>
                 <GridPane fx:id="grille" prefHeight="1100.0" prefWidth="2000" styleClass="backgroundColor" stylesheets="@style.css">
@@ -101,6 +101,10 @@
          <Button id="souvenir" fx:id="b101" layoutX="113.0" layoutY="276.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="temple" fx:id="b901" layoutX="400.0" layoutY="342.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="mer" fx:id="b111" layoutX="461.0" layoutY="288.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais1" fx:id="b141" layoutX="557.0" layoutY="288.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais1" fx:id="b142" layoutX="557.0" layoutY="326.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais1" fx:id="b143" layoutX="557.0" layoutY="364.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="relais1" fx:id="b144" layoutX="557.0" layoutY="405.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="0.0" prefWidth="36.0" styleClass="buttonJoueur" stylesheets="@style.css" />
     </AnchorPane>
   </content>
 </ScrollPane>

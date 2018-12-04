@@ -23,6 +23,7 @@ public class Model {
     private ArrayList<Integer>listOrTemple = new ArrayList<Integer>();
     private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
     private ArrayList<Integer> listArretDouble= new ArrayList<Integer>();
+    private ArrayList<Integer> listArretRelais = new ArrayList<>();
 
 
 
@@ -42,6 +43,7 @@ public class Model {
         initSource();
         initAccomplissement();
         initArretDouble();
+        initRelais();
         shuffle();
     }
     private void initArretDouble(){
@@ -52,7 +54,12 @@ public class Model {
         listArretDouble.add(14);
         listArretDouble.add(17);
 
-
+    }
+    private void initRelais(){
+        listArretRelais.add(21);
+        listArretRelais.add(22);
+        listArretRelais.add(23);
+        listArretRelais.add(24);
     }
 
     private void initAccomplissement() {
@@ -60,6 +67,14 @@ public class Model {
         listAcomplissement.add(new Acomplissement("AcomplissementMontagne"));
         listAcomplissement.add(new Acomplissement("AcomplissementMer"));
 
+    }
+
+    public ArrayList<Integer> getListArretRelais() {
+        return listArretRelais;
+    }
+
+    public void setListArretRelais(ArrayList<Integer> listArretRelais) {
+        this.listArretRelais = listArretRelais;
     }
 
     public void shuffle(){
