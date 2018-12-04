@@ -224,7 +224,7 @@ public class GameController {
                 }
             }
             if (!exist) {
-                boutonsPlateau.get(i).setStyle("-fx-background-color: gray;");
+                boutonsPlateau.get(i).setStyle("-fx-background-color: white;");
                 exist = false;
             } else {
                 boutonsPlateau.get(i).setStyle("-fx-background-color:"+model.getListJoueur().get(indice).getCouleur()+";");
@@ -716,7 +716,7 @@ public class GameController {
             }
         }else{
             messageErreur("Vous n'avez plus d'or, allez à un autre arrêt");
-            button.setStyle("-fx-background-color: gray;");
+            button.setStyle("-fx-background-color: white;");
         }
     }
 
@@ -948,7 +948,7 @@ public class GameController {
 
     @FXML
     private void restartGame() {
-        for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: gray"); }
+        for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: white"); }
         ArrayList<Joueur> listeJoueur = model.getListJoueur();
         this.model= new Model();
         for (Joueur joueur:listeJoueur){
