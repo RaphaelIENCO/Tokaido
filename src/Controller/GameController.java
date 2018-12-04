@@ -768,73 +768,9 @@ public class GameController {
 
 
     }
-    private void finDePartie() throws IOException {
-        model.trieJoueurOrTemple(); // tri OK
-
-        if(model.getListJoueur().size()>=3){
-            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
-            model.getListOrTemple().add(maxOrTemple);
-            int compteur=0;
-            for (int i = 0; i < model.getListJoueur().size(); i++) {
-                if(compteur==3) break;
-                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
-                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
-                    model.getListOrTemple().add(maxOrTemple);
-                    compteur++;
-                }
-            }
-        }else if(model.getListJoueur().size()==2){
-            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
-            model.getListOrTemple().add(maxOrTemple);
-            int compteur=0;
-            for (int i = 0; i < model.getListJoueur().size(); i++) {
-                if(compteur==2) break;
-                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
-                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
-                    model.getListOrTemple().add(maxOrTemple);
-                    compteur++;
-                }
-            }
-        }
-
-
-        for (int i = 0; i < model.getListJoueur().size(); i++) {
-                boolean ptsDonnee = false;
-                if(model.getListJoueur().get(i).getOrTemple()!=0){
-                    for (int j = 0; j < model.getListOrTemple().size(); j++) {
-                        //System.out.println(j);
-                        if(model.getListJoueur().get(i).getOrTemple()==model.getListOrTemple().get(j)){
-                        switch (j){
-                            case 0:
-                                //System.out.println("+10");
-                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
-                                ptsDonnee = true;
-                                break;
-                            case 1:
-                                //System.out.println("+7");
-                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
-                                ptsDonnee = true;
-                                break;
-                            case 2:
-                                //System.out.println("+4");
-                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 4);
-                                ptsDonnee = true;
-                                break;
-
-                        }
-                        if(ptsDonnee) break;
-                    }else if(j==2){
-                        //System.out.println("+2");
-                        model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 2);
-                    }
-                }
-            }else{
-                    System.out.println("+ rien");
-                    model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints());
-                }
-        }
-
-
+    public void finDePartie() throws IOException {
+        distribAvancement();
+        model.majScore();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Fin de partie");
         alert.setHeaderText("Classements :");
@@ -936,6 +872,141 @@ public class GameController {
 
     public void showReglement() {
         LauncherController.reglement();
+    }
+
+
+
+    public void distribAvancement(){
+        model.trieJoueurOrTemple(); // tri OK
+        if(model.getListJoueur().size()>=3){
+            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
+            model.getListOrTemple().add(maxOrTemple);
+            int compteur=0;
+            for (int i = 0; i < model.getListJoueur().size(); i++) {
+                if(compteur==3) break;
+                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
+                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
+                    model.getListOrTemple().add(maxOrTemple);
+                    compteur++;
+                }
+            }
+        }else if(model.getListJoueur().size()==2){
+            int maxOrTemple=model.getListJoueur().get(0).getOrTemple();
+            model.getListOrTemple().add(maxOrTemple);
+            int compteur=0;
+            for (int i = 0; i < model.getListJoueur().size(); i++) {
+                if(compteur==2) break;
+                if(model.getListJoueur().get(i).getOrTemple()<maxOrTemple){
+                    maxOrTemple = model.getListJoueur().get(i).getOrTemple();
+                    model.getListOrTemple().add(maxOrTemple);
+                    compteur++;
+                }
+            }
+        }
+
+
+        for (int i = 0; i < model.getListJoueur().size(); i++) {
+            boolean ptsDonnee = false;
+            if(model.getListJoueur().get(i).getOrTemple()!=0){
+                for (int j = 0; j < model.getListOrTemple().size(); j++) {
+                    if(model.getListJoueur().get(i).getOrTemple()==model.getListOrTemple().get(j)){
+                        switch (j){
+                            case 0:
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
+                                ptsDonnee = true;
+                                break;
+                            case 1:
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
+                                ptsDonnee = true;
+                                break;
+                            case 2:
+                                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 4);
+                                ptsDonnee = true;
+                                break;
+
+                        }
+                        if(ptsDonnee) break;
+                    }else if(j==2){
+                        model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 2);
+                    }
+                }
+            }else{
+                model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints());
+            }
+        }
+
+        int prixRepasTotal = 0;
+        int positionJ = 0;
+        int compteurJ = 0;
+        for(Joueur j: model.getListJoueur()){
+            int prixRepas =0;
+            for (int i = 0; i < j.getCartes().size(); i++) {
+                if(j.getCartes().get(i) instanceof Repas){
+                    prixRepas +=((Repas) j.getCartes().get(i)).getPrix();
+                }
+            }
+            if(prixRepas> prixRepasTotal){
+                prixRepasTotal = prixRepas;
+                positionJ = compteurJ;
+            }
+            compteurJ++;
+        }
+
+        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Gourmet"));
+
+        compteurJ =0;
+        positionJ = 0;
+        int nbSourceTotal=0;
+        for(Joueur j: model.getListJoueur()){
+            int nbSource =0;
+            for (int i = 0; i < j.getCartes().size(); i++) {
+                if(j.getCartes().get(i) instanceof Sources){
+                    nbSource ++;
+                }
+            }
+            if(nbSource> nbSourceTotal){
+                nbSourceTotal = nbSource;
+                positionJ = compteurJ;
+            }
+            compteurJ++;
+        }
+        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Baigneur"));
+
+        compteurJ =0;
+        positionJ =0;
+        int nbRencontreTotal=0;
+        for(Joueur j: model.getListJoueur()){
+            int nbRencontre =0;
+            for (int i = 0; i < j.getCartes().size(); i++) {
+                if(j.getCartes().get(i) instanceof Rencontre){
+                    nbRencontre ++;
+                }
+            }
+            if(nbRencontre> nbRencontreTotal){
+                nbRencontreTotal = nbRencontre;
+                positionJ = compteurJ;
+            }
+            compteurJ++;
+        }
+        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Bavard"));
+
+        compteurJ =0;
+        positionJ =0;
+        int nbSouvenirTotal=0;
+        for(Joueur j: model.getListJoueur()){
+            int nbSouvenir =0;
+            for (int i = 0; i < j.getCartes().size(); i++) {
+                if(j.getCartes().get(i) instanceof Souvenirs){
+                    nbSouvenir ++;
+                }
+            }
+            if(nbSouvenir> nbSouvenirTotal){
+                nbSouvenirTotal = nbSouvenir;
+                positionJ = compteurJ;
+            }
+            compteurJ++;
+        }
+        model.getListJoueur().get(positionJ).addCarte(new Acomplissement("Collectionneur"));
     }
 
 }
