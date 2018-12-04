@@ -14,16 +14,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import java.util.Optional;
+
+
 
 public class GameController {
     private Model model;
     private ArrayList<Button> boutonsPlateau;
-    private boolean initButton;
     @FXML Button b0;
     @FXML Button b1;
     @FXML Button b2;
@@ -32,6 +31,7 @@ public class GameController {
     @FXML Button b5;
     @FXML Button b6;
     @FXML Button b7;
+    @FXML Button b701;
     @FXML Button b8;
     @FXML Button b9;
     @FXML Button b10;
@@ -79,21 +79,15 @@ public class GameController {
     @FXML Button b52;
     @FXML Button b53;
     @FXML Button b54;
-    @FXML ScrollPane scroll;
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
 
     public GameController(){
         boutonsPlateau = new ArrayList<>();
-        initButton=false;
     }
 
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
-        if (!initButton){
-            ajoutBouton();
-            initButton=true;
-        }
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i)) && i<=model.getListJoueur().get(0).getPositions()){
                 messageErreur("Vous devez avancer");
@@ -152,6 +146,9 @@ public class GameController {
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i))) {
                 model.getListJoueur().get(0).setPositions(i);
+                if (i==8){
+                    boutonsPlateau.get(7).setVisible(true);
+                }
             }
         }
         int indice=0;
@@ -269,7 +266,7 @@ public class GameController {
             }else messageErreur("Plus de carte relais");
     }
 
-    public void piocheSourceChaude(){
+    private void piocheSourceChaude(){
         if (!model.getListSource().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheSource()) {
                 Sources source = model.getListSource().get(0);
@@ -290,7 +287,7 @@ public class GameController {
         }else messageErreur("Plus de carte source chaude");
     }
 
-    public void piocheSouvenir(){
+    private void piocheSouvenir(){
         if (model.getListJoueur().get(0).isPiocheSouvenir()) {
             if (model.getListSouvenir().size() > 3) {
                 int prixTotal = 0;
@@ -348,6 +345,8 @@ public class GameController {
                     }
                     prixTotal -= prixMin;
                 }
+                if(model.getListJoueur().get(0).getNom().equals("ZenEmon")){
+                }
 
                 if (model.getListJoueur().get(0).getGold() >= prixTotal) {
                     for(Souvenirs carte: toAdd){
@@ -386,7 +385,7 @@ public class GameController {
         model.getListJoueur().get(0).setPiocheSouvenir(false);
     }
 
-    public void piocheRencontre(){
+    private void piocheRencontre(){
         if(!model.getListRecontre().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheRencontre()) {
                 if (model.getListJoueur().get(0).getNom().equals("Umegae")) {
@@ -586,7 +585,7 @@ public class GameController {
         alert.showAndWait();
     }
 
-    public void rencontreYoshiyasu(Rencontre rencontre1,Rencontre rencontre2){
+    private void rencontreYoshiyasu(Rencontre rencontre1, Rencontre rencontre2){
         rencontre2.rencontre(model.getListJoueur().get(0));
         model.getListJoueur().get(0).addCarte(rencontre2);
         model.getListRecontre().remove(rencontre1);
@@ -632,6 +631,8 @@ public class GameController {
         boutonsPlateau.add(b4);
         boutonsPlateau.add(b5);
         boutonsPlateau.add(b6);
+        boutonsPlateau.add(b701);
+        b701.setVisible(false);
         boutonsPlateau.add(b7);
         boutonsPlateau.add(b8);
         boutonsPlateau.add(b9);
@@ -749,6 +750,8 @@ public class GameController {
                     break;
             }
         }
+        boutonsPlateau.clear();
+        ajoutBouton();
         afficheCartes();
         affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
     }
@@ -756,6 +759,7 @@ public class GameController {
     public void setData(Model m){
         this.model =m;
         afficheCartes();
+        ajoutBouton();
         affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
     }
 
