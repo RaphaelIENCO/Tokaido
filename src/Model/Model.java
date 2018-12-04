@@ -22,6 +22,8 @@ public class Model {
     private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
     private ArrayList<Integer>listOrTemple = new ArrayList<Integer>();
     private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
+    private ArrayList<Integer> listArretDouble= new ArrayList<Integer>();
+    private ArrayList<Integer> listArretRelais = new ArrayList<>();
 
 
 
@@ -40,7 +42,54 @@ public class Model {
         initPanorama();
         initSource();
         initAccomplissement();
+        initArretDouble();
+        initRelais();
         shuffle();
+    }
+    private void initArretDouble(){
+        listArretDouble.add(2);
+        listArretDouble.add(7);
+        listArretDouble.add(9);
+        listArretDouble.add(11);
+        listArretDouble.add(14);
+        listArretDouble.add(17);
+        listArretDouble.add(28);
+        listArretDouble.add(30);
+        listArretDouble.add(32);
+        listArretDouble.add(34);
+        listArretDouble.add(37);
+        listArretDouble.add(40);
+        listArretDouble.add(51);
+        listArretDouble.add(54);
+        listArretDouble.add(57);
+        listArretDouble.add(60);
+        listArretDouble.add(62);
+        listArretDouble.add(66);
+        listArretDouble.add(74);
+        listArretDouble.add(77);
+        listArretDouble.add(80);
+        listArretDouble.add(82);
+        listArretDouble.add(86);
+        listArretDouble.add(88);
+
+    }
+    private void initRelais(){
+        listArretRelais.add(21);
+        listArretRelais.add(22);
+        listArretRelais.add(23);
+        listArretRelais.add(24);
+        listArretRelais.add(44);
+        listArretRelais.add(45);
+        listArretRelais.add(46);
+        listArretRelais.add(47);
+        listArretRelais.add(68);
+        listArretRelais.add(69);
+        listArretRelais.add(70);
+        listArretRelais.add(71);
+        listArretRelais.add(91);
+        listArretRelais.add(92);
+        listArretRelais.add(93);
+        listArretRelais.add(94);
     }
 
     private void initAccomplissement() {
@@ -48,6 +97,14 @@ public class Model {
         listAcomplissement.add(new Acomplissement("AcomplissementMontagne"));
         listAcomplissement.add(new Acomplissement("AcomplissementMer"));
 
+    }
+
+    public ArrayList<Integer> getListArretRelais() {
+        return listArretRelais;
+    }
+
+    public void setListArretRelais(ArrayList<Integer> listArretRelais) {
+        this.listArretRelais = listArretRelais;
     }
 
     public void shuffle(){
@@ -197,6 +254,14 @@ public class Model {
                 listSource.add(new Sources("Source" + j, j+2));
             }
         }
+    }
+
+    public ArrayList<Integer> getListArretDouble() {
+        return listArretDouble;
+    }
+
+    public void setListArretDouble(ArrayList<Integer> listtArretDouble) {
+        this.listArretDouble = listtArretDouble;
     }
 
     public boolean isRiziere() {

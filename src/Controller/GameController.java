@@ -25,34 +25,73 @@ import java.util.Optional;
 public class GameController {
     private Model model;
     private ArrayList<Button> boutonsPlateau;
+    @FXML Button b544;
+    @FXML Button b543;
+    @FXML Button b542;
+    @FXML Button b541;
+    @FXML Button b511;
+    @FXML Button b521;
+    @FXML Button b471;
+    @FXML Button b481;
+    @FXML Button b431;
+    @FXML Button b451;
+    @FXML Button b414;
+    @FXML Button b413;
+    @FXML Button b412;
+    @FXML Button b411;
+    @FXML Button b371;
+    @FXML Button b401;
+    @FXML Button b341;
+    @FXML Button b361;
+    @FXML Button b301;
+    @FXML Button b321;
     @FXML Button b0;
+    @FXML Button b101;
     @FXML Button b1;
+    @FXML Button b144;
+    @FXML Button b143;
+    @FXML Button b142;
+    @FXML Button b141;
     @FXML Button b2;
     @FXML Button b3;
     @FXML Button b4;
     @FXML Button b5;
+    @FXML Button b501;
     @FXML Button b6;
+    @FXML Button b601;
     @FXML Button b7;
     @FXML Button b701;
     @FXML Button b8;
+    @FXML Button b901;
     @FXML Button b9;
     @FXML Button b10;
+    @FXML Button b111;
     @FXML Button b11;
     @FXML Button b12;
     @FXML Button b13;
     @FXML Button b14;
     @FXML Button b15;
     @FXML Button b16;
+    @FXML Button b171;
     @FXML Button b17;
+    @FXML Button b181;
     @FXML Button b18;
+    @FXML Button b191;
     @FXML Button b19;
+    @FXML Button b201;
     @FXML Button b20;
+    @FXML Button b221;
     @FXML Button b21;
     @FXML Button b22;
     @FXML Button b23;
+    @FXML Button b241;
     @FXML Button b24;
     @FXML Button b25;
     @FXML Button b26;
+    @FXML Button b271;
+    @FXML Button b272;
+    @FXML Button b273;
+    @FXML Button b274;
     @FXML Button b27;
     @FXML Button b28;
     @FXML Button b29;
@@ -90,15 +129,37 @@ public class GameController {
 
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
+        int indice=0;
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i)) && i<=model.getListJoueur().get(0).getPositions()){
                 messageErreur("Vous devez avancer");
                 return;
+            }else if (button==boutonsPlateau.get(i)){
+                indice=i;
             }
         }
-        if (button.getId().equals("relais")){
+        for (Joueur joueur :model.getListJoueur()){
+            if (joueur.getPositions()==indice){
+                messageErreur("Il y à déja quelqu'un");
+                return;
+            }
+        }
+        if (indice>24 && !model.getListJoueur().get(0).isRelais1()){
+            messageErreur("Vous devez vous arreter au premier relais");
+            return;
+        }
+        if (indice>47 && !model.getListJoueur().get(0).isRelais2()){
+            messageErreur("Vous devez vous arreter au second relais");
+            return;
+        }
+        if (indice>71 && !model.getListJoueur().get(0).isRelais3()){
+            messageErreur("Vous devez vous arreter au troisieme relais");
+            return;
+        }
+
+        if (button.getId().contains("relais")){
             model.getListJoueur().get(0).setPiocheRelais(true);
-            piocheRelais();
+            piocheRelais(event);
         }
         else if (button.getId().equals("source")){
             model.getListJoueur().get(0).setPiocheSource(true);
@@ -129,7 +190,9 @@ public class GameController {
         model.trieJoueur();
         model.majScore();
         afficheCartes();
-        if (model.getListJoueur().get(0).getPositions()>=boutonsPlateau.size()-1){
+        if (model.getListJoueur().size()>=4) afficheArretDouble();
+        afficheArretRelais();
+        if (model.getListJoueur().get(0).getPositions()==boutonsPlateau.size()-(model.getListJoueur().size())){
             try {
                 finDePartie();
                 return;
@@ -148,9 +211,6 @@ public class GameController {
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i))) {
                 model.getListJoueur().get(0).setPositions(i);
-                if (i==8){
-                    boutonsPlateau.get(7).setVisible(true);
-                }
             }
         }
         int indice=0;
@@ -172,12 +232,58 @@ public class GameController {
         }
     }
 
+    private void afficheArretDouble(){
+        boolean aCacher;
+       for (Integer integer:model.getListArretDouble()){
+           aCacher=true;
+           for (Joueur joueur: model.getListJoueur()){
+               if (joueur.getPositions()==integer){
+                   aCacher=false;
+               }
+           }
+           if (aCacher){
+               boutonsPlateau.get(integer-1).setVisible(false);
+           } else  boutonsPlateau.get(integer-1).setVisible(true);
+       }
+    }
+
+    private void afficheArretRelais(){
+        boolean aCacher;
+        for (Integer integer:model.getListArretRelais()){
+            aCacher=true;
+            for (Joueur joueur: model.getListJoueur()){
+                if (joueur.getPositions()==integer){
+                    aCacher=false;
+                }
+            }
+            if (aCacher){
+                boutonsPlateau.get(integer-1).setVisible(false);
+            } else  boutonsPlateau.get(integer-1).setVisible(true);
+        }
+    }
+
     /**
      * Partie pioche
      */
-    public void piocheRelais() {
+    public void piocheRelais(ActionEvent event) {
+        Button button=(Button)event.getSource();
             if (!model.getListRepas().isEmpty()){
                 if (model.getListJoueur().get(0).isPiocheRelais()){
+                    int nbCartes=0;
+                    switch (button.getId()){
+                        case "relais1":
+                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais1()) nbCartes++;
+                            model.getListJoueur().get(0).setRelais1(true);
+                            break;
+                        case "relais2":
+                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais2()) nbCartes++;
+                            model.getListJoueur().get(0).setRelais2(true);
+                            break;
+                        case "relais3":
+                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais3()) nbCartes++;
+                            model.getListJoueur().get(0).setRelais3(true);
+                            break;
+                    }
                     if (model.getListJoueur().get(0).getNom().equals("Chuubei")){
                         model.getListJoueur().get(0).setPiocheRencontre(true);
                         piocheRencontre();
@@ -210,7 +316,7 @@ public class GameController {
                     ArrayList<RadioButton> rbox = new ArrayList<RadioButton>();
                     ArrayList<Repas> mesRepas = new ArrayList<Repas>();
                     ToggleGroup group = new ToggleGroup();
-                    for (int i=0;i<model.getListJoueur().size()+1;i++){
+                    for (int i=0;i<nbCartes+1;i++){
                         RadioButton radioButton = new RadioButton();
                         mesRepas.add(model.getListRepas().get(i));
                         radioButton.setGraphic(new ImageView("/Vue/Images/"+model.getListRepas().get(i).getNom()+".jpg"));
@@ -256,7 +362,7 @@ public class GameController {
 
                         else {
                             messageErreur("Vous avez déjà gouté "+mesRepas.get(indice).getNom());
-                            piocheRelais();
+                            piocheRelais(event);
                         }
                     }else  {
                         model.getListRepas().removeAll(mesRepas);
@@ -444,7 +550,6 @@ public class GameController {
         alert.setContentText(null);
 
         for (int i = 0; i < model.getListPanoramaRiziere().size(); i++) {
-            System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i)));
             if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i))) {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaRiziere().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg"));
@@ -627,61 +732,139 @@ public class GameController {
 
     private void ajoutBouton() {
         boutonsPlateau.add(b0);
+        boutonsPlateau.add(b101);
+        b101.setVisible(false);
         boutonsPlateau.add(b1);
         boutonsPlateau.add(b2);
         boutonsPlateau.add(b3);
         boutonsPlateau.add(b4);
+        boutonsPlateau.add(b501);
+        b501.setVisible(false);
         boutonsPlateau.add(b5);
+        boutonsPlateau.add(b601);
+        b601.setVisible(false);
         boutonsPlateau.add(b6);
         boutonsPlateau.add(b701);
         b701.setVisible(false);
         boutonsPlateau.add(b7);
         boutonsPlateau.add(b8);
+        boutonsPlateau.add(b901);
+        b901.setVisible(false);
         boutonsPlateau.add(b9);
         boutonsPlateau.add(b10);
+        boutonsPlateau.add(b111);
+        b111.setVisible(false);
         boutonsPlateau.add(b11);
         boutonsPlateau.add(b12);
         boutonsPlateau.add(b13);
+        boutonsPlateau.add(b144);
+        b144.setVisible(false);
+        boutonsPlateau.add(b143);
+        b143.setVisible(false);
+        boutonsPlateau.add(b142);
+        b142.setVisible(false);
+        boutonsPlateau.add(b141);
+        b141.setVisible(false);
         boutonsPlateau.add(b14);
         boutonsPlateau.add(b15);
         boutonsPlateau.add(b16);
+        boutonsPlateau.add(b171);
+        b171.setVisible(false);
         boutonsPlateau.add(b17);
+        boutonsPlateau.add(b181);
+        b181.setVisible(false);
         boutonsPlateau.add(b18);
+        boutonsPlateau.add(b191);
+        b191.setVisible(false);
         boutonsPlateau.add(b19);
+        boutonsPlateau.add(b201);
+        b201.setVisible(false);
         boutonsPlateau.add(b20);
         boutonsPlateau.add(b21);
+        boutonsPlateau.add(b221);
+        b221.setVisible(false);
         boutonsPlateau.add(b22);
         boutonsPlateau.add(b23);
+        boutonsPlateau.add(b241);
+        b241.setVisible(false);
         boutonsPlateau.add(b24);
         boutonsPlateau.add(b25);
         boutonsPlateau.add(b26);
+        boutonsPlateau.add(b274);
+        b274.setVisible(false);
+        boutonsPlateau.add(b273);
+        b273.setVisible(false);
+        boutonsPlateau.add(b272);
+        b272.setVisible(false);
+        boutonsPlateau.add(b271);
+        b271.setVisible(false);
         boutonsPlateau.add(b27);
         boutonsPlateau.add(b28);
         boutonsPlateau.add(b29);
+        boutonsPlateau.add(b301);
+        b301.setVisible(false);
         boutonsPlateau.add(b30);
         boutonsPlateau.add(b31);
+        boutonsPlateau.add(b321);
+        b321.setVisible(false);
         boutonsPlateau.add(b32);
         boutonsPlateau.add(b33);
+        boutonsPlateau.add(b341);
+        b341.setVisible(false);
         boutonsPlateau.add(b34);
         boutonsPlateau.add(b35);
+        boutonsPlateau.add(b361);
+        b361.setVisible(false);
         boutonsPlateau.add(b36);
+        boutonsPlateau.add(b371);
+        b371.setVisible(false);
         boutonsPlateau.add(b37);
         boutonsPlateau.add(b38);
         boutonsPlateau.add(b39);
+        boutonsPlateau.add(b401);
+        b401.setVisible(false);
         boutonsPlateau.add(b40);
+        boutonsPlateau.add(b414);
+        b414.setVisible(false);
+        boutonsPlateau.add(b413);
+        b413.setVisible(false);
+        boutonsPlateau.add(b412);
+        b412.setVisible(false);
+        boutonsPlateau.add(b411);
+        b411.setVisible(false);
         boutonsPlateau.add(b41);
         boutonsPlateau.add(b42);
+        boutonsPlateau.add(b431);
+        b431.setVisible(false);
         boutonsPlateau.add(b43);
         boutonsPlateau.add(b44);
+        boutonsPlateau.add(b451);
+        b451.setVisible(false);
         boutonsPlateau.add(b45);
         boutonsPlateau.add(b46);
+        boutonsPlateau.add(b471);
+        b471.setVisible(false);
         boutonsPlateau.add(b47);
+        boutonsPlateau.add(b481);
+        b481.setVisible(false);
         boutonsPlateau.add(b48);
         boutonsPlateau.add(b49);
         boutonsPlateau.add(b50);
+        boutonsPlateau.add(b511);
+        b511.setVisible(false);
         boutonsPlateau.add(b51);
+        boutonsPlateau.add(b521);
+        b521.setVisible(false);
         boutonsPlateau.add(b52);
         boutonsPlateau.add(b53);
+        boutonsPlateau.add(b544);
+        b544.setVisible(false);
+        boutonsPlateau.add(b543);
+        b543.setVisible(false);
+        boutonsPlateau.add(b542);
+        b542.setVisible(false);
+        boutonsPlateau.add(b541);
+        b541.setVisible(false);
         boutonsPlateau.add(b54);
 
 
