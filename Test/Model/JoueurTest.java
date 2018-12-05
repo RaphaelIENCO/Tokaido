@@ -121,44 +121,44 @@ public class JoueurTest {
         Assert.assertEquals(0,joueur.getCartes().size());
     }
 
-    @Test
-    public void testTrierCarte(){
-        boolean verif = false;
-
-        Joueur joueur = new Joueur();
-        Repas repas = new Repas("R1");
-        Souvenirs souvenirs = new Souvenirs("S1");
-        Rencontre rencontre = new Rencontre("RE1") {
-            @Override
-            public void rencontre(Joueur joueur) {
-            }
-
-            @Override
-            public String getDescription() {
-                return null;
-            }
-        };
-        Sources sources = new Sources("SO1",0);
-        Acomplissement acomplissement = new Acomplissement("A1");
-
-        joueur.addCarte(souvenirs);
-        joueur.addCarte(repas);
-        joueur.addCarte(rencontre);
-        joueur.addCarte(acomplissement);
-        joueur.addCarte(sources);
-
-        Collections.shuffle(joueur.getCartes());
-
-        joueur.trierCarte();
-
-        if (joueur.getCartes().get(0) == repas && joueur.getCartes().get(1) == souvenirs
-                && joueur.getCartes().get(2) == rencontre && joueur.getCartes().get(3) == sources
-                && joueur.getCartes().get(4) == acomplissement){
-            verif = true;
-        }
-
-        Assert.assertTrue(verif);
-    }
+//    @Test
+//    public void testTrierCarte(){
+//        boolean verif = false;
+//
+//        Joueur joueur = new Joueur();
+//        Repas repas = new Repas("R1");
+//        Souvenirs souvenirs = new Souvenirs("S1");
+//        Rencontre rencontre = new Rencontre("RE1") {
+//            @Override
+//            public void rencontre(Joueur joueur) {
+//            }
+//
+//            @Override
+//            public String getDescription() {
+//                return null;
+//            }
+//        };
+//        Sources sources = new Sources("SO1",0);
+//        Acomplissement acomplissement = new Acomplissement("A1");
+//
+//        joueur.addCarte(souvenirs);
+//        joueur.addCarte(repas);
+//        joueur.addCarte(rencontre);
+//        joueur.addCarte(acomplissement);
+//        joueur.addCarte(sources);
+//
+//        Collections.shuffle(joueur.getCartes());
+//
+//        joueur.trierCarte();
+//
+//        if (joueur.getCartes().get(0) == repas && joueur.getCartes().get(1) == souvenirs
+//                && joueur.getCartes().get(2) == rencontre && joueur.getCartes().get(3) == sources
+//                && joueur.getCartes().get(4) == acomplissement){
+//            verif = true;
+//        }
+//
+//        Assert.assertTrue(verif);
+//    }
 
 
 

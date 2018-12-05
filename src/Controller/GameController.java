@@ -544,56 +544,21 @@ public class GameController {
         model.getListJoueur().get(0).setPiocheSouvenir(false);
     }
 
-    private void piocheRencontre(){
-        if(!model.getListRecontre().isEmpty()) {
+    private void piocheRencontre() {
+        if (!model.getListRecontre().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheRencontre()) {
-                if (model.getListJoueur().get(0).getNom().equals("Umegae")) {
-                    model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints()+1);
-                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+1);
-                }
-                    if (model.getListJoueur().get(0).getNom().equals("Yoshiyasu") && model.getListRecontre().size()>=2) {
-                        GridPane gridPane = new GridPane();
-                        RadioButton radioButton1 = new RadioButton();
-                        RadioButton radioButton2 = new RadioButton();
-                        ToggleGroup toggleGroup = new ToggleGroup();
-                        Rencontre rencontre1= model.getListRecontre().get(0);
-                        Rencontre rencontre2= model.getListRecontre().get(1);
-
-                        radioButton1.setGraphic(new ImageView("/Vue/Images/" + model.getListRecontre().get(0).getNom() + ".jpg"));
-                        radioButton2.setGraphic(new ImageView("/Vue/Images/" + model.getListRecontre().get(1).getNom() + ".jpg"));
-                        radioButton1.setToggleGroup(toggleGroup);
-                        radioButton2.setToggleGroup(toggleGroup);
-                        gridPane.add(radioButton1,0,0);
-                        gridPane.add(radioButton2,1,0);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Rencontre");
-                        alert.setGraphic(gridPane);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Veuillez choisir une cartes");
-                        alert.showAndWait();
-                        if (radioButton1.isSelected()) rencontreYoshiyasu(rencontre1,rencontre1);
-                        else if (radioButton2.isSelected())rencontreYoshiyasu(rencontre1,rencontre2);
-
-                } else {
-                    Rencontre rencontre = model.getListRecontre().get(0);
-                    String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
-                    Alert show = new Alert(Alert.AlertType.INFORMATION);
-                    ImageView imageView = new ImageView(new Image(nomImage));
-                    show.setGraphic(imageView);
-                    show.setTitle("Rencontre");
-                    show.setHeaderText("Vous avez rencontré " + rencontre.getNom());
-                    show.setContentText("Effets  :" + rencontre.getDescription());
-                    show.showAndWait();
-                    rencontre.rencontre(model.getListJoueur().get(0));
-                    model.getListJoueur().get(0).addCarte(rencontre);
-                    model.getListRecontre().remove(rencontre);
-                    model.getListJoueur().get(0).setPiocheRencontre(false);
-                }
-            } else {
-                messageErreur("Vous ne pouvez pas piocher de carte Rencontre");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Rencontre");
+                alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(0).getNom()+".jpg"));
+                alert.setHeaderText("Vous avez rencontrer "+model.getListRecontre().get(0).getNom());
+                alert.setContentText(model.getListRecontre().get(0).getDescription());
+                model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
+                alert.showAndWait();
             }
-        }else messageErreur("Plus de cartes rencontre");
+            else messageErreur("Vous n'êtes pas autorisé à piocher");
+        } else messageErreur("Plus de cartes rencontre");
     }
+
 
     private void panoramaRiziere() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -736,15 +701,6 @@ public class GameController {
         alert.setContentText("Vous arrivé à une ferme \n vous gagnez 3 pièce d'or");
         model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+3);
         alert.showAndWait();
-    }
-
-    private void rencontreYoshiyasu(Rencontre rencontre1, Rencontre rencontre2){
-        rencontre2.rencontre(model.getListJoueur().get(0));
-        model.getListJoueur().get(0).addCarte(rencontre2);
-        model.getListRecontre().remove(rencontre1);
-        model.getListRecontre().remove(rencontre2);
-        model.getListRecontre().add(rencontre1);
-
     }
 
 

@@ -1,10 +1,14 @@
 package Model;
+public  class Rencontre extends Cartes {
 
-public abstract class Rencontre extends Cartes {
-    public Rencontre(String nom){
+    protected String description;
+
+    public Rencontre(String nom,String description){
         super(nom);
+        this.description=description;
     }
 
-    public abstract void rencontre(Joueur joueur);
-    public abstract String getDescription();
+    public String getDescription(){
+        return this.description;
+    }
 }
