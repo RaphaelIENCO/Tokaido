@@ -23,6 +23,10 @@ import java.util.Optional;
 public class GameController {
     private Model model;
     private ArrayList<Button> boutonsPlateau;
+    @FXML Button b010;
+    @FXML Button b011;
+    @FXML Button b012;
+    @FXML Button b013;
     @FXML Button b544;
     @FXML Button b543;
     @FXML Button b542;
@@ -144,15 +148,15 @@ public class GameController {
                 return;
             }
         }
-        if (indice>24 && !model.getListJoueur().get(0).isRelais1()){
+        if (indice>28 && !model.getListJoueur().get(0).isRelais1()){
             messageErreur("Vous devez vous arreter au premier relais");
             return;
         }
-        if (indice>47 && !model.getListJoueur().get(0).isRelais2()){
+        if (indice>51 && !model.getListJoueur().get(0).isRelais2()){
             messageErreur("Vous devez vous arreter au second relais");
             return;
         }
-        if (indice>71 && !model.getListJoueur().get(0).isRelais3()){
+        if (indice>75 && !model.getListJoueur().get(0).isRelais3()){
             messageErreur("Vous devez vous arreter au troisieme relais");
             return;
         }
@@ -201,19 +205,24 @@ public class GameController {
             }
         }
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
+        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
     }
 
 
 
     private void updatePos(ActionEvent event) {
-        Boolean exist = false;
         Button button = (Button) event.getSource();
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i))) {
                 model.getListJoueur().get(0).setPositions(i);
             }
         }
+        colorieCase();
+
+    }
+    public void colorieCase(){
         int indice=0;
+        Boolean exist = false;
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             for (int j = 0; j < model.getListJoueur().size(); j++) {
                 if (model.getListJoueur().get(j).getPositions() == i) {
@@ -226,7 +235,7 @@ public class GameController {
                 exist = false;
             } else {
                 boutonsPlateau.get(i).setStyle("-fx-background-color:"+model.getListJoueur().get(indice).getCouleur()+";");
-                        exist=false;
+                exist=false;
 
             }
         }
@@ -595,7 +604,6 @@ public class GameController {
             if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i))) {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaRiziere().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg"));
-                System.out.println("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg");
                 alert.setHeaderText("Félicitation vous visitez une riziere \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==2 && !model.isRiziere()){
@@ -619,11 +627,9 @@ public class GameController {
         alert.setContentText(null);
 
         for (int i = 0; i < model.getListPanoramaMontagnes().size(); i++) {
-        System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMontagnes().get(i)));
         if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMontagnes().get(i))) {
             model.getListJoueur().get(0).addCarte(model.getListPanoramaMontagnes().get(i));
             alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg"));
-            System.out.println("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg");
             alert.setHeaderText("Félicitation vous visitez une montagne \n vous obtenez donc :");
             alert.showAndWait();
             if (i==3 && !model.isMontagne()){
@@ -647,11 +653,9 @@ public class GameController {
         alert.setContentText(null);
 
         for (int i = 0; i < model.getListPanoramaMer().size(); i++) {
-            System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMer().get(i)));
             if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMer().get(i))) {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaMer().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg"));
-                System.out.println("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg");
                 alert.setHeaderText("Félicitation vous visitez la mer \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==4 && !model.isMer()){
@@ -773,6 +777,14 @@ public class GameController {
     }
 
     private void ajoutBouton() {
+        boutonsPlateau.add(b013);
+        b013.setVisible(false);
+        boutonsPlateau.add(b012);
+        b012.setVisible(false);
+        boutonsPlateau.add(b011);
+        b011.setVisible(false);
+        boutonsPlateau.add(b010);
+        b010.setVisible(false);
         boutonsPlateau.add(b0);
         boutonsPlateau.add(b101);
         b101.setVisible(false);
@@ -994,14 +1006,50 @@ public class GameController {
         boutonsPlateau.clear();
         ajoutBouton();
         afficheCartes();
+        initJoueur();
+        afficheArretRelais();
+        colorieCase();
         affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
+        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+    }
+
+    private void initJoueur() {
+        switch (model.getListJoueur().size()){
+            case 2:
+                model.getListJoueur().get(0).setPositions(3);
+                model.getListJoueur().get(1).setPositions(4);
+                break;
+            case 3:
+                model.getListJoueur().get(0).setPositions(2);
+                model.getListJoueur().get(1).setPositions(3);
+                model.getListJoueur().get(2).setPositions(4);
+                break;
+            case 4:
+                model.getListJoueur().get(0).setPositions(1);
+                model.getListJoueur().get(1).setPositions(2);
+                model.getListJoueur().get(2).setPositions(3);
+                model.getListJoueur().get(3).setPositions(4);
+                break;
+            case 5:
+                model.getListJoueur().get(0).setPositions(0);
+                model.getListJoueur().get(1).setPositions(1);
+                model.getListJoueur().get(2).setPositions(2);
+                model.getListJoueur().get(3).setPositions(3);
+                model.getListJoueur().get(4).setPositions(4);
+                break;
+        }
     }
 
     public void setData(Model m){
         this.model =m;
         afficheCartes();
         ajoutBouton();
+        initJoueur();
+        afficheArretRelais();
+        colorieCase();
         affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
+        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+
     }
 
     /**

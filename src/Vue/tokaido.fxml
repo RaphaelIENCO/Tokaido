@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="2000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="2000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
   <content>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1700.0" prefWidth="2000.0" styleClass="fond" stylesheets="@style.css">
         <MenuButton layoutY="1.0" mnemonicParsing="false" text="Menu">
@@ -22,9 +22,9 @@
             </items>
         </MenuButton>
         <Button id="souvenir" fx:id="b1" layoutX="118.0" layoutY="326.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-        <Label fx:id="affichageJoueur" layoutX="1065.0" layoutY="62.0" prefHeight="55.0" prefWidth="277.0" />
+        <Label fx:id="affichageJoueur" layoutX="863.0" layoutY="32.0" prefHeight="111.0" prefWidth="468.0" />
          <Button id="temple" fx:id="b2" layoutX="149.0" layoutY="326.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
-         <Button id="echope" fx:id="b0" layoutX="56.0" layoutY="316.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="52.0" prefWidth="55.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button id="echope" fx:id="b0" layoutX="71.0" layoutY="367.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26" prefWidth="26" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="rencontre" fx:id="b3" layoutX="182.0" layoutY="310.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="riziere" fx:id="b4" layoutX="220.0" layoutY="310.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="source" fx:id="b5" layoutX="261.0" layoutY="330.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
@@ -135,6 +135,10 @@
          <Button id="relais4" fx:id="b542" layoutX="1888.0" layoutY="186.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="relais4" fx:id="b543" layoutX="1887.0" layoutY="216.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
          <Button id="relais4" fx:id="b544" layoutX="1888.0" layoutY="248.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button fx:id="b010" layoutX="73.0" layoutY="403.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button fx:id="b011" layoutX="73.0" layoutY="439.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button fx:id="b012" layoutX="71.0" layoutY="475.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
+         <Button fx:id="b013" layoutX="71.0" layoutY="510.0" mnemonicParsing="false" onAction="#actionColor" prefHeight="26.0" prefWidth="26.0" styleClass="buttonJoueur" stylesheets="@style.css" />
     </AnchorPane>
   </content>
 </ScrollPane>

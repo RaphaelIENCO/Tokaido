@@ -52,49 +52,53 @@ public class Model {
         shuffle();
     }
     private void initArretDouble(){
-        listArretDouble.add(2);
-        listArretDouble.add(7);
-        listArretDouble.add(9);
+        listArretDouble.add(6);
         listArretDouble.add(11);
-        listArretDouble.add(14);
-        listArretDouble.add(17);
-        listArretDouble.add(28);
-        listArretDouble.add(30);
+        listArretDouble.add(13);
+        listArretDouble.add(15);
+        listArretDouble.add(18);
+        listArretDouble.add(21);
         listArretDouble.add(32);
         listArretDouble.add(34);
-        listArretDouble.add(37);
-        listArretDouble.add(40);
-        listArretDouble.add(51);
-        listArretDouble.add(54);
-        listArretDouble.add(57);
-        listArretDouble.add(60);
-        listArretDouble.add(62);
+        listArretDouble.add(36);
+        listArretDouble.add(38);
+        listArretDouble.add(41);
+        listArretDouble.add(44);
+        listArretDouble.add(55);
+        listArretDouble.add(58);
+        listArretDouble.add(61);
+        listArretDouble.add(64);
         listArretDouble.add(66);
-        listArretDouble.add(74);
-        listArretDouble.add(77);
-        listArretDouble.add(80);
-        listArretDouble.add(82);
+        listArretDouble.add(70);
+        listArretDouble.add(78);
+        listArretDouble.add(81);
+        listArretDouble.add(84);
         listArretDouble.add(86);
-        listArretDouble.add(88);
+        listArretDouble.add(90);
+        listArretDouble.add(92);
 
     }
     private void initRelais(){
-        listArretRelais.add(21);
-        listArretRelais.add(22);
-        listArretRelais.add(23);
-        listArretRelais.add(24);
-        listArretRelais.add(44);
-        listArretRelais.add(45);
-        listArretRelais.add(46);
-        listArretRelais.add(47);
-        listArretRelais.add(68);
-        listArretRelais.add(69);
-        listArretRelais.add(70);
-        listArretRelais.add(71);
-        listArretRelais.add(91);
-        listArretRelais.add(92);
-        listArretRelais.add(93);
-        listArretRelais.add(94);
+        listArretRelais.add(1);
+        listArretRelais.add(2);
+        listArretRelais.add(3);
+        listArretRelais.add(4);
+        listArretRelais.add(25);
+        listArretRelais.add(26);
+        listArretRelais.add(27);
+        listArretRelais.add(28);
+        listArretRelais.add(48);
+        listArretRelais.add(49);
+        listArretRelais.add(50);
+        listArretRelais.add(51);
+        listArretRelais.add(72);
+        listArretRelais.add(73);
+        listArretRelais.add(74);
+        listArretRelais.add(75);
+        listArretRelais.add(95);
+        listArretRelais.add(96);
+        listArretRelais.add(97);
+        listArretRelais.add(98);
     }
 
     private void initAccomplissement() {
@@ -108,9 +112,6 @@ public class Model {
         return listArretRelais;
     }
 
-    public void setListArretRelais(ArrayList<Integer> listArretRelais) {
-        this.listArretRelais = listArretRelais;
-    }
 
     public void shuffle(){
         Collections.shuffle(listRecontre);
