@@ -399,7 +399,9 @@ public class GameController {
 
                         else {
                             messageErreur("Vous avez déjà gouté "+mesRepas.get(indice).getNom());
+                            relanceRelais=true;
                             piocheRelais(event);
+                            return;
                         }
                     }else  {
                         model.getListRepas().removeAll(mesRepas);
@@ -921,13 +923,15 @@ public class GameController {
         GridPane accomplissement = new GridPane();
         int comptJ=0;
         for(Joueur j: model.getListJoueur()){
+            int posColumn=1;
             for(Cartes c: j.getCartes()){
                 if(c instanceof Acomplissement) {
                     accomplissement.add(new ImageView("/Vue/Images/" + j.getNom() + ".jpg"), 0, comptJ);
-                    accomplissement.add(new ImageView("/Vue/Images/" + c.getNom() + ".jpg"), 1, comptJ);
-                    comptJ++;
+                    accomplissement.add(new ImageView("/Vue/Images/" + c.getNom() + ".jpg"), posColumn, comptJ);
+                    posColumn++;
                 }
             }
+            comptJ++;
         }
         alert.setGraphic(accomplissement);
         alert.setContentText(classement);
