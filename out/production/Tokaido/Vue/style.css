@@ -11,10 +11,10 @@
     -fx-border-color: black;
 }
 .relais{
-    -fx-background-image: url("relais.jpg");
+    -fx-background-image: url("Images/relais.jpg");
 }
 .sourceChaud{
-    -fx-background-image: url("SourceChaude.jpg");
+    -fx-background-image: url("Images/SourceChaude.jpg");
 }
 .buttonVert{
     -fx-background-color:
@@ -65,8 +65,20 @@
 -fx-background-color: #AEC6E8;
 }
 .rencontre{
-    -fx-background-image: url("Rencontre.jpg");
+    -fx-background-image: url("Images/Rencontre.jpg");
 }
 .souvenir{
-    -fx-background-image: url("Souvenir.jpg");
+    -fx-background-image: url("Images/Souvenir.jpg");
 }
+
+.labelInfoJ {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.6;
+}
+.backgroundColor{
+    -fx-background-color: #F9F4DF80;
+}
+
+

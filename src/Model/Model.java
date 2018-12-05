@@ -1,6 +1,5 @@
 package Model;
 
-import javafx.print.Collation;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,7 +7,11 @@ import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Model {   // classe dans laquel on initie toutes les carte du joueur.
+public class Model {
+    private boolean riziere;
+    private boolean montagne;
+    private boolean mer;
+
     private ArrayList<Rencontre>listRecontre = new ArrayList<Rencontre>();
     private ArrayList<Repas>listRepas  = new ArrayList<>();
     private ArrayList<Souvenirs>listSouvenir = new ArrayList<>();
@@ -17,30 +20,97 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
     private ArrayList<Sources>listSource = new ArrayList<>();
     private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
+    private ArrayList<Integer>listOrTemple = new ArrayList<Integer>();
+    private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
+    private ArrayList<Integer> listArretDouble= new ArrayList<Integer>();
+    private ArrayList<Integer> listArretRelais = new ArrayList<>();
 
+
+
+    private ArrayList<Joueur>recapJoueur = new ArrayList<Joueur>();
     public Model(){
         initPartie();
     }
 
     public void initPartie(){ //Creation de toutes les differentes cartes du jeu dans differents packets
+        mer=false;
+        montagne=false;
+        riziere=false;
         initRencontre();
         initRepas();
         initSouvenir();
         initPanorama();
         initSource();
+        initAccomplissement();
+        initArretDouble();
+        initRelais();
         shuffle();
-        listJoueur = new ArrayList<Joueur>();
-        Joueur joueur= new Joueur(3,"bob");
-        listJoueur.add(joueur);
+    }
+    private void initArretDouble(){
+        listArretDouble.add(2);
+        listArretDouble.add(7);
+        listArretDouble.add(9);
+        listArretDouble.add(11);
+        listArretDouble.add(14);
+        listArretDouble.add(17);
+        listArretDouble.add(28);
+        listArretDouble.add(30);
+        listArretDouble.add(32);
+        listArretDouble.add(34);
+        listArretDouble.add(37);
+        listArretDouble.add(40);
+        listArretDouble.add(51);
+        listArretDouble.add(54);
+        listArretDouble.add(57);
+        listArretDouble.add(60);
+        listArretDouble.add(62);
+        listArretDouble.add(66);
+        listArretDouble.add(74);
+        listArretDouble.add(77);
+        listArretDouble.add(80);
+        listArretDouble.add(82);
+        listArretDouble.add(86);
+        listArretDouble.add(88);
+
+    }
+    private void initRelais(){
+        listArretRelais.add(21);
+        listArretRelais.add(22);
+        listArretRelais.add(23);
+        listArretRelais.add(24);
+        listArretRelais.add(44);
+        listArretRelais.add(45);
+        listArretRelais.add(46);
+        listArretRelais.add(47);
+        listArretRelais.add(68);
+        listArretRelais.add(69);
+        listArretRelais.add(70);
+        listArretRelais.add(71);
+        listArretRelais.add(91);
+        listArretRelais.add(92);
+        listArretRelais.add(93);
+        listArretRelais.add(94);
+    }
+
+    private void initAccomplissement() {
+        listAcomplissement.add(new Acomplissement("AcomplissementRiziere"));
+        listAcomplissement.add(new Acomplissement("AcomplissementMontagne"));
+        listAcomplissement.add(new Acomplissement("AcomplissementMer"));
+
+    }
+
+    public ArrayList<Integer> getListArretRelais() {
+        return listArretRelais;
+    }
+
+    public void setListArretRelais(ArrayList<Integer> listArretRelais) {
+        this.listArretRelais = listArretRelais;
     }
 
     public void shuffle(){
         Collections.shuffle(listRecontre);
         Collections.shuffle(listRepas);
         Collections.shuffle(listSouvenir);
-        Collections.shuffle(listPanoramaRiziere);
-        Collections.shuffle(listPanoramaMontagnes);
-        Collections.shuffle(listPanoramaMer);
         Collections.shuffle(listSource);
     }
 
@@ -75,7 +145,7 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
             public void rencontre(Joueur joueur) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
-                String nomImage ="/Vue/images/"+listSouvenir.get(0).getNom()+".jpg";
+                String nomImage ="/Vue/Images/"+listSouvenir.get(0).getNom()+".jpg";
                 ImageView imageView = new ImageView(new Image(nomImage));
                 alert.setGraphic(imageView);
                 alert.setTitle("Souvenirs");
@@ -87,12 +157,25 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
 
             @Override
             public String getDescription() {
-                return "Vous avez rencontré Shokunin , vous gagnez une carte souvenir";
+                return "Vous avez rencontré Shokunin \n vous gagnez une carte souvenir";
             }
         };
         listRecontre.add(shokunin);
         listRecontre.add(shokunin);
 
+        Rencontre miko = new Rencontre("Miko") {
+            @Override
+            public void rencontre(Joueur joueur) {
+                joueur.orTemple+=1;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Vous placer une piece gratuite au temple \n et vous gagnez un point pour cette piece";
+            }
+        };
+        listRecontre.add(miko);
+        listRecontre.add(miko);
     }
 
     public void initRepas(){ //Init de touts les repas
@@ -147,17 +230,22 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
     }
 
     public void initPanorama(){ //Init des cartes Panoramas
-        for (int j=0 ; j<5 ;j++) {
-            for (int i = 0; i < 5; i++) {
-                if (j<3) {
-                    listPanoramaRiziere.add(new Panoramas("Riziere" + j, j));
-                }
-                if (j<4) {
-                    listPanoramaMontagnes.add(new Panoramas("Montagne" + j, j));
-                }
-                listPanoramaMer.add(new Panoramas("Mer" + j, j));
-            }
-        }
+        listPanoramaRiziere.add(new Panoramas("Riziere0",1,"Riziere"));
+        listPanoramaRiziere.add(new Panoramas("Riziere1",2,"Riziere"));
+        listPanoramaRiziere.add(new Panoramas("Riziere2",3,"Riziere"));
+
+        listPanoramaMontagnes.add(new Panoramas("Montagne0",1,"Montagne"));
+        listPanoramaMontagnes.add(new Panoramas("Montagne1",2,"Montagne"));
+        listPanoramaMontagnes.add(new Panoramas("Montagne2",3,"Montagne"));
+        listPanoramaMontagnes.add(new Panoramas("Montagne3",4,"Montagne"));
+
+        listPanoramaMer.add(new Panoramas("Mer0",1,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer1",2,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer2",3,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer3",4,"Mer"));
+        listPanoramaMer.add(new Panoramas("Mer4",5,"Mer"));
+
+
     }
 
     public void initSource(){ //Init des Cartes Source chaude
@@ -166,6 +254,46 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
                 listSource.add(new Sources("Source" + j, j+2));
             }
         }
+    }
+
+    public ArrayList<Integer> getListArretDouble() {
+        return listArretDouble;
+    }
+
+    public void setListArretDouble(ArrayList<Integer> listtArretDouble) {
+        this.listArretDouble = listtArretDouble;
+    }
+
+    public boolean isRiziere() {
+        return riziere;
+    }
+
+    public void setRiziere(boolean riziere) {
+        this.riziere = riziere;
+    }
+
+    public boolean isMontagne() {
+        return montagne;
+    }
+
+    public void setListAcomplissement(ArrayList<Acomplissement> listAcomplissement) {
+        this.listAcomplissement = listAcomplissement;
+    }
+    public ArrayList<Acomplissement> getListAcomplissement(){
+        return this.listAcomplissement;
+    }
+
+
+    public void setMontagne(boolean montagne) {
+        this.montagne = montagne;
+    }
+
+    public boolean isMer() {
+        return mer;
+    }
+
+    public void setMer(boolean mer) {
+        this.mer = mer;
     }
 
     public ArrayList<Rencontre> getListRecontre() {
@@ -196,21 +324,91 @@ public class Model {   // classe dans laquel on initie toutes les carte du joueu
         return listRepas;
     }
 
-    public void setListRepas(ArrayList<Repas> listRepas) {
-        this.listRepas = listRepas;
-    }
-
     public ArrayList<Joueur> getListJoueur() {
         return listJoueur;
     }
 
-    public String getScore() {
-        String str = "";
-        for (int i=0 ; i<listJoueur.size() ;i++){
-            str += listJoueur.get(i).getNom() + " a ";
-            str += listJoueur.get(i).getPoints() + " points et dispose de ";
-            str += listJoueur.get(i).getGold() + " gold. \n";
+    public ArrayList<Joueur> getRecapJoueur() {
+        return recapJoueur;
+    }
+
+    public void setRecapJoueur(ArrayList<Joueur> recapJoueur) {
+        this.recapJoueur = recapJoueur;
+    }
+
+    public void setListJoueur(ArrayList<Joueur> listJoueur) {
+        this.listJoueur = listJoueur;
+    }
+
+    public ArrayList<Integer> getListOrTemple() {
+        return listOrTemple;
+    }
+
+    public void setListOrTemple(ArrayList<Integer> listOrTemple) {
+        this.listOrTemple = listOrTemple;
+    }
+
+
+    public void addJoueur(Joueur j){
+        listJoueur.add(j);
+        recapJoueur.add(j);
+}
+
+    public void trieJoueur() {
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getPositions() > listJoueur.get(i+1).getPositions()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
         }
-        return str;
+
+    public void trieJoueurScore() {
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getPoints() < listJoueur.get(i+1).getPoints()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+    }
+
+    public void majScore() {
+        for (Joueur joueur : listJoueur) {
+            joueur.updateScore();
+        }
+    }
+
+    public void trieJoueurOrTemple(){
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getOrTemple() < listJoueur.get(i+1).getOrTemple()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+
     }
 }
