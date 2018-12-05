@@ -124,7 +124,7 @@ public class GameController {
     @FXML Button b54;
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
-    boolean relanceRelais;
+    private boolean relanceRelais;
 
     public GameController(){
         boutonsPlateau = new ArrayList<>();
@@ -552,8 +552,20 @@ public class GameController {
                 alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(0).getNom()+".jpg"));
                 alert.setHeaderText("Vous avez rencontrer "+model.getListRecontre().get(0).getNom());
                 alert.setContentText(model.getListRecontre().get(0).getDescription());
+                switch (model.getListRecontre().get(0).getNom()){
+                    case "Kuge":
+                        model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+3);
+                        break;
+                    case "Miko":
+                        model.getListJoueur().get(0).setOrTemple(model.getListJoueur().get(0).getOrTemple()+1);
+                        break;
+                    case "Shokunin":
+                        piocheSouvenir();
+                        break;
+                }
                 model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
                 alert.showAndWait();
+
             }
             else messageErreur("Vous n'êtes pas autorisé à piocher");
         } else messageErreur("Plus de cartes rencontre");
