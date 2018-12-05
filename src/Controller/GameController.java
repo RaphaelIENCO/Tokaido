@@ -14,8 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -25,6 +23,10 @@ import java.util.Optional;
 public class GameController {
     private Model model;
     private ArrayList<Button> boutonsPlateau;
+    @FXML Button b010;
+    @FXML Button b011;
+    @FXML Button b012;
+    @FXML Button b013;
     @FXML Button b544;
     @FXML Button b543;
     @FXML Button b542;
@@ -122,7 +124,7 @@ public class GameController {
     @FXML Button b54;
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
-    boolean relanceRelais;
+    private boolean relanceRelais;
 
     public GameController(){
         boutonsPlateau = new ArrayList<>();
@@ -146,15 +148,15 @@ public class GameController {
                 return;
             }
         }
-        if (indice>24 && !model.getListJoueur().get(0).isRelais1()){
+        if (indice>28 && !model.getListJoueur().get(0).isRelais1()){
             messageErreur("Vous devez vous arreter au premier relais");
             return;
         }
-        if (indice>47 && !model.getListJoueur().get(0).isRelais2()){
+        if (indice>51 && !model.getListJoueur().get(0).isRelais2()){
             messageErreur("Vous devez vous arreter au second relais");
             return;
         }
-        if (indice>71 && !model.getListJoueur().get(0).isRelais3()){
+        if (indice>75 && !model.getListJoueur().get(0).isRelais3()){
             messageErreur("Vous devez vous arreter au troisieme relais");
             return;
         }
@@ -203,19 +205,24 @@ public class GameController {
             }
         }
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
+        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
     }
 
 
 
     private void updatePos(ActionEvent event) {
-        Boolean exist = false;
         Button button = (Button) event.getSource();
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             if (button.equals(boutonsPlateau.get(i))) {
                 model.getListJoueur().get(0).setPositions(i);
             }
         }
+        colorieCase();
+
+    }
+    public void colorieCase(){
         int indice=0;
+        Boolean exist = false;
         for (int i = 0; i < boutonsPlateau.size(); i++) {
             for (int j = 0; j < model.getListJoueur().size(); j++) {
                 if (model.getListJoueur().get(j).getPositions() == i) {
@@ -228,7 +235,7 @@ public class GameController {
                 exist = false;
             } else {
                 boutonsPlateau.get(i).setStyle("-fx-background-color:"+model.getListJoueur().get(indice).getCouleur()+";");
-                        exist=false;
+                exist=false;
 
             }
         }
@@ -284,6 +291,10 @@ public class GameController {
                         case "relais3":
                             for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais3()) nbCartes++;
                             model.getListJoueur().get(0).setRelais3(true);
+                            break;
+                        case "relais4":
+                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais4()) nbCartes++;
+                            model.getListJoueur().get(0).setRelais4(true);
                             break;
                     }
                     if (model.getListJoueur().get(0).getNom().equals("Chuubei") && !relanceRelais){
@@ -533,56 +544,33 @@ public class GameController {
         model.getListJoueur().get(0).setPiocheSouvenir(false);
     }
 
-    private void piocheRencontre(){
-        if(!model.getListRecontre().isEmpty()) {
+    private void piocheRencontre() {
+        if (!model.getListRecontre().isEmpty()) {
             if (model.getListJoueur().get(0).isPiocheRencontre()) {
-                if (model.getListJoueur().get(0).getNom().equals("Umegae")) {
-                    model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints()+1);
-                    model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+1);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Rencontre");
+                alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(0).getNom()+".jpg"));
+                alert.setHeaderText("Vous avez rencontrer "+model.getListRecontre().get(0).getNom());
+                alert.setContentText(model.getListRecontre().get(0).getDescription());
+                switch (model.getListRecontre().get(0).getNom()){
+                    case "Kuge":
+                        model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+3);
+                        break;
+                    case "Miko":
+                        model.getListJoueur().get(0).setOrTemple(model.getListJoueur().get(0).getOrTemple()+1);
+                        break;
+                    case "Shokunin":
+                        piocheSouvenir();
+                        break;
                 }
-                    if (model.getListJoueur().get(0).getNom().equals("Yoshiyasu") && model.getListRecontre().size()>=2) {
-                        GridPane gridPane = new GridPane();
-                        RadioButton radioButton1 = new RadioButton();
-                        RadioButton radioButton2 = new RadioButton();
-                        ToggleGroup toggleGroup = new ToggleGroup();
-                        Rencontre rencontre1= model.getListRecontre().get(0);
-                        Rencontre rencontre2= model.getListRecontre().get(1);
+                model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
+                alert.showAndWait();
 
-                        radioButton1.setGraphic(new ImageView("/Vue/Images/" + model.getListRecontre().get(0).getNom() + ".jpg"));
-                        radioButton2.setGraphic(new ImageView("/Vue/Images/" + model.getListRecontre().get(1).getNom() + ".jpg"));
-                        radioButton1.setToggleGroup(toggleGroup);
-                        radioButton2.setToggleGroup(toggleGroup);
-                        gridPane.add(radioButton1,0,0);
-                        gridPane.add(radioButton2,1,0);
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Rencontre");
-                        alert.setGraphic(gridPane);
-                        alert.setHeaderText(null);
-                        alert.setContentText("Veuillez choisir une cartes");
-                        alert.showAndWait();
-                        if (radioButton1.isSelected()) rencontreYoshiyasu(rencontre1,rencontre1);
-                        else if (radioButton2.isSelected())rencontreYoshiyasu(rencontre1,rencontre2);
-
-                } else {
-                    Rencontre rencontre = model.getListRecontre().get(0);
-                    String nomImage = "/Vue/Images/" + rencontre.getNom() + ".jpg";
-                    Alert show = new Alert(Alert.AlertType.INFORMATION);
-                    ImageView imageView = new ImageView(new Image(nomImage));
-                    show.setGraphic(imageView);
-                    show.setTitle("Rencontre");
-                    show.setHeaderText("Vous avez rencontré " + rencontre.getNom());
-                    show.setContentText("Effets  :" + rencontre.getDescription());
-                    show.showAndWait();
-                    rencontre.rencontre(model.getListJoueur().get(0));
-                    model.getListJoueur().get(0).addCarte(rencontre);
-                    model.getListRecontre().remove(rencontre);
-                    model.getListJoueur().get(0).setPiocheRencontre(false);
-                }
-            } else {
-                messageErreur("Vous ne pouvez pas piocher de carte Rencontre");
             }
-        }else messageErreur("Plus de cartes rencontre");
+            else messageErreur("Vous n'êtes pas autorisé à piocher");
+        } else messageErreur("Plus de cartes rencontre");
     }
+
 
     private void panoramaRiziere() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -593,7 +581,6 @@ public class GameController {
             if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(i))) {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaRiziere().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg"));
-                System.out.println("/Vue/Images/" + model.getListPanoramaRiziere().get(i).getNom() + ".jpg");
                 alert.setHeaderText("Félicitation vous visitez une riziere \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==2 && !model.isRiziere()){
@@ -617,11 +604,9 @@ public class GameController {
         alert.setContentText(null);
 
         for (int i = 0; i < model.getListPanoramaMontagnes().size(); i++) {
-        System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMontagnes().get(i)));
         if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMontagnes().get(i))) {
             model.getListJoueur().get(0).addCarte(model.getListPanoramaMontagnes().get(i));
             alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg"));
-            System.out.println("/Vue/Images/" + model.getListPanoramaMontagnes().get(i).getNom() + ".jpg");
             alert.setHeaderText("Félicitation vous visitez une montagne \n vous obtenez donc :");
             alert.showAndWait();
             if (i==3 && !model.isMontagne()){
@@ -635,7 +620,7 @@ public class GameController {
         }
     }
         alert.setGraphic(null);
-        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas montatagnes");
+        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas montagnes");
         alert.showAndWait();
 }
 
@@ -645,11 +630,9 @@ public class GameController {
         alert.setContentText(null);
 
         for (int i = 0; i < model.getListPanoramaMer().size(); i++) {
-            System.out.println(model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMer().get(i)));
             if (!model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMer().get(i))) {
                 model.getListJoueur().get(0).addCarte(model.getListPanoramaMer().get(i));
                 alert.setGraphic(new ImageView("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg"));
-                System.out.println("/Vue/Images/" + model.getListPanoramaMer().get(i).getNom() + ".jpg");
                 alert.setHeaderText("Félicitation vous visitez la mer \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==4 && !model.isMer()){
@@ -732,15 +715,6 @@ public class GameController {
         alert.showAndWait();
     }
 
-    private void rencontreYoshiyasu(Rencontre rencontre1, Rencontre rencontre2){
-        rencontre2.rencontre(model.getListJoueur().get(0));
-        model.getListJoueur().get(0).addCarte(rencontre2);
-        model.getListRecontre().remove(rencontre1);
-        model.getListRecontre().remove(rencontre2);
-        model.getListRecontre().add(rencontre1);
-
-    }
-
 
 
     /**
@@ -771,6 +745,14 @@ public class GameController {
     }
 
     private void ajoutBouton() {
+        boutonsPlateau.add(b013);
+        b013.setVisible(false);
+        boutonsPlateau.add(b012);
+        b012.setVisible(false);
+        boutonsPlateau.add(b011);
+        b011.setVisible(false);
+        boutonsPlateau.add(b010);
+        b010.setVisible(false);
         boutonsPlateau.add(b0);
         boutonsPlateau.add(b101);
         b101.setVisible(false);
@@ -992,14 +974,50 @@ public class GameController {
         boutonsPlateau.clear();
         ajoutBouton();
         afficheCartes();
+        initJoueur();
+        afficheArretRelais();
+        colorieCase();
         affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
+        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+    }
+
+    private void initJoueur() {
+        switch (model.getListJoueur().size()){
+            case 2:
+                model.getListJoueur().get(0).setPositions(3);
+                model.getListJoueur().get(1).setPositions(4);
+                break;
+            case 3:
+                model.getListJoueur().get(0).setPositions(2);
+                model.getListJoueur().get(1).setPositions(3);
+                model.getListJoueur().get(2).setPositions(4);
+                break;
+            case 4:
+                model.getListJoueur().get(0).setPositions(1);
+                model.getListJoueur().get(1).setPositions(2);
+                model.getListJoueur().get(2).setPositions(3);
+                model.getListJoueur().get(3).setPositions(4);
+                break;
+            case 5:
+                model.getListJoueur().get(0).setPositions(0);
+                model.getListJoueur().get(1).setPositions(1);
+                model.getListJoueur().get(2).setPositions(2);
+                model.getListJoueur().get(3).setPositions(3);
+                model.getListJoueur().get(4).setPositions(4);
+                break;
+        }
     }
 
     public void setData(Model m){
         this.model =m;
         afficheCartes();
         ajoutBouton();
+        initJoueur();
+        afficheArretRelais();
+        colorieCase();
         affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
+        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+
     }
 
     /**
