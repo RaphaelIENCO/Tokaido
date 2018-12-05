@@ -113,7 +113,7 @@ public class Model {
     }
 
 
-    public void shuffle(){
+    private void shuffle(){
         Collections.shuffle(listRecontre);
         Collections.shuffle(listRepas);
         Collections.shuffle(listSouvenir);
@@ -159,7 +159,7 @@ public class Model {
         listRepas.add(new Repas("Sashini",3,6));
     }
 
-    public void initSouvenir(){ //Init de touts les souvenirs
+    private void initSouvenir(){ //Init de touts les souvenirs
         listSouvenir.add(new Souvenirs("Yunomi",1,1));
         listSouvenir.add(new Souvenirs("Gofu",1,1));
         listSouvenir.add(new Souvenirs("Koma",1,1));
@@ -189,7 +189,7 @@ public class Model {
         listSouvenir.add(new Souvenirs("Ukiyoe",3,4));
     }
 
-    public void initPanorama(){ //Init des cartes Panoramas
+    private void initPanorama(){ //Init des cartes Panoramas
         listPanoramaRiziere.add(new Panoramas("Riziere0",1,"Riziere"));
         listPanoramaRiziere.add(new Panoramas("Riziere1",2,"Riziere"));
         listPanoramaRiziere.add(new Panoramas("Riziere2",3,"Riziere"));
@@ -208,7 +208,7 @@ public class Model {
 
     }
 
-    public void initSource(){ //Init des Cartes Source chaude
+    private void initSource(){ //Init des Cartes Source chaude
         for (int j=0 ; j<2 ;j++) {
             for (int i = 0; i < 6; i++) {
                 listSource.add(new Sources("Source" + j, j+2));
@@ -218,10 +218,6 @@ public class Model {
 
     public ArrayList<Integer> getListArretDouble() {
         return listArretDouble;
-    }
-
-    public void setListArretDouble(ArrayList<Integer> listtArretDouble) {
-        this.listArretDouble = listtArretDouble;
     }
 
     public boolean isRiziere() {
@@ -236,13 +232,9 @@ public class Model {
         return montagne;
     }
 
-    public void setListAcomplissement(ArrayList<Acomplissement> listAcomplissement) {
-        this.listAcomplissement = listAcomplissement;
-    }
     public ArrayList<Acomplissement> getListAcomplissement(){
         return this.listAcomplissement;
     }
-
 
     public void setMontagne(boolean montagne) {
         this.montagne = montagne;
@@ -292,22 +284,9 @@ public class Model {
         return recapJoueur;
     }
 
-    public void setRecapJoueur(ArrayList<Joueur> recapJoueur) {
-        this.recapJoueur = recapJoueur;
-    }
-
-    public void setListJoueur(ArrayList<Joueur> listJoueur) {
-        this.listJoueur = listJoueur;
-    }
-
     public ArrayList<Integer> getListOrTemple() {
         return listOrTemple;
     }
-
-    public void setListOrTemple(ArrayList<Integer> listOrTemple) {
-        this.listOrTemple = listOrTemple;
-    }
-
 
     public void addJoueur(Joueur j){
         listJoueur.add(j);

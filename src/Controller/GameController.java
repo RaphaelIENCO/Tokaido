@@ -162,22 +162,17 @@ public class GameController {
         }
 
         if (button.getId().contains("relais")){
-            model.getListJoueur().get(0).setPiocheRelais(true);
             piocheRelais(event);
         }
         else if (button.getId().equals("source")){
-            model.getListJoueur().get(0).setPiocheSource(true);
             piocheSourceChaude();
         }
-        else if (button.getId().equals("souvenir")){
-            model.getListJoueur().get(0).setPiocheSouvenir(true);
+        else if (button.getId().equals("souvenir")){ ;
             piocheSouvenir();
         }
         else if (button.getId().equals("rencontre")){
-            model.getListJoueur().get(0).setPiocheRencontre(true);
             piocheRencontre();
-        }else if (button.getId().equals("temple")){
-            model.getListJoueur().get(0).setTemple(true);
+        }else if (button.getId().equals("temple")){ ;
             rencontreTemple(button);
         }
         else if(button.getId().contains("ferme")){
@@ -244,31 +239,28 @@ public class GameController {
     private void afficheArretDouble(){
         boolean aCacher;
        for (Integer integer:model.getListArretDouble()){
-           aCacher=true;
-           for (Joueur joueur: model.getListJoueur()){
-               if (joueur.getPositions()==integer){
-                   aCacher=false;
-               }
-           }
-           if (aCacher){
-               boutonsPlateau.get(integer-1).setVisible(false);
-           } else  boutonsPlateau.get(integer-1).setVisible(true);
+           cacheBouton(integer);
        }
     }
 
     private void afficheArretRelais(){
         boolean aCacher;
         for (Integer integer:model.getListArretRelais()){
-            aCacher=true;
-            for (Joueur joueur: model.getListJoueur()){
-                if (joueur.getPositions()==integer){
-                    aCacher=false;
-                }
-            }
-            if (aCacher){
-                boutonsPlateau.get(integer-1).setVisible(false);
-            } else  boutonsPlateau.get(integer-1).setVisible(true);
+            cacheBouton(integer);
         }
+    }
+
+    private void cacheBouton(Integer integer) {
+        boolean aCacher;
+        aCacher=true;
+        for (Joueur joueur: model.getListJoueur()){
+            if (joueur.getPositions()==integer){
+                aCacher=false;
+            }
+        }
+        if (aCacher){
+            boutonsPlateau.get(integer-1).setVisible(false);
+        } else  boutonsPlateau.get(integer-1).setVisible(true);
     }
 
     /**
@@ -277,7 +269,6 @@ public class GameController {
     public void piocheRelais(ActionEvent event) {
         Button button=(Button)event.getSource();
             if (!model.getListRepas().isEmpty()){
-                if (model.getListJoueur().get(0).isPiocheRelais()){
                     int nbCartes=0;
                     switch (button.getId()){
                         case "relais1":
@@ -298,7 +289,6 @@ public class GameController {
                             break;
                     }
                     if (model.getListJoueur().get(0).getNom().equals("Chuubei") && !relanceRelais){
-                        model.getListJoueur().get(0).setPiocheRencontre(true);
                         piocheRencontre();
                     }
                     if(model.getListJoueur().get(0).getNom().equals("Hiroshige") && !relanceRelais){
@@ -421,13 +411,10 @@ public class GameController {
 
                 }else messageErreur("Vous n'êtes pas autorisé à piocher des repas");
 
-            }else messageErreur("Plus de carte relais");
-            relanceRelais=false;
     }
 
     private void piocheSourceChaude(){
         if (!model.getListSource().isEmpty()) {
-            if (model.getListJoueur().get(0).isPiocheSource()) {
                 Sources source = model.getListSource().get(0);
                 String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
 
@@ -439,15 +426,11 @@ public class GameController {
                 show.showAndWait();
                 model.getListJoueur().get(0).addCarte(source);
                 model.getListSource().remove(source);
-                model.getListJoueur().get(0).setPiocheSource(false);
-            } else {
-                messageErreur("impossible de piocher une carte source chaude");
-            }
+
         }else messageErreur("Plus de carte source chaude");
     }
 
     private void piocheSouvenir(){
-        if (model.getListJoueur().get(0).isPiocheSouvenir()) {
             if (model.getListSouvenir().size() > 3) {
                 int prixTotal = 0;
                 Souvenirs cartes1 = model.getListSouvenir().get(0);
@@ -517,19 +500,11 @@ public class GameController {
                     }
                     model.getListJoueur().get(0).getCartes().addAll(toAdd);
                     model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-prixTotal);
-                    model.getListJoueur().get(0).setPiocheSouvenir(false);
 
                 } else {
-                    for(Souvenirs carte: toAdd){
-                        model.getListSouvenir().remove(carte);
-                        model.getListSouvenir().add(carte);
-                    }
-                    for(Souvenirs carte: choice){
-                        model.getListSouvenir().remove(carte);
-                        model.getListSouvenir().add(carte);
-                    }
                     messageErreur("Pas assez d'or");
                     piocheSouvenir();
+                    return;
                 }
                 model.getListSouvenir().remove(cartes1);
                 model.getListSouvenir().remove(cartes2);
@@ -540,18 +515,25 @@ public class GameController {
                 model.getListSouvenir().add(cartes3);
 
             } else messageErreur("Pas assez de carte");
-        }else messageErreur("Vous ne pouvez pas piocher");
-        model.getListJoueur().get(0).setPiocheSouvenir(false);
     }
 
     private void piocheRencontre() {
         if (!model.getListRecontre().isEmpty()) {
-            if (model.getListJoueur().get(0).isPiocheRencontre()) {
+            if (model.getListJoueur().get(0).getNom().equals("Umegae")){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setGraphic(null);
+                alert.setHeaderText("En tant que Umegae vous gagnez une piece et un point");
+                alert.setContentText(null);
+                alert.showAndWait();
+                model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+1);
+            }
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Rencontre");
                 alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(0).getNom()+".jpg"));
                 alert.setHeaderText("Vous avez rencontrer "+model.getListRecontre().get(0).getNom());
                 alert.setContentText(model.getListRecontre().get(0).getDescription());
+                model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
+                alert.showAndWait();
                 switch (model.getListRecontre().get(0).getNom()){
                     case "Kuge":
                         model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+3);
@@ -562,12 +544,18 @@ public class GameController {
                     case "Shokunin":
                         piocheSouvenir();
                         break;
+                    case "Anaibito0":
+                        panoramaRiziere();
+                        break;
+                    case "Anaibito1":
+                        panoramaMer();
+                        break;
+                    case "Anaibito2":
+                        panoramaMontagne();
+                        break;
                 }
-                model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
-                alert.showAndWait();
 
-            }
-            else messageErreur("Vous n'êtes pas autorisé à piocher");
+
         } else messageErreur("Plus de cartes rencontre");
     }
 
@@ -653,17 +641,15 @@ public class GameController {
 
     private void rencontreTemple(Button button){
         if(model.getListJoueur().get(0).getGold()>0) {
-            if (model.getListJoueur().get(0).isTemple()) {
                 if (model.getListJoueur().get(0).getNom().equals("Hirotada")){
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Hirotada");
                     alert.setHeaderText("En tant qu'hirotada vous pouvez  \n ajouter une piece au temple si vous le voulez \n et cela gratuitement");
-                    ButtonType accepter = new ButtonType("Accepter");
+                    ButtonType faireDon = new ButtonType("Faire ce don");
                     ButtonType refuser = new ButtonType("Refuser");
-
-                    alert.getButtonTypes().setAll(accepter,refuser);
+                    alert.getButtonTypes().setAll(faireDon,refuser);
                     Optional<ButtonType> result = alert.showAndWait();
-                    if (result.get() == accepter) {
+                    if (result.get() == faireDon) {
                         model.getListJoueur().get(0).setOrTemple(model.getListJoueur().get(0).getOrTemple()+1);
                         model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints()+1);
                     }
@@ -672,7 +658,6 @@ public class GameController {
                 choix.add(1);
                 choix.add(2);
                 choix.add(3);
-
                 String nomImage = "/Vue/Images/Temple.png";
                 ImageView image = new ImageView(nomImage);
 
@@ -689,7 +674,6 @@ public class GameController {
                         model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - result.get());
                         model.getListJoueur().get(0).setPoints(model.getListJoueur().get(0).getPoints() + result.get());
                         model.getListJoueur().get(0).setOrTemple(model.getListJoueur().get(0).getOrTemple() + result.get());
-                        model.getListJoueur().get(0).setTemple(false);
                     }else{
                         messageErreur("Vous n'avez pas autant d'argent...");
                         rencontreTemple(button);
@@ -699,11 +683,8 @@ public class GameController {
                     rencontreTemple(button);
                 }
             }
-        }else{
-            messageErreur("Vous n'avez plus d'or, allez à un autre arrêt");
-            button.setStyle("-fx-background-color: white;");
+         button.setStyle("-fx-background-color: white;");
         }
-    }
 
     private void rencontreFerme() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -974,6 +955,10 @@ public class GameController {
         boutonsPlateau.clear();
         ajoutBouton();
         afficheCartes();
+        initPartie();
+    }
+
+    private void initPartie() {
         initJoueur();
         afficheArretRelais();
         colorieCase();
@@ -1012,11 +997,7 @@ public class GameController {
         this.model =m;
         afficheCartes();
         ajoutBouton();
-        initJoueur();
-        afficheArretRelais();
-        colorieCase();
-        affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
-        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+        initPartie();
 
     }
 

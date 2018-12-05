@@ -7,29 +7,17 @@ public class Joueur {
     protected ArrayList<Cartes> cartes;
     protected int points = 0;
     protected String nom = "";
-    protected boolean piocheRelais;
-    protected boolean piocheSource;
-    protected boolean piocheSouvenir;
-    protected boolean piocheRencontre;
     protected int positions;
     protected String couleur;
     protected int orTemple;
     protected boolean isRelais1;
     protected  boolean isRelais2;
     protected boolean isRelais3;
-
-
-    protected boolean temple;
     protected boolean isRelais4;
 
     public Joueur(){
        cartes = new ArrayList<Cartes>();
        points = 0;
-       piocheRelais =false;
-       piocheRencontre=false;
-       piocheSource=false;
-       piocheSouvenir=false;
-       temple = false;
        orTemple=0;
        positions=0;
        isRelais1=false;
@@ -68,6 +56,7 @@ public class Joueur {
 
             }else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Samurai")) total+=3;
             else if(cartes.get(i) instanceof Rencontre && cartes.get(i).getNom().equals("Miko")) total+=1;
+            else if (cartes.get(i) instanceof Rencontre && nom.equals("Umegae")) total+=1;
 
         }
         total+=orTemple;
@@ -193,46 +182,6 @@ public class Joueur {
 
     public void setPositions(int positions) {
         this.positions = positions;
-    }
-
-    public boolean isPiocheRelais() {
-        return piocheRelais;
-    }
-
-    public void setPiocheRelais(boolean piocheRelais) {
-        this.piocheRelais = piocheRelais;
-    }
-
-    public boolean isPiocheSource() {
-        return piocheSource;
-    }
-
-    public void setPiocheSource(boolean piocheSource) {
-        this.piocheSource = piocheSource;
-    }
-
-    public boolean isPiocheSouvenir() {
-        return piocheSouvenir;
-    }
-
-    public void setPiocheSouvenir(boolean piocheSouvenir) {
-        this.piocheSouvenir = piocheSouvenir;
-    }
-
-    public boolean isPiocheRencontre() {
-        return piocheRencontre;
-    }
-
-    public void setPiocheRencontre(boolean piocheRencontre) {
-        this.piocheRencontre = piocheRencontre;
-    }
-
-    public boolean isTemple() {
-        return temple;
-    }
-
-    public void setTemple(boolean temple) {
-        this.temple = temple;
     }
 
     public int getOrTemple() {
