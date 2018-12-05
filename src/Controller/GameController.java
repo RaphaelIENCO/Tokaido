@@ -532,7 +532,6 @@ public class GameController {
                 alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(0).getNom()+".jpg"));
                 alert.setHeaderText("Vous avez rencontrer "+model.getListRecontre().get(0).getNom());
                 alert.setContentText(model.getListRecontre().get(0).getDescription());
-                model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
                 alert.showAndWait();
                 switch (model.getListRecontre().get(0).getNom()){
                     case "Kuge":
@@ -542,21 +541,43 @@ public class GameController {
                         model.getListJoueur().get(0).setOrTemple(model.getListJoueur().get(0).getOrTemple()+1);
                         break;
                     case "Shokunin":
-                        piocheSouvenir();
+                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                        alert1.setTitle(null);
+                        if (model.getListSouvenir().isEmpty()){
+                            alert1.setHeaderText("Plus de cartes souvenirs");
+                        }else {
+                            alert1.setHeaderText("Vous gagnez donc");
+                            alert1.setGraphic(new ImageView("/Vue/Images/" + model.getListSouvenir().get(0).getNom() + ".jpg"));
+                            model.getListJoueur().get(0).addCarte(model.getListSouvenir().remove(0));
+                        }
+                        alert1.showAndWait();
                         break;
                     case "Anaibito0":
-                        panoramaRiziere();
+                        if (model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaRiziere().get(2))){
+                            recommencerPanorama("riziere");
+                        }else panoramaRiziere();
                         break;
                     case "Anaibito1":
-                        panoramaMer();
+                        if (model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMer().get(4))){
+                            recommencerPanorama("mer");
+                        }else panoramaMer();
                         break;
                     case "Anaibito2":
-                        panoramaMontagne();
+                        if (model.getListJoueur().get(0).getCartes().contains(model.getListPanoramaMontagnes().get(3))){
+                            recommencerPanorama("montagne");
+                        }else panoramaMontagne();
                         break;
                 }
+            model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
 
 
         } else messageErreur("Plus de cartes rencontre");
+    }
+
+    private void recommencerPanorama(String s) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Panorama");
+        alert.showAndWait();
     }
 
 

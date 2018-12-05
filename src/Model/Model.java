@@ -131,10 +131,10 @@ public class Model {
         listRecontre.add(new Rencontre("Shokunin","Vous gagnez une carte souvenir"));
         listRecontre.add(new Rencontre("Anaibito0","Vous gagnez une carte panorama riziere"));
         listRecontre.add(new Rencontre("Anaibito0","Vous gagnez une carte panorama riziere"));
-        listRecontre.add(new Rencontre("Anaibito1","Vous gagnez une carte panorama montagne"));
-        listRecontre.add(new Rencontre("Anaibito1","Vous gagnez une carte panorama montagne"));
-        listRecontre.add(new Rencontre("Anaibito2","Vous gagnez une carte panorama mer"));
-        listRecontre.add(new Rencontre("Anaibito2","Vous gagnez une carte panorama mer"));
+        listRecontre.add(new Rencontre("Anaibito1","Vous gagnez une carte panorama mer"));
+        listRecontre.add(new Rencontre("Anaibito1","Vous gagnez une carte panorama mer"));
+        listRecontre.add(new Rencontre("Anaibito2","Vous gagnez une carte panorama montagne"));
+        listRecontre.add(new Rencontre("Anaibito2","Vous gagnez une carte panorama montagne"));
 
     }
 
