@@ -516,6 +516,7 @@ public class GameController {
     }
 
     private void piocheRencontre() {
+        if (model.getListJoueur().get(0).getNom().equals("Yoshiyasu")) piocheYoshiyasu();
         if (!model.getListRecontre().isEmpty()) {
             if (model.getListJoueur().get(0).getNom().equals("Umegae")){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -570,6 +571,39 @@ public class GameController {
 
 
         } else messageErreur("Plus de cartes rencontre");
+    }
+    private void piocheYoshiyasu(){
+        if (model.getListRecontre().size()>=2) {
+            GridPane gridPane = new GridPane();
+            RadioButton radioButton1 = new RadioButton();
+            RadioButton radioButton2 = new RadioButton();
+            ToggleGroup toggleGroup = new ToggleGroup();
+            radioButton1.setToggleGroup(toggleGroup);
+            radioButton2.setToggleGroup(toggleGroup);
+            radioButton1.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(0).getNom()+".jpg"));
+            radioButton2.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(1).getNom()+".jpg"));
+            gridPane.add(radioButton1,0,0);
+            gridPane.add(radioButton2,0,1);
+            Alert alert= new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("En tant que yoshiyasu vous avez le choix \n entre deux cartes");
+            alert.setGraphic(gridPane);
+            alert.setContentText(null);
+            alert.showAndWait();
+            if (radioButton1.isSelected()){
+                Rencontre rencontre=model.getListRecontre().get(1);
+                model.getListRecontre().remove(rencontre);
+                model.getListRecontre().add(rencontre);
+            }else if(radioButton2.isSelected()){
+                Rencontre rencontre=model.getListRecontre().get(0);
+                model.getListRecontre().remove(rencontre);
+                model.getListRecontre().add(rencontre);
+            }else {
+                messageErreur("Vous devez selectionner une carte");
+                piocheYoshiyasu();
+            }
+
+        }else messageErreur("Pas assez de carte pour en tirer deux yoshiyasu");
+
     }
 
     private void recommencerPanorama(String s) {
