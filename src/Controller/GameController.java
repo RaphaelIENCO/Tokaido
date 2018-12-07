@@ -486,6 +486,30 @@ public class GameController {
                     prixTotal -= prixMin;
                 }
                 if(model.getListJoueur().get(0).getNom().equals("ZenEmon")){
+                    ArrayList<RadioButton> listeButton = new ArrayList<RadioButton>();
+                    GridPane grille2 = new GridPane();
+                    ToggleGroup group = new ToggleGroup();
+                    for (int i = 0; i < toAdd.size(); i++) {
+                        RadioButton radioButton = new RadioButton();
+                        radioButton.setGraphic(new ImageView("/Vue/Images/" + toAdd.get(i).getNom() + ".jpg"));
+                        radioButton.setToggleGroup(group);
+                        listeButton.add(radioButton);
+                        grille2.add(radioButton,i,0);
+                    }
+
+
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setGraphic(grille2);
+                    alert2.setTitle("ZenEmon");
+                    alert2.setHeaderText("Veuillez cocher la carte que vous voulez payer à 1 piece");
+                    alert2.showAndWait();
+
+                    for (int i = 0; i < listeButton.size(); i++) {
+                        if(listeButton.get(i).isSelected()){
+                            prixTotal-= toAdd.get(i).getPrix();
+                            prixTotal+=1;
+                        }
+                    }
                 }
 
                 if (model.getListJoueur().get(0).getGold() >= prixTotal) {
