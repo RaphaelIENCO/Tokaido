@@ -1,7 +1,5 @@
 package Model;
 
-import javafx.scene.paint.Color;
-
 public class Kinko extends Joueur {
     /**
      * Les cartes Repas achetées par Kinko lui coûtent

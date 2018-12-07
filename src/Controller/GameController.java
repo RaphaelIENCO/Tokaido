@@ -144,7 +144,7 @@ public class GameController {
         }
         for (Joueur joueur :model.getListJoueur()){
             if (joueur.getPositions()==indice){
-                messageErreur("Il y à déja quelqu'un");
+                messageErreur("Il y a déjà quelqu'un");
                 return;
             }
         }
@@ -324,7 +324,7 @@ public class GameController {
                         alert.setHeaderText("En tant que satsuki vous avez le droit à un repas gratuit \n que vous pouvez refuser pour acceder au relais normal");
                         alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRepas().get(0).getNom()+".jpg"));
                         if (model.getListJoueur().get(0).contient(model.getListRepas().get(0))){
-                            alert.setContentText("Vous l'avez déja gouté");
+                            alert.setContentText("Vous l'avez déjà gouté");
                             ButtonType refuser = new ButtonType("Refuser");
                             alert.getButtonTypes().setAll(refuser);
                             Optional<ButtonType> result = alert.showAndWait();
@@ -374,7 +374,7 @@ public class GameController {
                                 if (model.getListJoueur().get(0).getGold() >= (mesRepas.get(indice).getPrix() - 1)) {
                                     model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - (mesRepas.get(indice).getPrix() - 1));
                                 }else {
-                                    messageErreur("Vous n'avez pas les fond nécéssaires pour : \n"+mesRepas.get(indice).getNom());
+                                    messageErreur("Vous n'avez pas les fonds nécéssaires pour : \n"+mesRepas.get(indice).getNom());
                                     relanceRelais=true;
                                     piocheRelais(event);
                                     return;
@@ -384,7 +384,7 @@ public class GameController {
                                     model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() - mesRepas.get(indice).getPrix());
 
                                 } else {
-                                    messageErreur("Vous n'avez pas les fond nécéssaires pour : \n"+mesRepas.get(indice).getNom());
+                                    messageErreur("Vous n'avez pas les fonds nécéssaires pour : \n"+mesRepas.get(indice).getNom());
                                     relanceRelais = true;
                                     piocheRelais(event);
                                     return;
@@ -425,7 +425,7 @@ public class GameController {
                 model.getListJoueur().get(0).addCarte(source);
                 model.getListSource().remove(source);
 
-        }else messageErreur("Plus de carte source chaude");
+        }else messageErreur("Plus de cartes source chaude");
     }
 
     private void piocheSouvenir(){
@@ -512,7 +512,7 @@ public class GameController {
                 model.getListSouvenir().add(cartes2);
                 model.getListSouvenir().add(cartes3);
 
-            } else messageErreur("Pas assez de carte");
+            } else messageErreur("Pas assez de cartes");
     }
 
     private void piocheRencontre() {
@@ -529,7 +529,7 @@ public class GameController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Rencontre");
                 alert.setGraphic(new ImageView("/Vue/Images/"+model.getListRecontre().get(0).getNom()+".jpg"));
-                alert.setHeaderText("Vous avez rencontrer "+model.getListRecontre().get(0).getNom());
+                alert.setHeaderText("Vous avez rencontré "+model.getListRecontre().get(0).getNom());
                 alert.setContentText(model.getListRecontre().get(0).getDescription());
                 alert.showAndWait();
                 switch (model.getListRecontre().get(0).getNom()){
@@ -543,7 +543,7 @@ public class GameController {
                         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                         alert1.setTitle(null);
                         if (model.getListSouvenir().isEmpty()){
-                            alert1.setHeaderText("Plus de cartes souvenirs");
+                            alert1.setHeaderText("Plus de cartes souvenir");
                         }else {
                             alert1.setHeaderText("Vous gagnez donc");
                             alert1.setGraphic(new ImageView("/Vue/Images/" + model.getListSouvenir().get(0).getNom() + ".jpg"));
@@ -602,7 +602,7 @@ public class GameController {
                 piocheYoshiyasu();
             }
 
-        }else messageErreur("Pas assez de carte pour en tirer deux yoshiyasu");
+        }else messageErreur("Pas assez de cartes pour en tirer deux yoshiyasu");
 
     }
 
@@ -634,7 +634,7 @@ public class GameController {
             gridPane.add(radioButton3,0,2);
         }
         if (model.getListJoueur().get(0).contient(model.getListPanoramaRiziere().get(2)) && model.getListJoueur().get(0).contient(model.getListPanoramaMer().get(4)) && model.getListJoueur().get(0).contient(model.getListPanoramaMontagnes().get(3)) ){
-            alert.setHeaderText("Vous avez déja tout les panoramas");
+            alert.setHeaderText("Vous avez déjà tout les panoramas");
             alert.setGraphic(null);
         }else {
             alert.setGraphic(gridPane);
@@ -661,7 +661,7 @@ public class GameController {
                 alert.setHeaderText("Félicitation vous visitez une riziere \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==2 && !model.isRiziere()){
-                    alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas rizières vous gagnez donc :");
+                    alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tous les panoramas rizières vous gagnez donc :");
                     alert.setGraphic(new ImageView("/Vue/Images/AcomplissementRiziere.jpg"));
                     model.getListJoueur().get(0).addCarte(model.getListAcomplissement().get(0));
                     model.setRiziere(true);
@@ -671,7 +671,7 @@ public class GameController {
             }
         }
         alert.setGraphic(null);
-        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas rizieres");
+        alert.setHeaderText("Vous avez déjà débloqué tous les panoramas rizieres");
         alert.showAndWait();
         }
 
@@ -687,7 +687,7 @@ public class GameController {
             alert.setHeaderText("Félicitation vous visitez une montagne \n vous obtenez donc :");
             alert.showAndWait();
             if (i==3 && !model.isMontagne()){
-                alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas montagnes vous gagnez donc :");
+                alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tous les panoramas montagnes vous gagnez donc :");
                 alert.setGraphic(new ImageView("/Vue/Images/AcomplissementMontagne.jpg"));
                 model.getListJoueur().get(0).addCarte(model.getListAcomplissement().get(1));
                 model.setMontagne(true);
@@ -697,7 +697,7 @@ public class GameController {
         }
     }
         alert.setGraphic(null);
-        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas montagnes");
+        alert.setHeaderText("Vous avez déjà débloqué tous les panoramas montagnes");
         alert.showAndWait();
 }
 
@@ -713,7 +713,7 @@ public class GameController {
                 alert.setHeaderText("Félicitation vous visitez la mer \n vous obtenez donc :");
                 alert.showAndWait();
                 if (i==4 && !model.isMer()){
-                    alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tout les panoramas mer vous gagnez donc :");
+                    alert.setHeaderText("Félicitaion vous êtes le premier à débloquer \n tous les panoramas mer vous gagnez donc :");
                     alert.setGraphic(new ImageView("/Vue/Images/AcomplissementMer.jpg"));
                     model.getListJoueur().get(0).addCarte(model.getListAcomplissement().get(2));
                     model.setMer(true);
@@ -723,7 +723,7 @@ public class GameController {
             }
         }
         alert.setGraphic(null);
-        alert.setHeaderText("Vous avez déjà débloqué tout les panoramas mer");
+        alert.setHeaderText("Vous avez déjà débloqué tous les panoramas mer");
         alert.showAndWait();
     }
 
@@ -780,7 +780,7 @@ public class GameController {
         alert.setTitle("Ferme");
         alert.setHeaderText(null);
         alert.setGraphic(new ImageView("/Vue/Images/Ferme.png"));
-        alert.setContentText("Vous arrivé à une ferme \n vous gagnez 3 pièce d'or");
+        alert.setContentText("Vous arrivez à une ferme \n vous gagnez 3 pièce d'or");
         model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+3);
         alert.showAndWait();
     }
@@ -1155,17 +1155,14 @@ public class GameController {
                     if(model.getListJoueur().get(i).getOrTemple()==model.getListOrTemple().get(j)){
                         switch (j){
                             case 0:
-                                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 10");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 10);
                                 ptsDonnee = true;
                                 break;
                             case 1:
-                                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 7");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 7);
                                 ptsDonnee = true;
                                 break;
                             case 2:
-                                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 4");
                                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 4);
                                 ptsDonnee = true;
                                 break;
@@ -1173,12 +1170,10 @@ public class GameController {
                         }
                         if(ptsDonnee) break;
                     }else if(j==2){
-                        //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 2");
                         model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints() + 2);
                     }
                 }
             }else{
-                //System.out.println(model.getListJoueur().get(i).getNom()+ " gagne 0");
                 model.getListJoueur().get(i).setPoints(model.getListJoueur().get(i).getPoints());
             }
         }
@@ -1204,7 +1199,6 @@ public class GameController {
         }
         for(int pos: positionJ){
             model.getListJoueur().get(pos).addCarte(new Acomplissement("Gourmet"));
-            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu Gourmet");
         }
 
         compteurJ =0;
@@ -1227,7 +1221,6 @@ public class GameController {
         }
         for(int pos: positionJ){
             model.getListJoueur().get(pos).addCarte(new Acomplissement("Baigneur"));
-            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu baigneur");
 
         }
 
@@ -1251,7 +1244,6 @@ public class GameController {
         }
         for(int pos: positionJ){
             model.getListJoueur().get(pos).addCarte(new Acomplissement("Bavard"));
-            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu bavard");
 
         }
 
@@ -1275,8 +1267,6 @@ public class GameController {
         }
         for(int pos: positionJ){
             model.getListJoueur().get(pos).addCarte(new Acomplissement("Collectionneur"));
-            System.out.println(model.getListJoueur().get(pos).getNom()+" a recu Collectionneur");
-
         }
     }
 

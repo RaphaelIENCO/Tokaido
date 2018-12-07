@@ -202,8 +202,6 @@ public class Joueur {
 
     public boolean contient(Cartes cartesTocompare) {
         for (Cartes cartes : cartes){
-            System.out.println(cartes.getNom());
-            System.out.println(cartesTocompare.getNom());
                 if (cartes.getNom().equals(cartesTocompare.getNom())) return true;
             }
         return false;

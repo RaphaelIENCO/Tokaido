@@ -1,14 +1,5 @@
 package Model;
 
-import Controller.GameController;
-import Controller.LauncherController;
-import javafx.scene.control.Alert;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -37,7 +28,7 @@ public class Model {
         initPartie();
     }
 
-    public void initPartie(){ //Creation de toutes les differentes cartes du jeu dans differents packets
+    public void initPartie(){
         mer=false;
         montagne=false;
         riziere=false;
