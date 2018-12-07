@@ -237,14 +237,12 @@ public class GameController {
     }
 
     private void afficheArretDouble(){
-        boolean aCacher;
        for (Integer integer:model.getListArretDouble()){
            cacheBouton(integer);
        }
     }
 
     private void afficheArretRelais(){
-        boolean aCacher;
         for (Integer integer:model.getListArretRelais()){
             cacheBouton(integer);
         }
@@ -576,8 +574,44 @@ public class GameController {
 
     private void recommencerPanorama(String s) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Panorama");
+        alert.setHeaderText("Vous avez déja tout les panorama "+s+"\n veuillez en prendre un autre");
         alert.showAndWait();
+
+        alert.setTitle("Panorama");
+        alert.setHeaderText(null);
+        RadioButton radioButton1 = null;
+        RadioButton radioButton2 = null;
+        RadioButton radioButton3 = null;
+        GridPane gridPane = new GridPane();
+        ToggleGroup toggleGroup = new ToggleGroup();
+        if (!model.getListJoueur().get(0).contient(model.getListPanoramaRiziere().get(2))){
+            radioButton1 = new RadioButton("Riziere");
+            radioButton1.setToggleGroup(toggleGroup);
+            gridPane.add(radioButton1,0,0);
+        }
+        if (!model.getListJoueur().get(0).contient(model.getListPanoramaMer().get(4))){
+            radioButton2 = new RadioButton("Mer");
+            radioButton2.setToggleGroup(toggleGroup);
+            gridPane.add(radioButton2,0,1);
+        }
+        if (!model.getListJoueur().get(0).contient(model.getListPanoramaMontagnes().get(3))){
+            radioButton3 = new RadioButton("Montagne");
+            radioButton3.setToggleGroup(toggleGroup);
+            gridPane.add(radioButton3,0,2);
+        }
+        if (model.getListJoueur().get(0).contient(model.getListPanoramaRiziere().get(2)) && model.getListJoueur().get(0).contient(model.getListPanoramaMer().get(4)) && model.getListJoueur().get(0).contient(model.getListPanoramaMontagnes().get(3)) ){
+            alert.setHeaderText("Vous avez déja tout les panoramas");
+            alert.setGraphic(null);
+        }else {
+            alert.setGraphic(gridPane);
+            alert.setHeaderText("Veuillez choisir le panorama voulu");
+
+        }
+        alert.showAndWait();
+        if (radioButton1!=null &&radioButton1.isSelected()) panoramaRiziere();
+        else if (radioButton2!=null &&radioButton2.isSelected()) panoramaMer();
+        else if (radioButton3 !=null && radioButton3.isSelected()) panoramaMontagne();
+
     }
 
 
