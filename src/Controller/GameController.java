@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 
@@ -1066,6 +1067,7 @@ public class GameController {
             }
         }
         boutonsPlateau.clear();
+        Collections.shuffle(model.getListJoueur());
         ajoutBouton();
         afficheCartes();
         initPartie();
@@ -1108,6 +1110,7 @@ public class GameController {
 
     public void setData(Model m){
         this.model =m;
+        Collections.shuffle(model.getListJoueur());
         afficheCartes();
         ajoutBouton();
         initPartie();
