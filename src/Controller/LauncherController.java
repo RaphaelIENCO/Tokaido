@@ -27,6 +27,10 @@ public class LauncherController {
     Button commencerP;
     @FXML
     Label labelJ1;
+    @FXML
+    Checkbox carteCreateur;
+    @FXML
+    RadioButton RBcreateur;
 
     private ArrayList<String> persoDispo = new ArrayList<String>();
 
@@ -47,6 +51,10 @@ public class LauncherController {
     @FXML
     public void fenetreLauncher() throws IOException {
         if(model.getListJoueur().size()>=2){
+            if (RBcreateur.isSelected()){
+                model.setCreateur(true);
+            }
+            model.initPartie();
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/tokaido.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);

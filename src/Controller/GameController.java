@@ -161,29 +161,30 @@ public class GameController {
             messageErreur("Vous devez vous arreter au troisieme relais");
             return;
         }
-
-        if (button.getId().contains("relais")){
+        if (button.getId().contains("relais")) {
             piocheRelais(event);
         }
-        else if (button.getId().equals("source")){
-            piocheSourceChaude();
-        }
-        else if (button.getId().equals("souvenir")){ ;
-            piocheSouvenir();
-        }
-        else if (button.getId().equals("rencontre")){
-            piocheRencontre();
-        }else if (button.getId().equals("temple")){ ;
-            rencontreTemple(button);
-        }
-        else if(button.getId().contains("ferme")){
-            rencontreFerme();
-        } else if(button.getId().contains("riziere")){
-            panoramaRiziere();
-        }else if(button.getId().contains("montagne")){
-            panoramaMontagne();
-        }else if(button.getId().contains("mer")){
-            panoramaMer();
+
+        if (!model.getListJoueur().get(0).getNom().equals("VoyageurNeutre")) {
+             if (button.getId().equals("source")) {
+                piocheSourceChaude();
+            } else if (button.getId().equals("souvenir")) {
+                ;
+                piocheSouvenir();
+            } else if (button.getId().equals("rencontre")) {
+                piocheRencontre();
+            } else if (button.getId().equals("temple")) {
+                ;
+                rencontreTemple(button);
+            } else if (button.getId().contains("ferme")) {
+                rencontreFerme();
+            } else if (button.getId().contains("riziere")) {
+                panoramaRiziere();
+            } else if (button.getId().contains("montagne")) {
+                panoramaMontagne();
+            } else if (button.getId().contains("mer")) {
+                panoramaMer();
+            }
         }
         updatePos(event);
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
@@ -201,7 +202,7 @@ public class GameController {
             }
         }
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
-        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+        if(!model.getListJoueur().get(0).getNom().equals("VoyageurNeutre")) affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
     }
 
 
@@ -287,6 +288,7 @@ public class GameController {
                             model.getListJoueur().get(0).setRelais4(true);
                             break;
                     }
+                    if (model.getListJoueur().get(0).getNom().equals("VoyageurNeutre")) return;
                     if (model.getListJoueur().get(0).getNom().equals("Chuubei") && !relanceRelais){
                         piocheRencontre();
                     }
@@ -414,17 +416,24 @@ public class GameController {
 
     private void piocheSourceChaude(){
         if (!model.getListSource().isEmpty()) {
-                Sources source = model.getListSource().get(0);
-                String nomImage = "/Vue/Images/" + source.getNom() + ".jpg";
-
-                Alert show = new Alert(Alert.AlertType.INFORMATION);
-                ImageView imageView = new ImageView(new Image(nomImage));
-                show.setGraphic(imageView);
-                show.setTitle("Source chaude");
-                show.setHeaderText("Vous rapporte : " + source.getPoint());
-                show.showAndWait();
-                model.getListJoueur().get(0).addCarte(source);
-                model.getListSource().remove(source);
+                double a= Math.random();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Source chaude");
+                alert.setHeaderText(null);
+                if (a<0.9 && model.getListSource().size()>=2 && model.isCreateur()){
+                   alert.setHeaderText("Vous rencontrer jean no dans la source chaude \n celui ci vous donne 2 cartes source chaudes");
+                   GridPane gridPane = new GridPane();
+                   gridPane.add(new ImageView("/Vue/Images/JeanNoel.jpg"),0,0);
+                   gridPane.add(new ImageView("/Vue/Images/"+model.getListSource().get(0).getNom()+".jpg"),0,1);
+                   gridPane.add(new ImageView("/Vue/Images/"+model.getListSource().get(1).getNom()+".jpg"),1,1);
+                   alert.setGraphic(gridPane);
+                   model.getListJoueur().get(0).addCarte(model.getListSource().remove(0));
+                   model.getListJoueur().get(0).addCarte(model.getListSource().remove(0));
+                }else {
+                    alert.setGraphic(new ImageView("/Vue/Images/"+model.getListSource().get(0).getNom()+".jpg"));
+                    alert.setContentText("Vous vous baignez et gaghez donc une carte source chaude");
+                    model.getListJoueur().get(0).addCarte(model.getListSource().remove(0));
+                }alert.showAndWait();
 
         }else messageErreur("Plus de cartes source chaude");
     }
@@ -591,6 +600,11 @@ public class GameController {
                             recommencerPanorama("montagne");
                         }else panoramaMontagne();
                         break;
+                    case "Raphael":
+                        if(model.getListJoueur().get(0).getGold()-2<0){
+                            model.getListJoueur().get(0).setGold(0);
+                        }else model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-2);
+                        break;
                 }
             model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
 
@@ -635,7 +649,6 @@ public class GameController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Vous avez déja tout les panorama "+s+"\n veuillez en prendre un autre");
         alert.showAndWait();
-
         alert.setTitle("Panorama");
         alert.setHeaderText(null);
         RadioButton radioButton1 = null;
@@ -772,6 +785,13 @@ public class GameController {
                 choix.add(1);
                 choix.add(2);
                 choix.add(3);
+                int i=3;
+                for (Cartes cartes :model.getListJoueur().get(0).getCartes()){
+                    if (cartes.getNom().equals("Antoine")){
+                        i++;
+                        choix.add(i);
+                    }
+                }
                 String nomImage = "/Vue/Images/Temple.png";
                 ImageView image = new ImageView(nomImage);
 
@@ -801,13 +821,20 @@ public class GameController {
         }
 
     private void rencontreFerme() {
+        double a=Math.random();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ferme");
         alert.setHeaderText(null);
-        alert.setGraphic(new ImageView("/Vue/Images/Ferme.png"));
-        alert.setContentText("Vous arrivez à une ferme \n vous gagnez 3 pièce d'or");
-        model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+3);
+        if (a<0.3 && model.isCreateur()) {
+            alert.setContentText("Pas de chance olivier est déjà la \n vous ne gagnez donc pas de pièce");
+            alert.setGraphic(new ImageView("/Vue/Images/Olivier.jpg"));
+        }else {
+            alert.setGraphic(new ImageView("/Vue/Images/Ferme.png"));
+            alert.setContentText("Vous arrivez à une ferme \n vous gagnez 3 pièce d'or");
+            model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() + 3);
+        }
         alert.showAndWait();
+
     }
 
 
@@ -1078,7 +1105,7 @@ public class GameController {
         afficheArretRelais();
         colorieCase();
         affichageJoueur.setText(model.getListJoueur().get(0).getNom()+" commence la partie");
-        affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+        if(!model.getListJoueur().get(0).getNom().equals("VoyageurNeutre")) affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
     }
 
     private void initJoueur() {
@@ -1110,6 +1137,20 @@ public class GameController {
 
     public void setData(Model m){
         this.model =m;
+        if (model.getListJoueur().size()==2){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Voyageur neutre");
+            alert.setGraphic(null);
+            alert.setHeaderText("Voulez vous jouer avec le voyageur neutre ?");
+            ButtonType oui = new ButtonType("Oui");
+            ButtonType non = new ButtonType("Non");
+            alert.getButtonTypes().setAll(oui,non);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get()==oui){
+                model.getListJoueur().add(new Neutre());
+            }
+
+        }
         Collections.shuffle(model.getListJoueur());
         afficheCartes();
         ajoutBouton();

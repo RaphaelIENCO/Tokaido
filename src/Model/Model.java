@@ -7,6 +7,7 @@ public class Model {
     private boolean riziere;
     private boolean montagne;
     private boolean mer;
+    private boolean createur;
 
     private ArrayList<Rencontre>listRecontre = new ArrayList<Rencontre>();
     private ArrayList<Repas>listRepas  = new ArrayList<>();
@@ -25,7 +26,7 @@ public class Model {
 
     private ArrayList<Joueur>recapJoueur = new ArrayList<Joueur>();
     public Model(){
-        initPartie();
+        createur=false;
     }
 
     public void initPartie(){
@@ -126,7 +127,23 @@ public class Model {
         listRecontre.add(new Rencontre("Anaibito1","Vous gagnez une carte panorama mer"));
         listRecontre.add(new Rencontre("Anaibito2","Vous gagnez une carte panorama montagne"));
         listRecontre.add(new Rencontre("Anaibito2","Vous gagnez une carte panorama montagne"));
+        if (createur){
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontrer l'amis alsacien \n il vous offre en cadeaux un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontrer l'amis alsacien \n il vous offre en cadeaux un repas typique"));
+        }
 
+    }
+
+    public boolean isCreateur() {
+        return createur;
+    }
+
+    public void setCreateur(boolean createur) {
+        this.createur = createur;
     }
 
     private void initRepas(){ //Init de touts les repas
@@ -277,6 +294,11 @@ public class Model {
 
     public ArrayList<Integer> getListOrTemple() {
         return listOrTemple;
+    }
+    public void printRencontre(){
+        for (int i=0;i<listRecontre.size();i++){
+            System.out.println(listRecontre.get(i).getNom());
+        }
     }
 
     public void addJoueur(Joueur j){

@@ -2,15 +2,17 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="371.0" prefWidth="215.0" styleClass="luncherColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LauncherController">
+<AnchorPane prefHeight="408.0" prefWidth="237.0" styleClass="luncherColor" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LauncherController">
    <children>
       <Button layoutX="37.0" layoutY="34.0" mnemonicParsing="false" onAction="#selectionJoueur" styleClass="buttonSelection" stylesheets="@style.css" text="Selection joueur" wrapText="true" />
-      <Button fx:id="commencerP" layoutX="33.0" layoutY="216.0" mnemonicParsing="false" onAction="#fenetreLauncher" styleClass="buttonSelection" stylesheets="@style.css" text="Commencer partie" wrapText="true" />
+      <Button fx:id="commencerP" layoutX="37.0" layoutY="273.0" mnemonicParsing="false" onAction="#fenetreLauncher" styleClass="buttonSelection" stylesheets="@style.css" text="Commencer partie" wrapText="true" />
       <Label fx:id="labelJ1" layoutX="24.0" layoutY="75.0" text="Aucun joueurs selectionnés" textFill="WHITE" />
 
-      <Button layoutX="36.0" layoutY="271.0" mnemonicParsing="false" onAction="#showReglement" prefHeight="26.0" prefWidth="147.0" styleClass="buttonSelection" stylesheets="@style.css" text="Règles du jeu" />
-      <Button layoutX="62.0" layoutY="322.0" mnemonicParsing="false" onAction="#leaveGame" styleClass="buttonSelection" stylesheets="@style.css" text="Quitter" />
+      <Button layoutX="40.0" layoutY="315.0" mnemonicParsing="false" onAction="#showReglement" prefHeight="26.0" prefWidth="147.0" styleClass="buttonSelection" stylesheets="@style.css" text="Règles du jeu" />
+      <Button layoutX="72.0" layoutY="359.0" mnemonicParsing="false" onAction="#leaveGame" styleClass="buttonSelection" stylesheets="@style.css" text="Quitter" />
+      <RadioButton fx:id="RBcreateur" layoutX="11.0" layoutY="223.0" mnemonicParsing="false" text="Ajouter les cartes créateurs" />
    </children>
 </AnchorPane>
