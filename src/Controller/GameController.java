@@ -2,6 +2,7 @@ package Controller;
 
 
 import Model.*;
+import Model.sonTokaido.Son;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -267,6 +268,8 @@ public class GameController {
      * Partie pioche
      */
     public void piocheRelais(ActionEvent event) {
+        Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
+        sonPiece.start();
         Button button=(Button)event.getSource();
             if (!model.getListRepas().isEmpty()){
                     int nbCartes=0;
@@ -439,6 +442,8 @@ public class GameController {
     }
 
     private void piocheSouvenir(){
+        Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
+        sonPiece.start();
             if (model.getListSouvenir().size() > 3) {
                 int prixTotal = 0;
                 Souvenirs cartes1 = model.getListSouvenir().get(0);
@@ -559,6 +564,17 @@ public class GameController {
                 alert.setContentText(null);
                 alert.showAndWait();
                 model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()+1);
+            }
+
+            if(model.getListRecontre().get(0).getNom().equals("Miko")){
+                Thread sonHeyFemme = new Son("src/Model/sonTokaido/heyFemme.wav");
+                sonHeyFemme.start();
+            }else if(model.getListRecontre().get(0).getNom().equals("Samurai")){
+                Thread sonSamurai = new Son("src/Model/sonTokaido/samurai.wav");
+                sonSamurai.start();
+            }else{
+                Thread sonHuh = new Son("src/Model/sonTokaido/huh.wav");
+                sonHuh.start();
             }
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Rencontre");
@@ -767,6 +783,8 @@ public class GameController {
 
 
     private void rencontreTemple(Button button){
+        Thread sonTemple = new Son("src/Model/sonTokaido/temple.wav");
+        sonTemple.start();
         if(model.getListJoueur().get(0).getGold()>0) {
                 if (model.getListJoueur().get(0).getNom().equals("Hirotada")){
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -821,6 +839,8 @@ public class GameController {
         }
 
     private void rencontreFerme() {
+        Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
+        sonPiece.start();
         double a=Math.random();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ferme");
@@ -1014,6 +1034,8 @@ public class GameController {
 
     }
     public void finDePartie() throws IOException {
+        Thread sonVictoire = new Son("src/Model/sonTokaido/victoire.wav");
+        sonVictoire.start();
         distribAvancement();
         model.majScore();
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
