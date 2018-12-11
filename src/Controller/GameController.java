@@ -127,10 +127,12 @@ public class GameController {
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
     private boolean relanceRelais;
+    Thread sonMusique = new Son("src/Model/sonTokaido/musique.wav");
 
     public GameController(){
         boutonsPlateau = new ArrayList<>();
         relanceRelais = false;
+        sonMusique.start();
     }
 
     public void actionColor(ActionEvent event){
