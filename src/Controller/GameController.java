@@ -420,6 +420,8 @@ public class GameController {
     }
 
     private void piocheSourceChaude(){
+        Thread sonPiece = new Son("src/Model/sonTokaido/source.wav");
+        sonPiece.start();
         if (!model.getListSource().isEmpty()) {
                 double a= Math.random();
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -758,6 +760,8 @@ public class GameController {
 }
 
     private void panoramaMer(){
+        Thread sonMer = new Son("src/Model/sonTokaido/mer.wav");
+        sonMer.start();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Mer");
         alert.setContentText(null);
@@ -781,6 +785,7 @@ public class GameController {
         alert.setGraphic(null);
         alert.setHeaderText("Vous avez déjà débloqué tous les panoramas mer");
         alert.showAndWait();
+
     }
 
 
@@ -841,16 +846,17 @@ public class GameController {
         }
 
     private void rencontreFerme() {
-        Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
-        sonPiece.start();
+
         double a=Math.random();
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ferme");
         alert.setHeaderText(null);
-        if (a<0.3 && model.isCreateur()) {
+        if (a<0.9 && model.isCreateur()) {
             alert.setContentText("Pas de chance olivier est déjà la \n vous ne gagnez donc pas de pièce");
             alert.setGraphic(new ImageView("/Vue/Images/Olivier.jpg"));
         }else {
+            Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
+            sonPiece.start();
             alert.setGraphic(new ImageView("/Vue/Images/Ferme.png"));
             alert.setContentText("Vous arrivez à une ferme \n vous gagnez 3 pièce d'or");
             model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold() + 3);
