@@ -128,11 +128,13 @@ public class GameController {
     @FXML GridPane grille;
     @FXML Label affichageJoueur;
     private boolean relanceRelais;
+    private boolean equilibrage;
     Thread sonMusique = new Son("src/Model/sonTokaido/musique.wav");
 
     public GameController(){
         boutonsPlateau = new ArrayList<>();
         relanceRelais = false;
+        equilibrage = false;
         sonMusique.start();
     }
 
@@ -1209,7 +1211,28 @@ public class GameController {
             }
 
         }
+        if(model.getListJoueur().size()==5){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Voyageur neutre");
+            alert.setGraphic(null);
+            alert.setHeaderText("Voulez vous jouer en équilibrant les départs ?");
+            ButtonType oui = new ButtonType("Oui");
+            ButtonType non = new ButtonType("Non");
+            alert.getButtonTypes().setAll(oui,non);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get()==oui){
+                equilibrage = true;
+            }
+        }
         Collections.shuffle(model.getListJoueur());
+        if(equilibrage){
+            for (int i = 0; i < model.getListJoueur().size(); i++) {
+                if(i==0) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()-1);
+                if(i==1) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()-1);
+                if(i==3) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()+1);
+                if(i==4) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()+2);
+            }
+        }
         afficheCartes();
         ajoutBouton();
         initPartie();
