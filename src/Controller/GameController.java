@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -427,7 +426,7 @@ public class GameController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Source chaude");
                 alert.setHeaderText(null);
-                if (a<0.9 && model.getListSource().size()>=2 && model.isCreateur()){
+                if (a<0.4 && model.getListSource().size()>=2 && model.isCreateur()){
                    alert.setHeaderText("Vous rencontrer jean no dans la source chaude \n celui ci vous donne 2 cartes source chaudes");
                    GridPane gridPane = new GridPane();
                    gridPane.add(new ImageView("/Vue/Images/JeanNoel.jpg"),0,0);
@@ -446,8 +445,6 @@ public class GameController {
     }
 
     private void piocheSouvenir(){
-        Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
-        sonPiece.start();
             if (model.getListSouvenir().size() > 3) {
                 int prixTotal = 0;
                 Souvenirs cartes1 = model.getListSouvenir().get(0);
@@ -541,6 +538,8 @@ public class GameController {
                     }
                     model.getListJoueur().get(0).getCartes().addAll(toAdd);
                     model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-prixTotal);
+                    Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
+                    sonPiece.start();
 
                 } else {
                     messageErreur("Pas assez d'or");
@@ -621,9 +620,28 @@ public class GameController {
                         }else panoramaMontagne();
                         break;
                     case "Raphael":
+                        Thread sonRire = new Son("src/Model/sonTokaido/rire.wav");
+                        sonRire.start();
                         if(model.getListJoueur().get(0).getGold()-2<0){
                             model.getListJoueur().get(0).setGold(0);
                         }else model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-2);
+                        break;
+                    case "Aurélien":
+                        alert.setTitle("Ah l'alsace");
+                        alert.setHeaderText("Il vous donne donc :");
+                        alert.setContentText(null);
+                        if (!model.getListJoueur().get(0).contient(model.getChoucroute())){
+                            alert.setGraphic(new ImageView("/Vue/Images/Choucroute.jpg"));
+                            model.getListJoueur().get(0).addCarte(model.getChoucroute());
+                        }
+                        else if (!model.getListJoueur().get(0).contient(model.getFischer())){
+                            alert.setGraphic(new ImageView("/Vue/Images/Fischer.jpg"));
+                            model.getListJoueur().get(0).addCarte(model.getFischer());
+                        }else {
+                            alert.setGraphic(null);
+                            alert.setHeaderText("Vous avez déjà tout gouter");
+                        }
+                        alert.showAndWait();
                         break;
                 }
             model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));
@@ -851,7 +869,9 @@ public class GameController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ferme");
         alert.setHeaderText(null);
-        if (a<0.9 && model.isCreateur()) {
+        if (a<0.4 && model.isCreateur()) {
+            Thread sonRire = new Son("src/Model/sonTokaido/rire.wav");
+            sonRire.start();
             alert.setContentText("Pas de chance olivier est déjà la \n vous ne gagnez donc pas de pièce");
             alert.setGraphic(new ImageView("/Vue/Images/Olivier.jpg"));
         }else {
