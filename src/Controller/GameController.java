@@ -1211,7 +1211,7 @@ public class GameController {
             }
 
         }
-        if(model.getListJoueur().size()==5){
+        if(model.getListJoueur().size()>=4){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Voyageur neutre");
             alert.setGraphic(null);
@@ -1229,8 +1229,8 @@ public class GameController {
             for (int i = 0; i < model.getListJoueur().size(); i++) {
                 if(i==0) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()-1);
                 if(i==1) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()-1);
-                if(i==3) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()+1);
-                if(i==4) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()+2);
+                if(i==model.getListJoueur().size()-2 && model.getListJoueur().size()==5) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()+1);
+                if(i==model.getListJoueur().size()-1) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()+2);
             }
         }
         afficheCartes();
