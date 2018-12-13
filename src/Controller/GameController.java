@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -686,8 +688,9 @@ public class GameController {
     private void recommencerPanorama(String s) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Vous avez déja tout les panorama "+s+"\n veuillez en prendre un autre");
-        alert.showAndWait();
         alert.setTitle("Panorama");
+
+        alert.showAndWait();
         alert.setHeaderText(null);
         RadioButton radioButton1 = null;
         RadioButton radioButton2 = null;
@@ -884,9 +887,6 @@ public class GameController {
         alert.showAndWait();
 
     }
-
-
-
     /**
      * Partie Affichage
      */
