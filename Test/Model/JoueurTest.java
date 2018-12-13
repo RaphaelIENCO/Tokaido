@@ -3,6 +3,10 @@ package Model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+
 public class JoueurTest {
 
     @Test
@@ -115,6 +119,102 @@ public class JoueurTest {
 
         Assert.assertEquals(0,joueur.getCartes().size());
     }
+
+    @Test
+    public void testUpdateScoreAvecMitsu(){
+        Joueur joueur = new Joueur();
+        joueur.setNom("Mitsukuni");
+
+        Sources sources = new Sources("S1",0);
+
+        joueur.addCarte(sources);
+
+        joueur.updateScore();
+
+        Assert.assertEquals(1,joueur.getPoints());
+    }
+
+    @Test
+    public void testUpdateScoreAvecMitsuAccom(){
+        Joueur joueur = new Joueur();
+        joueur.setNom("Mitsukuni");
+
+        Acomplissement acomplissement = new Acomplissement("A1");
+
+        joueur.addCarte(acomplissement);
+
+        joueur.updateScore();
+
+        Assert.assertEquals(4,joueur.getPoints());
+    }
+
+    @Test
+    public void testRencontreSamuraiUpdate(){
+        Joueur joueur = new Joueur();
+        Rencontre rencontre = new Rencontre("Samurai","");
+
+        joueur.addCarte(rencontre);
+        joueur.updateScore();
+
+        Assert.assertEquals(3,joueur.getPoints());
+    }
+
+    @Test
+    public void testRencontreMikoUpdate(){
+        Joueur joueur = new Joueur();
+        Rencontre rencontre = new Rencontre("Miko","");
+
+        joueur.addCarte(rencontre);
+        joueur.updateScore();
+
+        Assert.assertEquals(1,joueur.getPoints());
+    }
+
+    @Test
+    public void testRencontreUmegaeUpdate(){
+        Joueur joueur = new Joueur();
+        joueur.setNom("Umegae");
+        Rencontre rencontre = new Rencontre("","");
+
+        joueur.addCarte(rencontre);
+        joueur.updateScore();
+
+        Assert.assertEquals(1,joueur.getPoints());
+    }
+
+    @Test
+    public void testTrierCarte(){
+        Joueur joueur = new Joueur();
+        Repas repas = new Repas("R1");
+        Souvenirs souvenirs = new Souvenirs("S1");
+        Rencontre rencontre = new Rencontre("R1","");
+        Sources sources = new Sources("S1",3);
+        Acomplissement acomplissement = new Acomplissement("A1");
+        Panoramas panoramasRi = new Panoramas("P1",0,"Riziere");
+        Panoramas panoramasMe = new Panoramas("P2",0,"Mer");
+        Panoramas panoramasMo = new Panoramas("P3",0,"Montagne");
+
+        ArrayList<Cartes> lCarte = new ArrayList<>();
+        ArrayList<Cartes> toCompare = new ArrayList<>();
+
+        lCarte.add(repas);
+        lCarte.add(souvenirs);
+        lCarte.add(rencontre);
+        lCarte.add(sources);
+        lCarte.add(acomplissement);
+        lCarte.add(panoramasRi);
+        lCarte.add(panoramasMo);
+        lCarte.add(panoramasMe);
+
+        toCompare.addAll(lCarte);
+        Collections.shuffle(lCarte);
+        joueur.setCartes(lCarte);
+        joueur.trierCarte();
+
+        Assert.assertEquals(toCompare,joueur.getCartes());
+
+    }
+
 
 
 
