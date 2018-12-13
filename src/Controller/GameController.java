@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
@@ -624,6 +623,23 @@ public class GameController {
                         if(model.getListJoueur().get(0).getGold()-2<0){
                             model.getListJoueur().get(0).setGold(0);
                         }else model.getListJoueur().get(0).setGold(model.getListJoueur().get(0).getGold()-2);
+                        break;
+                    case "Aurélien":
+                        alert.setTitle("Ah l'alsace");
+                        alert.setHeaderText("Il vous donne donc :");
+                        alert.setContentText(null);
+                        if (!model.getListJoueur().get(0).contient(model.getChoucroute())){
+                            alert.setGraphic(new ImageView("/Vue/Images/Choucroute.jpg"));
+                            model.getListJoueur().get(0).addCarte(model.getChoucroute());
+                        }
+                        else if (!model.getListJoueur().get(0).contient(model.getFischer())){
+                            alert.setGraphic(new ImageView("/Vue/Images/Fischer.jpg"));
+                            model.getListJoueur().get(0).addCarte(model.getFischer());
+                        }else {
+                            alert.setGraphic(null);
+                            alert.setHeaderText("Vous avez déjà tout gouter");
+                        }
+                        alert.showAndWait();
                         break;
                 }
             model.getListJoueur().get(0).addCarte(model.getListRecontre().remove(0));

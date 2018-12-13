@@ -21,9 +21,8 @@ public class Model {
     private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
     private ArrayList<Integer> listArretDouble= new ArrayList<Integer>();
     private ArrayList<Integer> listArretRelais = new ArrayList<>();
-
-
-
+    private Repas choucroute;
+    private Repas fischer;
     private ArrayList<Joueur>recapJoueur = new ArrayList<Joueur>();
     public Model(){
         createur=false;
@@ -42,6 +41,9 @@ public class Model {
         initArretDouble();
         initRelais();
         shuffle();
+        choucroute = new Repas("Choucroute",0,6);
+        fischer = new Repas("Fischer",0,6);
+
     }
     private void initArretDouble(){
         listArretDouble.add(6);
@@ -70,6 +72,23 @@ public class Model {
         listArretDouble.add(92);
 
     }
+
+    public Repas getFischer() {
+        return fischer;
+    }
+
+    public Repas getChoucroute() {
+        return choucroute;
+    }
+
+    public void setChoucroute(Repas choucroute) {
+        this.choucroute = choucroute;
+    }
+
+    public void setFischer(Repas fischer) {
+        this.fischer = fischer;
+    }
+
     private void initRelais(){
         listArretRelais.add(1);
         listArretRelais.add(2);
@@ -134,32 +153,71 @@ public class Model {
             listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
             listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
             listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
-
-
-
-
-
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
         }
 
