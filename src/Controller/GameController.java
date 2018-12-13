@@ -1060,14 +1060,21 @@ public class GameController {
             int posColumn=1;
             for(Cartes c: j.getCartes()){
                 if(c instanceof Acomplissement) {
-                    accomplissement.add(new ImageView("/Vue/Images/" + j.getNom() + ".jpg"), 0, comptJ);
-                    accomplissement.add(new ImageView("/Vue/Images/" + c.getNom() + ".jpg"), posColumn, comptJ);
+                    ImageView imgJ = new ImageView("/Vue/Images/" + j.getNom() + ".jpg");
+                    imgJ.setFitHeight(100);imgJ.setFitWidth(90);
+                    ImageView imgA = new ImageView("/Vue/Images/" + c.getNom() + ".jpg");
+                    imgA.setFitHeight(80);imgA.setFitWidth(70);
+                    accomplissement.add(imgJ, 0, comptJ);
+                    accomplissement.add(imgA, posColumn, comptJ);
                     posColumn++;
                 }
             }
             comptJ++;
         }
+        //ScrollPane sp = new ScrollPane();
+        //sp.setContent(accomplissement);
         alert.setGraphic(accomplissement);
+        alert.setResizable(true);
         alert.setContentText(classement);
         ButtonType buttonResetGame = new ButtonType("Recommencer");
         ButtonType buttonRestart = new ButtonType("Retour a l'accueil");
@@ -1131,6 +1138,7 @@ public class GameController {
     }
 
     private void initPartie() {
+        model.initPartie();
         initJoueur();
         afficheArretRelais();
         colorieCase();
