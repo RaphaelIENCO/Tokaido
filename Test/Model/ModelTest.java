@@ -7,31 +7,37 @@ public class ModelTest {
     @Test
     public void testInitRepasLg(){
         Model model = new Model();
+        model.initPartie();
         Assert.assertEquals(25,model.getListRepas().size());
     }
     @Test
     public void testInitSouvenirLg(){
         Model model = new Model();
+        model.initPartie();
         Assert.assertEquals(24,model.getListSouvenir().size());
     }
     @Test
     public void testInitPanoramaRizLg(){
         Model model = new Model();
+        model.initPartie();
         Assert.assertEquals(3,model.getListPanoramaRiziere().size());
     }
     @Test
     public void testInitPanoramaMonLg(){
         Model model = new Model();
+        model.initPartie();
         Assert.assertEquals(4,model.getListPanoramaMontagnes().size());
     }
     @Test
     public void testInitPanoramaMerLg(){
         Model model = new Model();
+        model.initPartie();
         Assert.assertEquals(5,model.getListPanoramaMer().size());
     }
     @Test
     public void testInitSourceLg(){
         Model model = new Model();
+        model.initPartie();
         Assert.assertEquals(12,model.getListSource().size());
     }
     @Test
@@ -161,5 +167,45 @@ public class ModelTest {
         model.addJoueur(j1);
         model.majScore();
         Assert.assertEquals(0,model.getListJoueur().get(0).getPoints());
+    }
+    @Test
+    public void testInitCreateur(){
+        Model model = new Model();
+        model.setCreateur(true);
+        model.initPartie();
+
+        Assert.assertEquals(20,model.getListRecontre().size());
+    }
+
+    @Test
+    public void testTrieJoueurOrTempleA0(){
+        Model model = new Model();
+        Joueur joueur = new Joueur();
+        Joueur joueur1 = new Joueur();
+
+        joueur.setOrTemple(0);
+        joueur1.setOrTemple(0);
+        model.addJoueur(joueur);
+        model.addJoueur(joueur1);
+
+        model.trieJoueurOrTemple();
+        Assert.assertEquals(joueur,model.getListJoueur().get(0));
+        Assert.assertEquals(joueur1,model.getListJoueur().get(1));
+    }
+
+    @Test
+    public void testTrieJoueurOrTemple(){
+        Model model = new Model();
+        Joueur joueur = new Joueur();
+        Joueur joueur1 = new Joueur();
+
+        joueur.setOrTemple(0);
+        joueur1.setOrTemple(10);
+        model.addJoueur(joueur);
+        model.addJoueur(joueur1);
+
+        model.trieJoueurOrTemple();
+        Assert.assertEquals(joueur,model.getListJoueur().get(1));
+        Assert.assertEquals(joueur1,model.getListJoueur().get(0));
     }
 }
