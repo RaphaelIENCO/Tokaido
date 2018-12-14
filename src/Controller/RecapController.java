@@ -17,6 +17,7 @@ public class RecapController {
         model.getListJoueur().get(0).trierCarte();
         grille.getChildren().clear();
         for (int i=0;i<model.getRecapJoueur().size();i++){
+            model.getRecapJoueur().get(i).trierCarte();
             Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints()+" \n or temple: "+model.getRecapJoueur().get(i).getOrTemple());
             grille.add(descriptif,0,i);
             if(model.getRecapJoueur().get(i).getNom().equals(model.getListJoueur().get(0).getNom())){

@@ -212,6 +212,7 @@ public class GameController {
         }
         affichageJoueur.setText("Au tour de : "+model.getListJoueur().get(0).getNom());
         if(!model.getListJoueur().get(0).getNom().equals("VoyageurNeutre")) affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
+        else affichageJoueur.setGraphic(null);
     }
 
 
