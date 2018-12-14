@@ -126,7 +126,6 @@ public class GameController {
     @FXML Button b52;
     @FXML Button b53;
     @FXML Button b54;
-    @FXML GridPane grille;
     @FXML Label affichageJoueur;
     private boolean relanceRelais;
     private boolean equilibrage;
@@ -1141,6 +1140,8 @@ public class GameController {
         Collections.shuffle(model.getListJoueur());
         ajoutBouton();
         initPartie();
+        loader.<RecapController>getController().setData(this.model);
+        loader.<RecapController>getController().afficheCartes();
     }
 
     private void initPartie() {
@@ -1240,20 +1241,19 @@ public class GameController {
     }
 
     public void restart() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/luncher.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) b1.getScene().getWindow();
-        Scene scene = new Scene(root);
-        Stage secondaryStage = new Stage();
-        secondaryStage.setScene(scene);
-        secondaryStage.setMaximized(false);
-        secondaryStage.setResizable(true);
-        secondaryStage.setTitle("Launcher");
-        secondaryStage.show();
-        stage.close();
-
-
-    }
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/luncher.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) b1.getScene().getWindow();
+            Scene scene = new Scene(root);
+            Stage secondaryStage = new Stage();
+            secondaryStage.setScene(scene);
+            secondaryStage.setMaximized(false);
+            secondaryStage.setResizable(true);
+            secondaryStage.setTitle("Launcher");
+            secondaryStage.show();
+            stage.close();
+            this.loader.<RecapController>getController().fermerStage();
+        }
 
     public void showReglement() {
         LauncherController.reglement();
