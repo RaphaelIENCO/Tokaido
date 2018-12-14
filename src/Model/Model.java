@@ -81,13 +81,6 @@ public class Model {
         return choucroute;
     }
 
-    public void setChoucroute(Repas choucroute) {
-        this.choucroute = choucroute;
-    }
-
-    public void setFischer(Repas fischer) {
-        this.fischer = fischer;
-    }
 
     private void initRelais(){
         listArretRelais.add(1);
@@ -152,9 +145,9 @@ public class Model {
             listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
             listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
             listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
-            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+           listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
-        }
+    }
 
     }
 

@@ -3,6 +3,7 @@ package Controller;
 
 import Model.*;
 import Model.sonTokaido.Son;
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,6 +130,7 @@ public class GameController {
     @FXML Label affichageJoueur;
     private boolean relanceRelais;
     private boolean equilibrage;
+    private FXMLLoader loader;
     Thread sonMusique = new Son("src/Model/sonTokaido/musique.wav");
 
     public GameController(){
@@ -136,6 +138,8 @@ public class GameController {
         relanceRelais = false;
         equilibrage = false;
         sonMusique.start();
+        loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/affichageCarte.fxml"));
+
     }
 
     public void actionColor(ActionEvent event){
@@ -196,7 +200,7 @@ public class GameController {
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
         model.trieJoueur();
         model.majScore();
-        afficheCartes();
+        loader.<RecapController>getController().afficheCartes();
         if (model.getListJoueur().size()>=4) afficheArretDouble();
         afficheArretRelais();
         if (model.getListJoueur().get(0).getPositions()==boutonsPlateau.size()-(model.getListJoueur().size())){
@@ -889,25 +893,6 @@ public class GameController {
         alert.showAndWait();
 
     }
-    /**
-     * Partie Affichage
-     */
-    private void afficheCartes(){
-        model.getListJoueur().get(0).trierCarte();
-        grille.getChildren().clear();
-        for (int i=0;i<model.getRecapJoueur().size();i++){
-            Text descriptif = new Text(model.getRecapJoueur().get(i).getNom()+" \n or : "+model.getRecapJoueur().get(i).getGold()+" \n points : "+model.getRecapJoueur().get(i).getPoints()+" \n or temple: "+model.getRecapJoueur().get(i).getOrTemple());
-            grille.add(descriptif,0,i);
-            if(model.getRecapJoueur().get(i).getNom().equals(model.getListJoueur().get(0).getNom())){
-                grille.add(new ImageView("/Vue/Images/" + model.getRecapJoueur().get(i).getNom() + "1.jpg"), 1, i);
-            } else grille.add(new ImageView("/Vue/Images/" + model.getRecapJoueur().get(i).getNom() + ".jpg"), 1, i);
-
-            for (int j=0;j<model.getRecapJoueur().get(i).getCartes().size();j++){
-                grille.add(new ImageView("/Vue/Images/"+model.getRecapJoueur().get(i).getCartes().get(j).getNom()+".jpg"),j+2,i);
-            }
-        }
-    }
-
 
     private void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -1155,7 +1140,6 @@ public class GameController {
         boutonsPlateau.clear();
         Collections.shuffle(model.getListJoueur());
         ajoutBouton();
-        afficheCartes();
         initPartie();
     }
 
@@ -1195,7 +1179,7 @@ public class GameController {
         }
     }
 
-    public void setData(Model m){
+    public void setData(Model m) throws IOException {
         this.model =m;
         if (model.getListJoueur().size()==2){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -1233,7 +1217,16 @@ public class GameController {
                 if(i==model.getListJoueur().size()-1) model.getListJoueur().get(i).setGold(model.getListJoueur().get(i).getGold()+2);
             }
         }
-        afficheCartes();
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage secondaryStage = new Stage();
+        loader.<RecapController>getController().setData(this.model);
+        loader.<RecapController>getController().afficheCartes();
+        secondaryStage.setScene(scene);
+        secondaryStage.setMaximized(false);
+        secondaryStage.setResizable(false);
+        secondaryStage.setTitle("Recapitulatif");
+        secondaryStage.show();
         ajoutBouton();
         initPartie();
 
