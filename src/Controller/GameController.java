@@ -433,7 +433,7 @@ public class GameController {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Source chaude");
                 alert.setHeaderText(null);
-                if (a<0.4 && model.getListSource().size()>=2 && model.isCreateur()){
+                if (a<0.9 && model.getListSource().size()>=2 && model.isCreateur()){
                    alert.setHeaderText("Vous rencontrer jean no dans la source chaude \n celui ci vous donne 2 cartes source chaudes");
                    GridPane gridPane = new GridPane();
                    gridPane.add(new ImageView("/Vue/Images/JeanNoel.jpg"),0,0);
@@ -877,7 +877,7 @@ public class GameController {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ferme");
         alert.setHeaderText(null);
-        if (a<0.4 && model.isCreateur()) {
+        if (a<0.9 && model.isCreateur()) {
             Thread sonRire = new Son("src/Model/sonTokaido/rire.wav");
             sonRire.start();
             alert.setContentText("Pas de chance olivier est déjà la \n vous ne gagnez donc pas de pièce");
@@ -1077,8 +1077,6 @@ public class GameController {
             }
             comptJ++;
         }
-        //ScrollPane sp = new ScrollPane();
-        //sp.setContent(accomplissement);
         alert.setGraphic(accomplissement);
         alert.setResizable(true);
         alert.setContentText(classement);
@@ -1088,10 +1086,10 @@ public class GameController {
         alert.getButtonTypes().setAll(buttonResetGame,buttonRestart, buttonQuiter);
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonRestart) {
+          //  sonMusique.s();
             restart();
         } else if (result.get()==buttonResetGame) {
             restartGame();
-
         } else {
             System.exit(0);
         }
@@ -1101,7 +1099,9 @@ public class GameController {
     private void restartGame() {
         for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: white"); }
         ArrayList<Joueur> listeJoueur = model.getListJoueur();
+        boolean recommencer=model.isCreateur();
         this.model= new Model();
+        this.model.setCreateur(recommencer);
         for (Joueur joueur:listeJoueur){
             switch (joueur.getNom()){
                 case "Kinko":

@@ -146,6 +146,42 @@ public class Model {
             listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
             listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));    listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));    listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Raphael","HAHAHA , vous perdez 2 pièce d'or"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+
+
 
     }
 

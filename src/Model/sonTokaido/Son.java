@@ -22,7 +22,6 @@ public class Son extends Thread {
         filename = wavfile;
         curPosition = Position.NORMAL;
     }
-
     public void run() {
         File soundFile = new File(filename);
         if (!soundFile.exists()) {
@@ -83,6 +82,7 @@ public class Son extends Thread {
             auline.drain();
             auline.close();
         }
+
     }
 
     /**
@@ -92,4 +92,5 @@ public class Son extends Thread {
         Thread playWave=new Son("piece.wav");
         playWave.start();
     }
+
 }
