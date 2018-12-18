@@ -62,7 +62,6 @@ public class LauncherController {
             loader.<GameController>getController().setData(model);
             secondaryStage.setScene(scene);
             secondaryStage.setMaximized(false);
-            secondaryStage.setResizable(false);
             secondaryStage.setTitle("Tokaido");
             secondaryStage.show();
             Stage stage = (Stage) commencerP.getScene().getWindow();
