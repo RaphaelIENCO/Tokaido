@@ -1242,6 +1242,7 @@ public class GameController {
     }
 
     public void restart() throws IOException {
+            sonMusique.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/luncher.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) b1.getScene().getWindow();
