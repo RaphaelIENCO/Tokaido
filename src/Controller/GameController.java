@@ -131,8 +131,11 @@ public class GameController {
     private boolean equilibrage;
     private FXMLLoader loader;
     Thread sonMusique = new Son("src/Model/sonTokaido/musique.wav");
+    ArrayList<Repas> mesRepas;
+
 
     public GameController(){
+        mesRepas = new ArrayList<Repas>();
         boutonsPlateau = new ArrayList<>();
         relanceRelais = false;
         equilibrage = false;
@@ -170,8 +173,36 @@ public class GameController {
             messageErreur("Vous devez vous arreter au troisieme relais");
             return;
         }
+        updatePos(event);
         if (button.getId().contains("relais")) {
             piocheRelais(event);
+            boolean notClear=true;
+            switch (button.getId()){
+                case "relais1":
+                    for(Joueur j: model.getListJoueur()) if(!j.isRelais1()) notClear=false;
+                    if(notClear){
+                        mesRepas.clear();
+                    }
+                    break;
+                case "relais2":
+                    for(Joueur j: model.getListJoueur()) if(!j.isRelais2()) notClear=false;
+                    if(notClear){
+                        mesRepas.clear();
+                    }
+                    break;
+                case "relais3":
+                    for(Joueur j: model.getListJoueur()) if(!j.isRelais3()) notClear=false;
+                    if(notClear){
+                        mesRepas.clear();
+                    }
+                    break;
+                case "relais4":
+                    for(Joueur j: model.getListJoueur()) if(!j.isRelais4()) notClear=false;
+                    if(notClear){
+                        mesRepas.clear();
+                    }
+                    break;
+            }
         }
 
         if (!model.getListJoueur().get(0).getNom().equals("VoyageurNeutre")) {
@@ -195,7 +226,6 @@ public class GameController {
                 panoramaMer();
             }
         }
-        updatePos(event);
         button.setStyle("-fx-background-color: "+model.getListJoueur().get(0).getCouleur()+";");
         model.trieJoueur();
         model.majScore();
@@ -277,6 +307,11 @@ public class GameController {
      * Partie pioche
      */
     public void piocheRelais(ActionEvent event) {
+        if(model.getListJoueur().get(0).getPositions()==28 || model.getListJoueur().get(0).getPositions()==51 || model.getListJoueur().get(0).getPositions()==75 || model.getListJoueur().get(0).getPositions()==98 ){
+            for (int i = 0; i < model.getListJoueur().size()+1; i++) {
+                mesRepas.add(model.getListRepas().get(i));
+            }
+        }
         Thread sonPiece = new Son("src/Model/sonTokaido/piece.wav");
         sonPiece.start();
         Button button=(Button)event.getSource();
@@ -284,19 +319,15 @@ public class GameController {
                     int nbCartes=0;
                     switch (button.getId()){
                         case "relais1":
-                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais1()) nbCartes++;
                             model.getListJoueur().get(0).setRelais1(true);
                             break;
                         case "relais2":
-                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais2()) nbCartes++;
                             model.getListJoueur().get(0).setRelais2(true);
                             break;
                         case "relais3":
-                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais3()) nbCartes++;
                             model.getListJoueur().get(0).setRelais3(true);
                             break;
                         case "relais4":
-                            for (Joueur joueur:model.getListJoueur()) if (!joueur.isRelais4()) nbCartes++;
                             model.getListJoueur().get(0).setRelais4(true);
                             break;
                     }
@@ -359,12 +390,10 @@ public class GameController {
                     }
                     GridPane gridPane = new GridPane();
                     ArrayList<RadioButton> rbox = new ArrayList<RadioButton>();
-                    ArrayList<Repas> mesRepas = new ArrayList<Repas>();
                     ToggleGroup group = new ToggleGroup();
-                    for (int i=0;i<nbCartes+1;i++){
+                    for (int i=0;i<mesRepas.size();i++){
                         RadioButton radioButton = new RadioButton();
-                        mesRepas.add(model.getListRepas().get(i));
-                        radioButton.setGraphic(new ImageView("/Vue/Images/"+model.getListRepas().get(i).getNom()+".jpg"));
+                        radioButton.setGraphic(new ImageView("/Vue/Images/"+mesRepas.get(i).getNom()+".jpg"));
                         rbox.add(radioButton);
                         radioButton.setToggleGroup(group);
                         gridPane.add(radioButton,i,0);
