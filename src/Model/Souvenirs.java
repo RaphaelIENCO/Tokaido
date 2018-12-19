@@ -1,9 +1,12 @@
 package Model;
 
 public class Souvenirs extends Cartes{
-    protected int prix;
-    protected int typeSouvenir;
+    private int prix;
+    private int typeSouvenir;
 
+    /**
+     * Les souvenirs possèdent un type et un prix
+     */
     public Souvenirs(String nom){
         super(nom);
     }
@@ -18,17 +21,11 @@ public class Souvenirs extends Cartes{
         return prix;
     }
 
-    public void setPrix(int prix) {
-        this.prix = prix;
-    }
 
     public int getTypeSouvenir() {
         return typeSouvenir;
     }
 
-    public void setTypeSouvenir(int typeSouvenir) {
-        this.typeSouvenir = typeSouvenir;
-    }
 
     @Override
     public String toString() {
