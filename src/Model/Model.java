@@ -8,26 +8,44 @@ public class Model {
     private boolean montagne;
     private boolean mer;
     private boolean createur;
-
-    private ArrayList<Rencontre>listRecontre = new ArrayList<Rencontre>();
-    private ArrayList<Repas>listRepas  = new ArrayList<>();
-    private ArrayList<Souvenirs>listSouvenir = new ArrayList<>();
-    private ArrayList<Panoramas>listPanoramaMer = new ArrayList<>();
-    private ArrayList<Panoramas>listPanoramaMontagnes = new ArrayList<>();
-    private ArrayList<Panoramas>listPanoramaRiziere = new ArrayList<>();
-    private ArrayList<Sources>listSource = new ArrayList<>();
-    private ArrayList<Joueur>listJoueur = new ArrayList<Joueur>();
-    private ArrayList<Integer>listOrTemple = new ArrayList<Integer>();
-    private ArrayList<Acomplissement>listAcomplissement = new ArrayList<Acomplissement>();
-    private ArrayList<Integer> listArretDouble= new ArrayList<Integer>();
-    private ArrayList<Integer> listArretRelais = new ArrayList<>();
+    private ArrayList<Rencontre>listRecontre ;
+    private ArrayList<Repas>listRepas  ;
+    private ArrayList<Souvenirs>listSouvenir ;
+    private ArrayList<Panoramas>listPanoramaMer ;
+    private ArrayList<Panoramas>listPanoramaMontagnes ;
+    private ArrayList<Panoramas>listPanoramaRiziere ;
+    private ArrayList<Sources>listSource ;
+    private ArrayList<Joueur>listJoueur ;
+    private ArrayList<Integer>listOrTemple ;
+    private ArrayList<Acomplissement>listAcomplissement ;
+    private ArrayList<Integer> listArretDouble;
+    private ArrayList<Integer> listArretRelais ;
+    private ArrayList<Joueur>recapJoueur;
     private Repas choucroute;
     private Repas fischer;
-    private ArrayList<Joueur>recapJoueur = new ArrayList<Joueur>();
+
     public Model(){
         createur=false;
+        listRecontre = new ArrayList<Rencontre>();
+        listRepas = new ArrayList<Repas>();
+        listSouvenir = new ArrayList<Souvenirs>();
+        listPanoramaMer = new ArrayList<Panoramas>();
+        listPanoramaMontagnes = new ArrayList<Panoramas>();
+        listPanoramaRiziere = new ArrayList<Panoramas>();
+        listSource = new ArrayList<Sources>();
+        listJoueur = new ArrayList<Joueur>();
+        listOrTemple = new ArrayList<Integer>();
+        listAcomplissement = new ArrayList<Acomplissement>();
+        listArretDouble = new ArrayList<Integer>();
+        listArretRelais = new ArrayList<Integer>();
+        recapJoueur = new ArrayList<Joueur>();
+        choucroute = new Repas("Choucroute",0,6);
+        fischer = new Repas("Fischer",0,6);
     }
 
+    /**
+     * Initialise la partie en appelant les différentes fonctions INIT qui mélanges les cartes et les instancient
+     */
     public void initPartie(){
         mer=false;
         montagne=false;
@@ -41,10 +59,11 @@ public class Model {
         initArretDouble();
         initRelais();
         shuffle();
-        choucroute = new Repas("Choucroute",0,6);
-        fischer = new Repas("Fischer",0,6);
-
     }
+
+    /**
+     * Donne la position de chaque arrêt double du jeu (ne marche qu'à 4 ou 5 joueurs)
+     */
     private void initArretDouble(){
         listArretDouble.add(6);
         listArretDouble.add(11);
@@ -73,15 +92,9 @@ public class Model {
 
     }
 
-    public Repas getFischer() {
-        return fischer;
-    }
-
-    public Repas getChoucroute() {
-        return choucroute;
-    }
-
-
+    /**
+     * Même principe que pour les arrets doubles
+     */
     private void initRelais(){
         listArretRelais.add(1);
         listArretRelais.add(2);
@@ -105,6 +118,9 @@ public class Model {
         listArretRelais.add(98);
     }
 
+    /**
+     * Initie les accomplissements panoramas
+     */
     private void initAccomplissement() {
         listAcomplissement.add(new Acomplissement("AcomplissementRiziere"));
         listAcomplissement.add(new Acomplissement("AcomplissementMontagne"));
@@ -112,19 +128,10 @@ public class Model {
 
     }
 
-    public ArrayList<Integer> getListArretRelais() {
-        return listArretRelais;
-    }
-
-
-    private void shuffle(){
-        Collections.shuffle(listRecontre);
-        Collections.shuffle(listRepas);
-        Collections.shuffle(listSouvenir);
-        Collections.shuffle(listSource);
-    }
-
-    private void initRencontre(){ //Init de toutes les rencontre
+    /**
+     * Initie les différentes rencontres et si l'utilisateur à cocher les cartes créatrices les instancie et les ajoute dans la liste
+     */
+    private void initRencontre(){
         listRecontre.add(new Rencontre("Samurai","Vous gagnez 3 points"));
         listRecontre.add(new Rencontre("Samurai","Vous gagnez 3 points"));
         listRecontre.add(new Rencontre("Kuge","Vous gagnez 3 pieces d'or"));
@@ -145,21 +152,15 @@ public class Model {
             listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
             listRecontre.add(new Rencontre("Antoine","Vous pouvez désormais donner une pièce de plus \n au temple"));
             listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
-           listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
+            listRecontre.add(new Rencontre("Aurélien","Vous rencontré l'ami alsacien \n il vous offre en cadeau un repas typique"));
 
+        }
     }
 
-    }
-
-    public boolean isCreateur() {
-        return createur;
-    }
-
-    public void setCreateur(boolean createur) {
-        this.createur = createur;
-    }
-
-    private void initRepas(){ //Init de touts les repas
+    /**
+     * Initialise les différentes cartes repas du jeu et les ajoute dans la liste
+     */
+    private void initRepas(){
         for(int i=0 ; i<3 ;i++){
             listRepas.add(new Repas("Misoshiru",1,6));
             listRepas.add(new Repas("Nigirineshi",1,6));
@@ -180,7 +181,10 @@ public class Model {
         listRepas.add(new Repas("Sashini",3,6));
     }
 
-    private void initSouvenir(){ //Init de touts les souvenirs
+    /**
+     * Initialise les souvenirs ainsi que leurs types
+     */
+    private void initSouvenir(){
         listSouvenir.add(new Souvenirs("Yunomi",1,1));
         listSouvenir.add(new Souvenirs("Gofu",1,1));
         listSouvenir.add(new Souvenirs("Koma",1,1));
@@ -210,7 +214,10 @@ public class Model {
         listSouvenir.add(new Souvenirs("Ukiyoe",3,4));
     }
 
-    private void initPanorama(){ //Init des cartes Panoramas
+    /**
+     * Initialise les panoramas avec le nombre de points pour chaque carte et les ajoute dans des listes propres à chaque panorama
+     */
+    private void initPanorama(){
         listPanoramaRiziere.add(new Panoramas("Riziere0",1,"Riziere"));
         listPanoramaRiziere.add(new Panoramas("Riziere1",2,"Riziere"));
         listPanoramaRiziere.add(new Panoramas("Riziere2",3,"Riziere"));
@@ -229,11 +236,94 @@ public class Model {
 
     }
 
-    private void initSource(){ //Init des Cartes Source chaude
+    /**
+     * Initialise les sources celle qui valent 2 points et celle qui en valen 3
+     */
+    private void initSource(){
         for (int j=0 ; j<2 ;j++) {
             for (int i = 0; i < 6; i++) {
                 listSource.add(new Sources("Source" + j, j+2));
             }
+        }
+    }
+
+    /**
+     * Mélange toutes les cartes
+     */
+    private void shuffle(){
+        Collections.shuffle(listRecontre);
+        Collections.shuffle(listRepas);
+        Collections.shuffle(listSouvenir);
+        Collections.shuffle(listSource);
+    }
+
+    /**
+     * Trie les joueurs en fonction de leur position ainsi le dernier joueur sur le plateau est placé en début de la liste
+     */
+    public void trieJoueur() {
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getPositions() > listJoueur.get(i+1).getPositions()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+    }
+
+    /**
+     * Trie les joueurs en fonction de leur score pour le classement en fin de partie
+     */
+    public void trieJoueurScore() {
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getPoints() < listJoueur.get(i+1).getPoints()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+    }
+
+    /**
+     * Trie les joueurs en fonction de leurs or donner au temple pour la fin de partie
+     */
+    public void trieJoueurOrTemple(){
+        boolean permut;
+        Joueur tampon;
+        int i;
+        do{
+            permut = false;
+            for(i=0; i<listJoueur.size()-1; i++){
+                if(listJoueur.get(i).getOrTemple() < listJoueur.get(i+1).getOrTemple()){
+                    tampon = listJoueur.get(i);
+                    listJoueur.set(i,listJoueur.get(i+1));
+                    listJoueur.set(i+1,tampon);
+                    permut = true;
+                }
+            }
+        }while(permut);
+
+    }
+
+    /**
+     * Applique la fonction qui calcule le score à tous les joueurs
+     */
+    public void majScore() {
+        for (Joueur joueur : listJoueur) {
+            joueur.updateScore();
         }
     }
 
@@ -308,72 +398,29 @@ public class Model {
     public ArrayList<Integer> getListOrTemple() {
         return listOrTemple;
     }
-    public void printRencontre(){
-        for (int i=0;i<listRecontre.size();i++){
-            System.out.println(listRecontre.get(i).getNom());
-        }
+
+    public Repas getFischer() {
+        return fischer;
+    }
+
+    public Repas getChoucroute() {
+        return choucroute;
     }
 
     public void addJoueur(Joueur j){
         listJoueur.add(j);
         recapJoueur.add(j);
 }
-
-    public void trieJoueur() {
-        boolean permut;
-        Joueur tampon;
-        int i;
-        do{
-            permut = false;
-            for(i=0; i<listJoueur.size()-1; i++){
-                if(listJoueur.get(i).getPositions() > listJoueur.get(i+1).getPositions()){
-                    tampon = listJoueur.get(i);
-                    listJoueur.set(i,listJoueur.get(i+1));
-                    listJoueur.set(i+1,tampon);
-                    permut = true;
-                }
-            }
-        }while(permut);
-        }
-
-    public void trieJoueurScore() {
-        boolean permut;
-        Joueur tampon;
-        int i;
-        do{
-            permut = false;
-            for(i=0; i<listJoueur.size()-1; i++){
-                if(listJoueur.get(i).getPoints() < listJoueur.get(i+1).getPoints()){
-                    tampon = listJoueur.get(i);
-                    listJoueur.set(i,listJoueur.get(i+1));
-                    listJoueur.set(i+1,tampon);
-                    permut = true;
-                }
-            }
-        }while(permut);
+    public ArrayList<Integer> getListArretRelais() {
+        return listArretRelais;
     }
 
-    public void majScore() {
-        for (Joueur joueur : listJoueur) {
-            joueur.updateScore();
-        }
+    public boolean isCreateur() {
+        return createur;
     }
 
-    public void trieJoueurOrTemple(){
-        boolean permut;
-        Joueur tampon;
-        int i;
-        do{
-            permut = false;
-            for(i=0; i<listJoueur.size()-1; i++){
-                if(listJoueur.get(i).getOrTemple() < listJoueur.get(i+1).getOrTemple()){
-                    tampon = listJoueur.get(i);
-                    listJoueur.set(i,listJoueur.get(i+1));
-                    listJoueur.set(i+1,tampon);
-                    permut = true;
-                }
-            }
-        }while(permut);
-
+    public void setCreateur(boolean createur) {
+        this.createur = createur;
     }
+
 }

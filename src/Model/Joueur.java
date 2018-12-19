@@ -5,18 +5,22 @@ import java.util.ArrayList;
 public class Joueur {
     protected int gold;
     protected ArrayList<Cartes> cartes;
-    protected int points = 0;
-    protected String nom = "";
-    protected int positions;
+    private int points;
+    protected String nom;
+    private int positions;
     protected String couleur;
-    protected int orTemple;
-    protected boolean isRelais1;
-    protected  boolean isRelais2;
-    protected boolean isRelais3;
-    protected boolean isRelais4;
+    private int orTemple;
+    private boolean isRelais1;
+    private boolean isRelais2;
+    private boolean isRelais3;
+    private boolean isRelais4;
 
+    /**
+     * Instancie les paramètres du constructeur avec notamment les relais à fales qui signifient que le joueur ne s'est pas arrêter au relais
+     */
     public Joueur(){
        cartes = new ArrayList<Cartes>();
+       nom="";
        points = 0;
        orTemple=0;
        positions=0;
@@ -26,6 +30,9 @@ public class Joueur {
        isRelais4=false;
    }
 
+    /**
+     * Calcul du score en fonction des cartes
+     */
     public void updateScore(){
        int total = 0;
 
@@ -62,6 +69,9 @@ public class Joueur {
         points=total;
    }
 
+    /**
+     *Calcul propre au souvenir et est utilisé dans update Score
+     */
     private int getScoreSouvenir(){
         int total = 0;
         int coef = 1;
@@ -108,6 +118,71 @@ public class Joueur {
         return total;
    }
 
+    /**
+     * Fonction pour savoir si on à la carte dans notre jeu
+     */
+    public boolean contient(Cartes cartesTocompare) {
+        for (Cartes cartes : cartes){
+                if (cartes.getNom().equals(cartesTocompare.getNom())) return true;
+            }
+        return false;
+        }
+
+    /**
+     * Trie les cartes en fonction de leur type et les remets dans les cartes du joueurs
+     */
+    public void trierCarte(){
+        ArrayList<Cartes> repas = new ArrayList<Cartes>();
+        ArrayList<Cartes> souvenirs = new ArrayList<Cartes>();
+        ArrayList<Cartes> rencontres = new ArrayList<Cartes>();
+        ArrayList<Cartes> sources = new ArrayList<Cartes>();
+        ArrayList<Cartes> acomplissements = new ArrayList<Cartes>();
+        ArrayList<Cartes> riziere = new ArrayList<Cartes>();
+        ArrayList<Cartes> mer = new ArrayList<Cartes>();
+        ArrayList<Cartes> montagne = new ArrayList<Cartes>();
+
+        for (int i = 0; i < cartes.size(); i++) {
+            if (cartes.get(i) instanceof Repas ){
+                repas.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Souvenirs){
+                souvenirs.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Rencontre){
+                rencontres.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Sources){
+                sources.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Acomplissement){
+                acomplissements.add(cartes.get(i));
+            }
+            if (cartes.get(i) instanceof Panoramas){
+                Panoramas panoramas= (Panoramas)cartes.get(i);
+                switch (panoramas.getType()){
+                    case "Riziere":
+                        riziere.add(cartes.get(i));
+                        break;
+                    case "Mer":
+                        mer.add(cartes.get(i));
+                        break;
+                    case "Montagne":
+                        montagne.add(cartes.get(i));
+                        break;
+                }
+            }
+        }
+        cartes.clear();
+        cartes.addAll(repas);
+        cartes.addAll(souvenirs);
+        cartes.addAll(rencontres);
+        cartes.addAll(sources);
+        cartes.addAll(acomplissements);
+        cartes.addAll(riziere);
+        cartes.addAll(montagne);
+        cartes.addAll(mer);
+    }
+
     public boolean isRelais4() {
         return isRelais4;
     }
@@ -128,19 +203,13 @@ public class Joueur {
         isRelais2 = relais2;
     }
 
-
-    public boolean isRelais3() {
-        return isRelais3;
-    }
-
     public void setRelais3(boolean relais3) {
         isRelais3 = relais3;
     }
 
-
     public int getPoints(){
         return this.points;
-   }
+    }
 
     public String getNom() {
         return nom;
@@ -198,63 +267,8 @@ public class Joueur {
         this.couleur = couleur;
     }
 
-    public boolean contient(Cartes cartesTocompare) {
-        for (Cartes cartes : cartes){
-                if (cartes.getNom().equals(cartesTocompare.getNom())) return true;
-            }
-        return false;
-        }
-
-    public void trierCarte(){
-        ArrayList<Cartes> repas = new ArrayList<Cartes>();
-        ArrayList<Cartes> souvenirs = new ArrayList<Cartes>();
-        ArrayList<Cartes> rencontres = new ArrayList<Cartes>();
-        ArrayList<Cartes> sources = new ArrayList<Cartes>();
-        ArrayList<Cartes> acomplissements = new ArrayList<Cartes>();
-        ArrayList<Cartes> riziere = new ArrayList<Cartes>();
-        ArrayList<Cartes> mer = new ArrayList<Cartes>();
-        ArrayList<Cartes> montagne = new ArrayList<Cartes>();
-
-        for (int i = 0; i < cartes.size(); i++) {
-            if (cartes.get(i) instanceof Repas ){
-                repas.add(cartes.get(i));
-            }
-            if (cartes.get(i) instanceof Souvenirs){
-                souvenirs.add(cartes.get(i));
-            }
-            if (cartes.get(i) instanceof Rencontre){
-                rencontres.add(cartes.get(i));
-            }
-            if (cartes.get(i) instanceof Sources){
-                sources.add(cartes.get(i));
-            }
-            if (cartes.get(i) instanceof Acomplissement){
-                acomplissements.add(cartes.get(i));
-            }
-            if (cartes.get(i) instanceof Panoramas){
-                Panoramas panoramas= (Panoramas)cartes.get(i);
-                switch (panoramas.getType()){
-                    case "Riziere":
-                        riziere.add(cartes.get(i));
-                        break;
-                    case "Mer":
-                        mer.add(cartes.get(i));
-                        break;
-                    case "Montagne":
-                        montagne.add(cartes.get(i));
-                        break;
-                }
-            }
-        }
-        cartes.clear();
-        cartes.addAll(repas);
-        cartes.addAll(souvenirs);
-        cartes.addAll(rencontres);
-        cartes.addAll(sources);
-        cartes.addAll(acomplissements);
-        cartes.addAll(riziere);
-        cartes.addAll(montagne);
-        cartes.addAll(mer);
+    public boolean isRelais3() {
+        return isRelais3;
     }
 
     public void setRelais4(boolean b) {

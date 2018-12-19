@@ -1,9 +1,13 @@
 package Model;
 
 public class Repas extends Cartes{
-    protected int prix;
-    protected int point;
+    private int prix;
+    private int point;
 
+
+    /**
+     * Les repas s'achètent aux relais et ont un prix entre 1 et 3 PO et ils rapportent tous 6 points
+     **/
     public Repas(String nom){
         super(nom);
     }
@@ -16,10 +20,6 @@ public class Repas extends Cartes{
 
     public int getPrix() {
         return prix;
-    }
-
-    public void setPrix(int prix) {
-        this.prix = prix;
     }
 
     public int getPoint(){

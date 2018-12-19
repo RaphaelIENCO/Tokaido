@@ -10,9 +10,17 @@ import javafx.stage.Stage;
 public class RecapController {
     private Model model;
      @FXML GridPane grille;
+
+    /**
+     * Fonction pour actualiser le model
+     */
     public void setData(Model model){
         this.model=model;
     }
+
+    /**
+     * Fonction qui affiche toutes les cartes de chaque joueur
+     */
     public void afficheCartes(){
         model.getListJoueur().get(0).trierCarte();
         grille.getChildren().clear();
@@ -29,6 +37,10 @@ public class RecapController {
             }
         }
     }
+
+    /**
+     * Ferme la fenetre
+     */
     public void fermerStage(){
         Stage stage1 = (Stage) grille.getScene().getWindow();
         stage1.close();
