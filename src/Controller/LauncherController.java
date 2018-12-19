@@ -32,8 +32,11 @@ public class LauncherController {
     @FXML
     RadioButton RBcreateur;
 
-    private ArrayList<String> persoDispo = new ArrayList<String>();
+    private ArrayList<String> persoDispo = new ArrayList<String>();  //Liste de string, contient les noms des personnages disponible
 
+    /*
+    Constructeur, instancie le model et ajoute les persos dans persoDispo
+     */
     public LauncherController(){
         this.model = new Model();
         persoDispo.add("Kinko");
@@ -48,6 +51,10 @@ public class LauncherController {
         persoDispo.add("ZenEmon");
     }
 
+
+    /*
+    Methode qui lance la fenetre de jeu.
+     */
     @FXML
     public void fenetreLauncher() throws IOException {
         if(model.getListJoueur().size()>=2){
@@ -59,7 +66,7 @@ public class LauncherController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage secondaryStage = new Stage();
-            loader.<GameController>getController().setData(model);
+            loader.<GameController>getController().setData(model);  // Permet de renvoyer le model dans le controler de la fenetre de jeu
             secondaryStage.setScene(scene);
             secondaryStage.setMaximized(false);
             secondaryStage.setTitle("Tokaido");
@@ -70,6 +77,9 @@ public class LauncherController {
         }
     }
 
+    /*
+    Methode controlant le bouton d'ajout de joueur et la fenetre d'ajout
+     */
     public void selectionJoueur(){
         if(model.getListJoueur().size()>=5){
             messageErreur("Vous ne pouvez plus ajouter de joueurs !");
@@ -160,6 +170,9 @@ public class LauncherController {
 
     }
 
+    /*
+    Methode generant les messages d'erreur simple
+     */
     public void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -167,10 +180,16 @@ public class LauncherController {
         alert.showAndWait();
     }
 
+    /*
+    Methode appelant la methode static reglement()
+     */
     public void showReglement(){
         reglement();
     }
 
+    /*
+    Ouvre la page internet avec les regles
+     */
     static void reglement() {
         if( Desktop.isDesktopSupported() )
         {
