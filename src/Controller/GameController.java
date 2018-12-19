@@ -3,7 +3,6 @@ package Controller;
 
 import Model.*;
 import Model.sonTokaido.Son;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,15 +12,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Optional;
-
 
 
 public class GameController {
@@ -134,6 +130,9 @@ public class GameController {
     ArrayList<Repas> mesRepas;
 
 
+    /*
+        Constructeur du controller, instancie les variables et le loader pour la seconde fenetre
+    */
     public GameController(){
         mesRepas = new ArrayList<Repas>();
         boutonsPlateau = new ArrayList<>();
@@ -144,6 +143,9 @@ public class GameController {
 
     }
 
+    /*
+    Methode controllant les differents bouton du plateau
+     */
     public void actionColor(ActionEvent event){
         Button button=(Button) event.getSource();
         int indice=0;
@@ -246,7 +248,9 @@ public class GameController {
     }
 
 
-
+/*
+    Methode qui met e jour la position du joueur sur le plateau
+ */
     private void updatePos(ActionEvent event) {
         Button button = (Button) event.getSource();
         for (int i = 0; i < boutonsPlateau.size(); i++) {
@@ -257,6 +261,10 @@ public class GameController {
         colorieCase();
 
     }
+
+    /*
+    Change la couleur du bouton en fct du joueur present ou non dessus
+     */
     public void colorieCase(){
         int indice=0;
         Boolean exist = false;
@@ -290,6 +298,9 @@ public class GameController {
         }
     }
 
+    /*
+    Methode qui affiche ou non les arrets doubles et les cases relais si un joueur est sur une position integer
+     */
     private void cacheBouton(Integer integer) {
         boolean aCacher;
         aCacher=true;
@@ -305,6 +316,10 @@ public class GameController {
 
     /**
      * Partie pioche
+     */
+
+    /*
+    Methode qui gere: Le tirage des cartes Repas, et le pouvoir des personnages en rapport avec les relais
      */
     public void piocheRelais(ActionEvent event) {
         if(model.getListJoueur().get(0).getPositions()==28 || model.getListJoueur().get(0).getPositions()==51 || model.getListJoueur().get(0).getPositions()==75 || model.getListJoueur().get(0).getPositions()==98 ){
@@ -455,6 +470,9 @@ public class GameController {
 
     }
 
+    /*
+    Methode qui gere la pioche des sources chaudes
+     */
     private void piocheSourceChaude(){
         Thread sonPiece = new Son("src/Model/sonTokaido/source.wav");
         sonPiece.start();
@@ -481,6 +499,9 @@ public class GameController {
         }else messageErreur("Plus de cartes source chaude");
     }
 
+    /*
+    Methode qui gere l'achat et le tirage des souvenirs
+     */
     private void piocheSouvenir(){
             if (model.getListSouvenir().size() > 3) {
                 int prixTotal = 0;
@@ -594,6 +615,9 @@ public class GameController {
             } else messageErreur("Pas assez de cartes");
     }
 
+    /*
+    Methode qui gere la pioche des rencontre, l'affichage et les effets des cartes
+     */
     private void piocheRencontre() {
         if (model.getListJoueur().get(0).getNom().equals("Yoshiyasu")) piocheYoshiyasu();
         if (!model.getListRecontre().isEmpty()) {
@@ -686,6 +710,10 @@ public class GameController {
 
         } else messageErreur("Plus de cartes rencontre");
     }
+
+    /*
+    Methode de pioche des rencontres speciale pour Yoshiyasu (Pouvoir de choisir entre 2 rencontre)
+     */
     private void piocheYoshiyasu(){
         if (model.getListRecontre().size()>=2) {
             GridPane gridPane = new GridPane();
@@ -720,6 +748,9 @@ public class GameController {
 
     }
 
+    /*
+    Methode en cas de rencontre avec Anaibito si le joueur possede deja le panorama
+     */
     private void recommencerPanorama(String s) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Vous avez déja tout les panorama "+s+"\n veuillez en prendre un autre");
@@ -763,6 +794,9 @@ public class GameController {
     }
 
 
+    /*
+    Methode qui gere la pioche des panoramas riziere
+     */
     private void panoramaRiziere() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Riziere");
@@ -789,6 +823,9 @@ public class GameController {
         alert.showAndWait();
         }
 
+    /*
+    Methode qui gere la pioche des panoramas Montagne
+     */
     private void panoramaMontagne() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Montagne");
@@ -815,6 +852,9 @@ public class GameController {
         alert.showAndWait();
 }
 
+    /*
+    Methode qui gere la pioche des panoramas Mer
+     */
     private void panoramaMer(){
         Thread sonMer = new Son("src/Model/sonTokaido/mer.wav");
         sonMer.start();
@@ -844,7 +884,9 @@ public class GameController {
 
     }
 
-
+    /*
+    Methode qui gere l'affichage et les dons aux temples et les pouvoirs des personnages en rapport avec le temple
+     */
     private void rencontreTemple(Button button){
         Thread sonTemple = new Son("src/Model/sonTokaido/temple.wav");
         sonTemple.start();
@@ -901,6 +943,9 @@ public class GameController {
          button.setStyle("-fx-background-color: white;");
         }
 
+    /*
+    Methode qui gere l'affichage et les dons des fermes + la rencontre Olivier
+     */
     private void rencontreFerme() {
 
         double a=Math.random();
@@ -923,6 +968,9 @@ public class GameController {
 
     }
 
+    /*
+    Methode generant les messages d'erreur simple
+     */
     private void messageErreur(String message){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setHeaderText(null);
@@ -930,6 +978,10 @@ public class GameController {
         alert.showAndWait();
     }
 
+    /*
+    Ajout de tous les boutons du jeu dans la liste boutonsPlateau
+    Met les boutons des arrets doubles/relais non visible
+     */
     private void ajoutBouton() {
         boutonsPlateau.add(b013);
         b013.setVisible(false);
@@ -1077,6 +1129,10 @@ public class GameController {
 
 
     }
+
+    /*
+    Gere l'affichage de la fenetre de in de partie
+     */
     public void finDePartie() throws IOException {
         Thread sonVictoire = new Son("src/Model/sonTokaido/victoire.wav");
         sonVictoire.start();
@@ -1125,6 +1181,9 @@ public class GameController {
         }
     }
 
+    /*
+    Methode qui controle le bouton de restart
+     */
     @FXML
     private void restartGame() {
         for (Button button:boutonsPlateau){ button.setStyle("-fx-background-color: white"); }
@@ -1174,6 +1233,9 @@ public class GameController {
         loader.<RecapController>getController().afficheCartes();
     }
 
+    /*
+    initialise le model /  les boutons / le placement des joueurs
+     */
     private void initPartie() {
         model.initPartie();
         initJoueur();
@@ -1183,6 +1245,9 @@ public class GameController {
         if(!model.getListJoueur().get(0).getNom().equals("VoyageurNeutre")) affichageJoueur.setGraphic(new ImageView("/Vue/Images/"+model.getListJoueur().get(0).getNom()+"1.jpg"));
     }
 
+    /*
+    Initialise les position des joueurs
+     */
     private void initJoueur() {
         switch (model.getListJoueur().size()){
             case 2:
@@ -1210,6 +1275,9 @@ public class GameController {
         }
     }
 
+    /*
+    Methode permettant de recuperer le model cree dans le launcher et gere la demande pour les variantes de jeu
+     */
     public void setData(Model m) throws IOException {
         this.model =m;
         if (model.getListJoueur().size()==2){
@@ -1266,10 +1334,14 @@ public class GameController {
     /**
      * Partie menu
      */
+
     public void leaveGame(){
         System.exit(0);
     }
 
+    /*
+    Methode relancant la partie avec les memes joueurs
+     */
     public void restart() throws IOException {
             sonMusique.stop();
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("Vue/luncher.fxml"));
@@ -1290,8 +1362,9 @@ public class GameController {
         LauncherController.reglement();
     }
 
-
-
+    /*
+    Methode gerant la distribution des avancements en fin de partie
+     */
     public void distribAvancement(){
         model.trieJoueurOrTemple(); // tri OK
         if(model.getListJoueur().size()>=3){
